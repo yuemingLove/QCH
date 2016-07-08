@@ -195,12 +195,12 @@
                 NSString *ID = [dict objectForKey:@"IntentionID"];
                 if ([self isBlankString:purpose]) {
                     purpose = intention;
-                }else{
+                } else {
                     purpose = [purpose stringByAppendingString:[NSString stringWithFormat:@" %@",intention]];
                 }
                 if ([self isBlankString:purposeid]) {
                     purposeid = ID;
-                }else{
+                } else {
                     purposeid = [purposeid stringByAppendingString:[NSString stringWithFormat:@";%@",ID]];
                 }
             }
