@@ -10,7 +10,8 @@
 
 @interface WithdrawalsViewController ()<UITextFieldDelegate>
 {
-   UITextField *moneyTF;
+    UITextField *moneyTF;
+    float account;
 }
 @property (nonatomic, assign) BOOL isHaveDian;
 
@@ -23,34 +24,55 @@
     // Do any additional setup after loading the view.
     self.title = @"提现";
     self.view.backgroundColor = [UIColor themeGrayColor];
+    [self GetAccount];
     [self bindBankCard];
+    
+}
+
+- (void)GetAccount{
+    [HttpAlipayAction GetAccount:UserDefaultEntity.uuid Token:[MyAes aesSecretWith:@"userGuid"] complete:^(id result, NSError *error) {
+        NSDictionary *dict=result[0];
+        if ([[dict objectForKey:@"state"] isEqualToString:@"true"]) {
+            account = [(NSNumber*)[dict objectForKey:@"result"] floatValue];
+            NSString *money = [NSString stringWithFormat:@"当前余额:%.2f",account];
+            moneyTF.placeholder = money;
+        }else if ([[dict objectForKey:@"state"]isEqualToString:@"false"]){
+            account=0.00;
+        }
+    }];
 }
 // 绑定银行卡
 - (void)bindBankCard {
-    UIView *bgkView = [[UIView alloc] initWithFrame:CGRectMake(0, 8*PMBHEIGHT, ScreenWidth, 220*PMBHEIGHT)];
+    UIView *bgkView = [[UIView alloc] initWithFrame:CGRectMake(0, 8*PMBHEIGHT, ScreenWidth, 200*PMBHEIGHT)];
     bgkView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:bgkView];
     NSString *bankname = [NSString stringWithFormat:@"收款银行:%@",_t_Bank_Name];
-    UILabel *bandLabel = [self createLabelFrame:CGRectMake(27*PMBWIDTH, 8*PMBHEIGHT, ScreenWidth - 30*PMBWIDTH, 30*PMBHEIGHT) color:[UIColor blackColor] font:Font(15) text:bankname];
+    UILabel *bandLabel = [self createLabelFrame:CGRectMake(27*PMBWIDTH, 8*PMBHEIGHT, ScreenWidth - 30*PMBWIDTH, 30) color:[UIColor lightGrayColor] font:Font(15) text:bankname];
     [bgkView addSubview:bandLabel];
-    NSString *banknum = [NSString stringWithFormat:@"卡号:%@",_t_Bank_NO];
-    UILabel *cardNum = [self createLabelFrame:CGRectMake(27*PMBWIDTH, bandLabel.bottom + 8*PMBHEIGHT, ScreenWidth - 30*PMBWIDTH,  30*PMBHEIGHT) color:[UIColor blackColor] font:Font(15) text:banknum];
+    
+    NSMutableString *bankno = [NSMutableString stringWithFormat:@"%@",_t_Bank_NO];
+    [bankno replaceCharactersInRange:NSMakeRange(6, bankno.length-10) withString:@"*****"];
+    NSString *banknum = [NSString stringWithFormat:@"卡号:%@",bankno];
+    UILabel *cardNum = [self createLabelFrame:CGRectMake(27*PMBWIDTH, bandLabel.bottom + 8*PMBHEIGHT, ScreenWidth - 30*PMBWIDTH, 30) color:[UIColor lightGrayColor] font:Font(15) text:banknum];
     [bgkView addSubview:cardNum];
     NSString *name =[NSString stringWithFormat:@"姓名:%@",_t_Bank_OpenUser];
-    UILabel *accountLabel = [self createLabelFrame:CGRectMake(27*PMBWIDTH,cardNum.bottom + 8*PMBHEIGHT, ScreenWidth - 30*PMBWIDTH,  30*PMBHEIGHT) color:[UIColor blackColor] font:Font(15) text:name];
+    UILabel *accountLabel = [self createLabelFrame:CGRectMake(27*PMBWIDTH,cardNum.bottom + 8*PMBHEIGHT, ScreenWidth - 30*PMBWIDTH, 30) color:[UIColor lightGrayColor] font:Font(15) text:name];
     [bgkView addSubview:accountLabel];
     UIView *line1 = [[UIView alloc] initWithFrame:CGRectMake(0, accountLabel.bottom+8*PMBHEIGHT, ScreenWidth, 8*PMBHEIGHT)];
     line1.backgroundColor = [UIColor themeGrayColor];
     [bgkView addSubview:line1];
     
-    UILabel *moneyLabel = [self createLabelFrame:CGRectMake(27*PMBWIDTH, line1.bottom + 27*PMBHEIGHT, 30, 30*PMBHEIGHT) color:[UIColor blackColor] font:Font(15) text:@"金额"];
+    UILabel *moneyLabel = [self createLabelFrame:CGRectMake(27*PMBWIDTH, line1.bottom + 27*PMBHEIGHT, 30, 30) color:[UIColor blackColor] font:Font(15) text:@"金额"];
     [bgkView addSubview:moneyLabel];
-    moneyTF = [self createTextFieldFrame:CGRectMake(moneyLabel.right+ 8*PMBWIDTH, moneyLabel.top, ScreenWidth - moneyLabel.right - 30*PMBWIDTH, 35*PMBWIDTH) font:Font(15) placeholder:@"请输入提现金额"];
+    
+    
+    moneyTF = [self createTextFieldFrame:CGRectMake(moneyLabel.right+ 8*PMBWIDTH, moneyLabel.top, ScreenWidth - moneyLabel.right - 30*PMBWIDTH, 35) font:Font(15) placeholder:@""];
     moneyTF.layer.cornerRadius = moneyTF.height/2;
     moneyTF.layer.masksToBounds = YES;
     moneyTF.layer.borderWidth = 0.6;
     moneyTF.layer.borderColor = TSEColor(230, 230, 230).CGColor;
-    UIView *paddingView2 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 12*PMBWIDTH, 30)];
+    moneyTF.textColor = [UIColor blackColor];
+    UIView *paddingView2 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10*PMBWIDTH, 0)];
     moneyTF.leftView = paddingView2;
     moneyTF.delegate = self;
     moneyTF.leftViewMode = UITextFieldViewModeAlways;
@@ -76,6 +98,10 @@
 
     if ([moneyTF.text floatValue]<100.00) {
         [SVProgressHUD showErrorWithStatus:@"提现额度不能小于100" maskType:SVProgressHUDMaskTypeBlack];
+        return;
+    }
+    if ([moneyTF.text floatValue]>account) {
+        [SVProgressHUD showErrorWithStatus:@"提现额度不能大于金额" maskType:SVProgressHUDMaskTypeBlack];
         return;
     }
     
@@ -151,7 +177,5 @@
     }
 
 }
-
-
 
 @end

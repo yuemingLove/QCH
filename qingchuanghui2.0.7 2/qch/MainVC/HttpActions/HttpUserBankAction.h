@@ -23,7 +23,9 @@
 + (void)AddWithdrawal:(NSString *)userGuid money:(NSString *)money remark:(NSString *)remark bankGuid:(NSString*)bankGuid Token:(NSString *)Token complete:(HttpCompleteBlock)block;
 
 + (void)EditOrderNO:(NSString *)orderNO Token:(NSString *)Token complete:(HttpCompleteBlock)block;
+
++ (void)GetVoiceCode:(NSString *)Token complete:(HttpCompleteBlock)block;
+
 // 提现列表
 + (void)GetWithdrawalWithUserGuid:(NSString *)userGuid page:(NSInteger)page pagesize:(NSInteger)pagesize Token:(NSString *)Token complete:(HttpCompleteBlock)block;
-
 @end

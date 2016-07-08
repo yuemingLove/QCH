@@ -334,9 +334,6 @@
 		4835928B1D24AB2700312F54 /* DynamicTWCell7.xib in Resources */ = {isa = PBXBuildFile; fileRef = 483592821D24AB2700312F54 /* DynamicTWCell7.xib */; };
 		4835928C1D24AB2700312F54 /* DynamicTWCell8.m in Sources */ = {isa = PBXBuildFile; fileRef = 483592841D24AB2700312F54 /* DynamicTWCell8.m */; };
 		4835928D1D24AB2700312F54 /* DynamicTWCell8.xib in Resources */ = {isa = PBXBuildFile; fileRef = 483592851D24AB2700312F54 /* DynamicTWCell8.xib */; };
-		488BFF7B1D2F387E00C9D5CB /* WithdrawalsDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 488BFF7A1D2F387E00C9D5CB /* WithdrawalsDetailVC.m */; };
-		488BFF7F1D2F38DE00C9D5CB /* WithdrawalsDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 488BFF7D1D2F38DE00C9D5CB /* WithdrawalsDetailCell.m */; };
-		488BFF801D2F38DE00C9D5CB /* WithdrawalsDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 488BFF7E1D2F38DE00C9D5CB /* WithdrawalsDetailCell.xib */; };
 		5601F8321CE9A2E000A68289 /* InviteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5601F8311CE9A2E000A68289 /* InviteVC.m */; };
 		5601F8371CE9C25A00A68289 /* InviteListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5601F8361CE9C25A00A68289 /* InviteListVC.m */; };
 		5601F83E1CE9C60100A68289 /* InviteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5601F83C1CE9C60100A68289 /* InviteCell.m */; };
@@ -391,6 +388,9 @@
 		56306AFC1D222138004638EB /* DynamicTWCell3.m in Sources */ = {isa = PBXBuildFile; fileRef = 56306AFA1D222138004638EB /* DynamicTWCell3.m */; };
 		56306B0A1D222B20004638EB /* DynamicTWCell4.m in Sources */ = {isa = PBXBuildFile; fileRef = 56306B081D222B20004638EB /* DynamicTWCell4.m */; };
 		56306B0B1D222B20004638EB /* DynamicTWCell4.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56306B091D222B20004638EB /* DynamicTWCell4.xib */; };
+		56349F071D2F8B3F00AF156D /* WithdrawalsDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 56349F061D2F8B3F00AF156D /* WithdrawalsDetailVC.m */; };
+		56349F0B1D2F8B5200AF156D /* WithdrawalsDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 56349F091D2F8B5200AF156D /* WithdrawalsDetailCell.m */; };
+		56349F0C1D2F8B5200AF156D /* WithdrawalsDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56349F0A1D2F8B5200AF156D /* WithdrawalsDetailCell.xib */; };
 		563994781CA4D8CF0009A6A4 /* BestAndDocell.m in Sources */ = {isa = PBXBuildFile; fileRef = 563994761CA4D8CF0009A6A4 /* BestAndDocell.m */; };
 		563994791CA4D8CF0009A6A4 /* BestAndDocell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 563994771CA4D8CF0009A6A4 /* BestAndDocell.xib */; };
 		563DBDE91D2A3E5F00777E5F /* MyNewInfoViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 563DBDE81D2A3E5F00777E5F /* MyNewInfoViewController2.m */; };
@@ -1268,11 +1268,6 @@
 		483592831D24AB2700312F54 /* DynamicTWCell8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicTWCell8.h; sourceTree = "<group>"; };
 		483592841D24AB2700312F54 /* DynamicTWCell8.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicTWCell8.m; sourceTree = "<group>"; };
 		483592851D24AB2700312F54 /* DynamicTWCell8.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DynamicTWCell8.xib; sourceTree = "<group>"; };
-		488BFF791D2F387E00C9D5CB /* WithdrawalsDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WithdrawalsDetailVC.h; sourceTree = "<group>"; };
-		488BFF7A1D2F387E00C9D5CB /* WithdrawalsDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WithdrawalsDetailVC.m; sourceTree = "<group>"; };
-		488BFF7C1D2F38DE00C9D5CB /* WithdrawalsDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WithdrawalsDetailCell.h; sourceTree = "<group>"; };
-		488BFF7D1D2F38DE00C9D5CB /* WithdrawalsDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WithdrawalsDetailCell.m; sourceTree = "<group>"; };
-		488BFF7E1D2F38DE00C9D5CB /* WithdrawalsDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WithdrawalsDetailCell.xib; sourceTree = "<group>"; };
 		5601F8301CE9A2E000A68289 /* InviteVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteVC.h; sourceTree = "<group>"; };
 		5601F8311CE9A2E000A68289 /* InviteVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteVC.m; sourceTree = "<group>"; };
 		5601F8351CE9C25A00A68289 /* InviteListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InviteListVC.h; path = qch/MainVC/Me/VC/InviteListVC.h; sourceTree = SOURCE_ROOT; };
@@ -1357,6 +1352,11 @@
 		56306B071D222B20004638EB /* DynamicTWCell4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicTWCell4.h; sourceTree = "<group>"; };
 		56306B081D222B20004638EB /* DynamicTWCell4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicTWCell4.m; sourceTree = "<group>"; };
 		56306B091D222B20004638EB /* DynamicTWCell4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DynamicTWCell4.xib; sourceTree = "<group>"; };
+		56349F051D2F8B3F00AF156D /* WithdrawalsDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WithdrawalsDetailVC.h; sourceTree = "<group>"; };
+		56349F061D2F8B3F00AF156D /* WithdrawalsDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WithdrawalsDetailVC.m; sourceTree = "<group>"; };
+		56349F081D2F8B5200AF156D /* WithdrawalsDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WithdrawalsDetailCell.h; sourceTree = "<group>"; };
+		56349F091D2F8B5200AF156D /* WithdrawalsDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WithdrawalsDetailCell.m; sourceTree = "<group>"; };
+		56349F0A1D2F8B5200AF156D /* WithdrawalsDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WithdrawalsDetailCell.xib; sourceTree = "<group>"; };
 		563994751CA4D8CF0009A6A4 /* BestAndDocell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BestAndDocell.h; sourceTree = "<group>"; };
 		563994761CA4D8CF0009A6A4 /* BestAndDocell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BestAndDocell.m; sourceTree = "<group>"; };
 		563994771CA4D8CF0009A6A4 /* BestAndDocell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BestAndDocell.xib; sourceTree = "<group>"; };
@@ -1827,12 +1827,12 @@
 		407767431C84409400A9D45E /* cell */ = {
 			isa = PBXGroup;
 			children = (
+				56349F081D2F8B5200AF156D /* WithdrawalsDetailCell.h */,
+				56349F091D2F8B5200AF156D /* WithdrawalsDetailCell.m */,
+				56349F0A1D2F8B5200AF156D /* WithdrawalsDetailCell.xib */,
 				56C81E9C1D1138FF00F8DBD8 /* MyOrderFirstCell.h */,
 				56C81E9D1D1138FF00F8DBD8 /* MyOrderFirstCell.m */,
 				56C81E9E1D1138FF00F8DBD8 /* MyOrderFirstCell.xib */,
-				488BFF7C1D2F38DE00C9D5CB /* WithdrawalsDetailCell.h */,
-				488BFF7D1D2F38DE00C9D5CB /* WithdrawalsDetailCell.m */,
-				488BFF7E1D2F38DE00C9D5CB /* WithdrawalsDetailCell.xib */,
 				56C81E9F1D1138FF00F8DBD8 /* MyOrderFourCell.h */,
 				56C81EA01D1138FF00F8DBD8 /* MyOrderFourCell.m */,
 				56C81EA11D1138FF00F8DBD8 /* MyOrderFourCell.xib */,
@@ -2299,10 +2299,10 @@
 		40D1E9601C86EBDD00457905 /* VC */ = {
 			isa = PBXGroup;
 			children = (
+				56349F051D2F8B3F00AF156D /* WithdrawalsDetailVC.h */,
+				56349F061D2F8B3F00AF156D /* WithdrawalsDetailVC.m */,
 				5678F8851D2CEB85004EF69D /* WithdrawalsViewController.h */,
 				5678F8861D2CEB85004EF69D /* WithdrawalsViewController.m */,
-				488BFF791D2F387E00C9D5CB /* WithdrawalsDetailVC.h */,
-				488BFF7A1D2F387E00C9D5CB /* WithdrawalsDetailVC.m */,
 				563DBDEA1D2A3E6F00777E5F /* SignViewController.h */,
 				563DBDEB1D2A3E6F00777E5F /* SignViewController.m */,
 				56C81EB01D11393000F8DBD8 /* ActivityPayVCNew.h */,
@@ -3619,7 +3619,7 @@
 				40D3913A1C57499B008751E7 /* photo_sel_photoPickerVc@2x.png in Resources */,
 				566B75B81C7C2F87005B252C /* SupportCell.xib in Resources */,
 				566B75B21C7C2F87005B252C /* DynamicTWCell2.xib in Resources */,
-				488BFF801D2F38DE00C9D5CB /* WithdrawalsDetailCell.xib in Resources */,
+				56349F0C1D2F8B5200AF156D /* WithdrawalsDetailCell.xib in Resources */,
 				560B1B411CC4D60C00F87740 /* found_s@2x.png in Resources */,
 				40CF81731C5209A000F129F5 /* expandableImage@2x.png in Resources */,
 				566B75651C7C2F47005B252C /* ImageCell.xib in Resources */,
@@ -3834,7 +3834,7 @@
 				40CF7CFF1C8572BE0090BC01 /* HttpMessageAction.m in Sources */,
 				40D7C8391C2D320800415DCC /* UIColor+theme.m in Sources */,
 				566B75B71C7C2F87005B252C /* SupportCell.m in Sources */,
-				488BFF7B1D2F387E00C9D5CB /* WithdrawalsDetailVC.m in Sources */,
+				56349F071D2F8B3F00AF156D /* WithdrawalsDetailVC.m in Sources */,
 				40D335241C89206B00606B9E /* MyProjectStatusVC.m in Sources */,
 				40CFF4EC1C56270900F185CD /* SWActionSheet.m in Sources */,
 				5651BF911CC222600022BA79 /* CollegeVC.m in Sources */,
@@ -3973,7 +3973,7 @@
 				40CFE4A51C58C2210016EC42 /* MoreBtnCell.m in Sources */,
 				56E061B11CBDED42005964E3 /* PartnerneedsCell.m in Sources */,
 				40D391041C574896008751E7 /* XHCacheManager.m in Sources */,
-				488BFF7F1D2F38DE00C9D5CB /* WithdrawalsDetailCell.m in Sources */,
+				56349F0B1D2F8B5200AF156D /* WithdrawalsDetailCell.m in Sources */,
 				40D6E34C1C804AE000EF4BCD /* RoomDetailVC.m in Sources */,
 				40D7C83B1C2D320800415DCC /* UIImage+Utility.m in Sources */,
 				40D228C41C8188AF00541EE6 /* HatchCell.m in Sources */,

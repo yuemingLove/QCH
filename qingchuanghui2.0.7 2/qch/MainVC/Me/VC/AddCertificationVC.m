@@ -8,7 +8,7 @@
 
 #import "AddCertificationVC.h"
 #import "WJAdsView.h"
-@interface AddCertificationVC ()<UITextFieldDelegate,WJAdsViewDelegate>
+@interface AddCertificationVC ()<UITextFieldDelegate,WJAdsViewDelegate,UIScrollViewDelegate>
 {
     UIImageView *Iconimg;
     UILabel *Namelab;
@@ -23,6 +23,8 @@
     UIView *backview;
     UILabel *Money;
     UILabel *Moneylab;
+    NSString *Newcode;
+    UIScrollView *scrollView;
 
 }
 
@@ -30,11 +32,14 @@
 
 @implementation AddCertificationVC
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"实名认证";
     self.view.backgroundColor = [UIColor themeGrayColor];
     [self GetUserBank];
+    [self GetVoiceCode];
+    
     
 }
 
@@ -53,6 +58,18 @@
     if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
         self.navigationController.interactivePopGestureRecognizer.enabled = YES;
     }
+}
+
+
+- (void)GetVoiceCode{
+    [HttpUserBankAction GetVoiceCode:[MyAes aesSecretWith:@"Token"] complete:^(id result, NSError *error) {
+        NSDictionary *dict = result[0];
+        if ([[dict objectForKey:@"state"]isEqualToString:@"true"]) {
+            if (![self isBlankString:[dict objectForKey:@"result"]]) {
+                Newcode = [dict objectForKey:@"result"];
+            }
+        }
+    }];
 }
 
 
@@ -98,9 +115,18 @@
 
 - (void)AddCertificationView
 {
+    
+    scrollView=[[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    [scrollView setBackgroundColor:[UIColor themeGrayColor]];
+    scrollView.contentOffset = CGPointMake(0, 0);
+    scrollView.scrollEnabled = YES;
+    scrollView.delegate = self;
+    [self.view addSubview:scrollView];
+    
     backview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
     backview.backgroundColor = [UIColor themeGrayColor];
-    [self.view addSubview:backview];
+    [scrollView addSubview:backview];
+    
     UIView *InformationView = [[UIView alloc]initWithFrame:CGRectMake(0, 15*PMBWIDTH, ScreenWidth, 160*PMBWIDTH)];
     InformationView.backgroundColor = [UIColor whiteColor];
     [backview addSubview:InformationView];
@@ -112,6 +138,7 @@
     [InformationView addSubview:Nolab];
     
     
+    
     userNofield = [[UITextField alloc]initWithFrame:CGRectMake(12*PMBWIDTH, Nolab.bottom+15*PMBWIDTH, ScreenWidth-24*PMBWIDTH, 30*PMBWIDTH)];
     userNofield.layer.cornerRadius = userNofield.height/2;
     userNofield.layer.masksToBounds = YES;
@@ -120,11 +147,11 @@
     userNofield.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"请输入您的身份证号码" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
     userNofield.clearButtonMode = UITextFieldViewModeWhileEditing;
     userNofield.font = Font(14);
+    userNamefield.textColor = [UIColor blackColor];
     userNofield.keyboardType = UIKeyboardTypeASCIICapable;
-    userNofield.delegate = self;
     [InformationView addSubview:userNofield];
     
-    UIView *leftview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 10*PMBWIDTH, userNofield.height)];
+    UIView *leftview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 10*PMBWIDTH, 0)];
     leftview.backgroundColor = [UIColor whiteColor];
     userNofield.leftView = leftview;
     userNofield.leftViewMode = UITextFieldViewModeAlways;
@@ -143,9 +170,11 @@
     userNamefield.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"请输入您的姓名" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
     userNamefield.clearButtonMode = UITextFieldViewModeWhileEditing;
     userNamefield.font = Font(14);
+    userNamefield.textColor = [UIColor blackColor];
+    userNamefield.delegate = self;
     [InformationView addSubview:userNamefield];
     
-    UIView *leftview1 = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 10*PMBWIDTH, userNofield.height)];
+    UIView *leftview1 = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 10*PMBWIDTH, 0)];
     leftview1.backgroundColor = [UIColor whiteColor];
     userNamefield.leftView = leftview1;
     userNamefield.leftViewMode = UITextFieldViewModeAlways;
@@ -153,7 +182,7 @@
     UILabel *phonelab = [[UILabel alloc]initWithFrame:CGRectMake(0, InformationView.bottom+10*PMBWIDTH, ScreenWidth, 45*PMBWIDTH)];
     phonelab.backgroundColor = [UIColor whiteColor];
     phonelab.text = [NSString stringWithFormat:@"      手机号:%@",UserDefaultEntity.account];
-    phonelab.textColor = [UIColor blackColor];
+    phonelab.textColor = [UIColor lightGrayColor];
     phonelab.font = Font(15);
     [backview addSubview:phonelab];
     
@@ -173,10 +202,11 @@
     codefield.layer.borderColor = TSEColor(230, 230, 230).CGColor;
     codefield.layer.borderWidth = 1.0f;
     codefield.font = Font(14);
+    codefield.textColor = [UIColor blackColor];
     codefield.keyboardType = UIKeyboardTypeNumberPad;
     [codeView addSubview:codefield];
     
-    UIView *leftview2 = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 10*PMBWIDTH, userNofield.height)];
+    UIView *leftview2 = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 10*PMBWIDTH, 0)];
     leftview2.backgroundColor = [UIColor whiteColor];
     codefield.leftView = leftview2;
     codefield.leftViewMode = UITextFieldViewModeAlways;
@@ -216,11 +246,13 @@
     Submitbtn.titleLabel.font = Font(14);
     [Submitbtn addTarget:self action:@selector(SubmitbtnAction) forControlEvents:UIControlEventTouchUpInside];
     [backview addSubview:Submitbtn];
-    
+    [scrollView setContentSize:CGSizeMake(SCREEN_WIDTH, ScreenHeight)];
 }
 
 
 -(void)getCode:(id)sender{
+    
+
     
     if ([self isBlankString:userNofield.text]) {
         [SVProgressHUD showErrorWithStatus:@"请填写身份证号" maskType:SVProgressHUDMaskTypeBlack];
@@ -244,6 +276,11 @@
         return;
     }
     
+    if ([self deptNameInputShouldChinese]) {
+        [SVProgressHUD showErrorWithStatus:@"姓名只能输入中文" maskType:SVProgressHUDMaskTypeBlack];
+        return;
+    }
+    
     authCodeButton.userInteractionEnabled = NO;
     [authCodeButton setTitle:@"正在发送" forState:UIControlStateNormal];
     
@@ -259,17 +296,17 @@
                 [authCodeButton setTitle:[NSString stringWithFormat:@"%d秒后重试",(int)remain] forState:UIControlStateNormal];
             } complete:^{
                 authCodeButton.userInteractionEnabled = YES;
-                [authCodeButton setTitle:@"获取验证码" forState:UIControlStateNormal];
+                [authCodeButton setTitle:@"获取语言验证码" forState:UIControlStateNormal];
             }];
             [codefield becomeFirstResponder];
         }else if ([[dict objectForKey:@"state"]isEqualToString:@"false"]){
             [SVProgressHUD showErrorWithStatus:[dict objectForKey:@"result"] maskType:SVProgressHUDMaskTypeBlack];
-            [authCodeButton setTitle:@"获取验证码" forState:UIControlStateNormal];
+            [authCodeButton setTitle:@"获取语言验证码" forState:UIControlStateNormal];
         }else{
             
             [SVProgressHUD showErrorWithStatus:@"获取验证码失败，请重新获取" maskType:SVProgressHUDMaskTypeBlack];
             authCodeButton.userInteractionEnabled = YES;
-            [authCodeButton setTitle:@"获取验证码" forState:UIControlStateNormal];
+            [authCodeButton setTitle:@"获取语言验证码" forState:UIControlStateNormal];
         }
         
     }];
@@ -290,6 +327,7 @@
 - (void)SubmitbtnAction{
     
 
+
     if ([self isBlankString:userNofield.text]) {
         [SVProgressHUD showErrorWithStatus:@"请填写身份证号" maskType:SVProgressHUDMaskTypeBlack];
         return;
@@ -311,7 +349,13 @@
         [SVProgressHUD showErrorWithStatus:@"请输入正确的姓名" maskType:SVProgressHUDMaskTypeBlack];
         return;
     }
-    if (![codefield.text isEqualToString:code]&![codefield.text isEqualToString:@"150919"]) {
+    
+    if ([self deptNameInputShouldChinese]) {
+        [SVProgressHUD showErrorWithStatus:@"姓名只能输入中文" maskType:SVProgressHUDMaskTypeBlack];
+        return;
+    }
+    
+    if (![codefield.text isEqualToString:code]&![codefield.text isEqualToString:Newcode]) {
         [SVProgressHUD showErrorWithStatus:@"请输入正确的验证码" maskType:SVProgressHUDMaskTypeBlack];
         return;
     }
@@ -358,7 +402,7 @@
     UIView *BackView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, adsView.mainContainView.frame.size.width, adsView.mainContainView.frame.size.height)];
     BackView.backgroundColor = [UIColor clearColor];
     
-    UIImageView *backimg = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0*PMBWIDTH, 222*PMBWIDTH, 208*PMBWIDTH)];
+    UIImageView *backimg = [[UIImageView alloc]initWithFrame:CGRectMake(15*PMBWIDTH, 0, 222*PMBWIDTH, 208*PMBWIDTH)];
     backimg.image = [UIImage imageNamed:@"my_beijing2"];
     
     Money = [[UILabel alloc]initWithFrame:CGRectMake(80*PMBWIDTH, 100*PMBWIDTH, 90*PMBWIDTH, 20*PMBWIDTH)];
@@ -380,6 +424,20 @@
     [appDelegate.window addSubview:adsView];
     [adsView showAnimated:YES];
     
+}
+
+
+
+#pragma mark--
+#pragma mark 输入中文
+- (BOOL) deptNameInputShouldChinese
+{
+    NSString *regex = @"[\u4e00-\u9fa5]+";
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
+    if (![pred evaluateWithObject:userNamefield.text]) {
+        return YES;
+    }
+    return NO;
 }
 
 @end

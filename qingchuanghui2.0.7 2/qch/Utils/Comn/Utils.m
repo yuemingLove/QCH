@@ -350,7 +350,7 @@ SINGLETON_GCD(Utils);
         flag = NO;
         return flag;
     }
-    NSString *regex2 = @"^(\\d{15,30})";
+    NSString *regex2 = @"^(\\d{16,19})";
     NSPredicate *bankCardPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex2];
     return [bankCardPredicate evaluateWithObject:bankCardNumber];
 }

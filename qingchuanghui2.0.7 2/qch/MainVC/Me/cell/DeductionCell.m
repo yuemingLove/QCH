@@ -23,10 +23,10 @@
 }
 - (void)updateData:(NSDictionary *)dict
 {
-    _DeductionLab.text = [NSString stringWithFormat:@"%ld元现金代金券",[(NSNumber *)[dict objectForKey:@"T_Voucher_Price"] integerValue]];
+    _DeductionLab.text = [NSString stringWithFormat:@"%@元现金代金券",[dict objectForKey:@"T_Voucher_Price"]];
     _Ramark.text = [dict objectForKey:@"T_Remark"];
     _TimeLab.text = [NSString stringWithFormat:@"有效期至%@",[dict objectForKey:@"edate"]];
-    _Money.text = [NSString stringWithFormat:@"¥%ld",[(NSNumber *)[dict objectForKey:@"T_Voucher_Price"] integerValue]];
+    _Money.text = [NSString stringWithFormat:@"¥%@",[dict objectForKey:@"T_Voucher_Price"]];
     if ([[dict objectForKey:@"isvalid"]isEqualToString:@"0"]) {
         _LeftbackImg.image = [UIImage imageNamed:@"my_dikouquan"];
         _EffectImg.hidden= YES;

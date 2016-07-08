@@ -100,6 +100,22 @@
         }
     }];
 }
+
++(void)GetVoiceCode:(NSString *)Token complete:(HttpCompleteBlock)block
+{
+    NSString *mothed = [NSString stringWithFormat:@"Token=%@",Token];
+    NSString *path = [NSString stringWithFormat:@"%@OnOff_WebService.asmx/GetVoiceCode?",SERIVE_URL];
+    NSString *url = [NSString stringWithFormat:@"%@%@",path,mothed];
+    
+    [HttpBaseAction getRequest:url complete:^(id result, NSError *error) {
+        if (error == nil && result) {
+            block(result,nil);
+        }else{
+            block(nil,error);
+        }
+    }];
+}
+
 + (void)GetWithdrawalWithUserGuid:(NSString *)userGuid page:(NSInteger)page pagesize:(NSInteger)pagesize Token:(NSString *)Token complete:(HttpCompleteBlock)block {
     NSString *mothed = [NSString stringWithFormat:@"userGuid=%@&page=%ld&pagesize=%ld&Token=%@",userGuid, page, pagesize, Token];
     NSString *path = [NSString stringWithFormat:@"%@Withdrawal_WebService.asmx/GetWithdrawal?",SERIVE_URL];
@@ -112,6 +128,7 @@
             block(nil,error);
         }
     }];
-
+    
 }
+
 @end

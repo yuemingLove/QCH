@@ -300,4 +300,19 @@
     }];
 }
 
++(void)GetIsLoginId:(NSString *)userLoginID Token:(NSString *)Token complete:(HttpCompleteBlock)block
+{
+    NSString *mothed = [NSString stringWithFormat:@"userLoginID=%@&Token=%@",userLoginID,Token];
+    NSString *path = [NSString stringWithFormat:@"%@User_WebService.asmx/GetIsLoginId?",SERIVE_URL];
+    NSString *url = [NSString stringWithFormat:@"%@%@",path,mothed];
+    
+    [HttpBaseAction getRequest:url complete:^(id result, NSError *error) {
+        if (error == nil && result) {
+            block(result,nil);
+        }else{
+            block(nil,error);
+        }
+    }];
+}
+
 @end

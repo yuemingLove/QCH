@@ -51,4 +51,6 @@
 
 + (void)LoadPic:(NSString*)Token complete:(HttpCompleteBlock)block;
 
++ (void)GetIsLoginId:(NSString*)userLoginID Token:(NSString*)Token complete:(HttpCompleteBlock)block;
+
 @end

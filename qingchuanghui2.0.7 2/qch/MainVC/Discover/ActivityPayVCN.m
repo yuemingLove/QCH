@@ -167,7 +167,7 @@
     moneyLabel.textAlignment = NSTextAlignmentRight;
     //moneyLabel.backgroundColor = [UIColor cyanColor];
     [view addSubview:moneyLabel];
-    UILabel *label1 = [self createLabelFrame:CGRectMake(line3.left, label.bottom +  15*PMBHEIGHT, ScreenWidth*0.6, 18) color:TSEColor(170, 170, 170) font:Font(13) text:@"多张优惠券不可叠加使用"];
+    UILabel *label1 = [self createLabelFrame:CGRectMake(line3.left, label.bottom +  15*PMBHEIGHT, ScreenWidth*0.8, 18) color:TSEColor(170, 170, 170) font:Font(13) text:@"选择您的优惠券,多张优惠券不可叠加使用"];
     [view addSubview:label1];
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(moneyLabel.right, moneyLabel.top - 1*PMBWIDTH, 20*PMBWIDTH, 20*PMBWIDTH)];
     //imageView.backgroundColor = [UIColor redColor];
@@ -405,6 +405,7 @@
 -(void)linePayAction{
 
     [HttpAlipayAction GetAccount:UserDefaultEntity.uuid Token:[MyAes aesSecretWith:@"userGuid"] complete:^(id result, NSError *error) {
+        
         NSDictionary *dict=result[0];
         if ([[dict objectForKey:@"state"] isEqualToString:@"true"]) {
             float account=[(NSNumber*)[dict objectForKey:@"result"] floatValue];
@@ -414,7 +415,9 @@
                 alert.tag = 8890;
                 [alert show];
             }else {
-                [self addOrder];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"确定要使用余额支付吗？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+                alert.tag = 8891;
+                [alert show];
             }
             
         }else if ([[dict objectForKey:@"state"]isEqualToString:@"false"]){
@@ -466,6 +469,8 @@
         
             AccountPayVC *accountPay=[[AccountPayVC alloc]init];
             [self.navigationController pushViewController:accountPay animated:YES];
+        }else if (alertView.tag == 8891){
+            [self addOrder];
         }
     }
 }

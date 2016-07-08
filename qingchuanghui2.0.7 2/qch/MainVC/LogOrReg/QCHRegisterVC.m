@@ -19,7 +19,6 @@
     UITextField *codeTfd;
     UITextField *recommendfd;
     UIButton *authCodeButton;
-    
     NSString *code;
 }
 
@@ -267,9 +266,16 @@
                 return;
             }
             recommend = recommendfd.text;
+            [self GetIsLoginId:recommend];
+            return;
         }
     }
+    [SVProgressHUD showWithStatus:@"注册中……" maskType:SVProgressHUDMaskTypeBlack];
     [HttpLoginAction registerUser:accountTfd.text userPwd:[MyAes aesSecretWith:passwordTfd.text] userRecommend:recommend Token:[MyAes aesSecretWith:@"userMobile"] type:self.type userId:UserDefaultEntity.thridCode androidRid:@"" IOSRid:delegate.JPtoken complete:^(id result, NSError *error) {
+        dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, 1ull * NSEC_PER_SEC);
+        dispatch_after(time, dispatch_get_main_queue(), ^{
+            [SVProgressHUD dismiss];
+        });
         NSDictionary *dict=result[0];
         if ([[dict objectForKey:@"state"] isEqualToString:@"true"]) {
             
@@ -309,6 +315,46 @@
             [SVProgressHUD showErrorWithStatus:message maskType:SVProgressHUDMaskTypeBlack];
         }
         
+    }];
+}
+
+- (void)GetIsLoginId:(NSString*)userLoginID{
+    [HttpLoginAction GetIsLoginId:userLoginID Token:[MyAes aesSecretWith:@"userLoginID"] complete:^(id result, NSError *error) {
+        NSDictionary *dict = result[0];
+        
+        if ([[dict objectForKey:@"state"]isEqualToString:@"true"]) {
+            AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
+            [SVProgressHUD showWithStatus:@"注册中……" maskType:SVProgressHUDMaskTypeBlack];
+            [HttpLoginAction registerUser:accountTfd.text userPwd:[MyAes aesSecretWith:passwordTfd.text] userRecommend:userLoginID Token:[MyAes aesSecretWith:@"userMobile"] type:self.type userId:UserDefaultEntity.thridCode androidRid:@"" IOSRid:delegate.JPtoken complete:^(id result, NSError *error) {
+                dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, 1ull * NSEC_PER_SEC);
+                dispatch_after(time, dispatch_get_main_queue(), ^{
+                    [SVProgressHUD dismiss];
+                });
+                NSDictionary *dict=result[0];
+                if ([[dict objectForKey:@"state"] isEqualToString:@"true"]) {
+                        NSArray *array=[dict objectForKey:@"result"];
+                        NSDictionary *item=array[0];
+                        UserDefaultEntity.user_style=[item objectForKey:@"t_User_Style"];
+                        UserDefaultEntity.account=[item objectForKey:@"t_User_LoginId"];
+                        UserDefaultEntity.uuid=[item objectForKey:@"Guid"];
+                        UserDefaultEntity.is_perfect=[(NSNumber*)[item objectForKey:@"t_User_Complete"]integerValue];
+                        UserDefaultEntity.t_User_Complete = [item objectForKey:@"t_User_Complete"];
+                        [UserDefault saveUserDefault];
+                        
+                        [SVProgressHUD showSuccessWithStatus:@"请继续完善资料" maskType:SVProgressHUDMaskTypeBlack];
+                        PerfectMeansVC *perfectVc=[[PerfectMeansVC alloc]init];
+                        perfectVc.type=1;
+                        [self.navigationController pushViewController:perfectVc animated:YES];
+                        
+                }else if([[dict objectForKey:@"state"] isEqualToString:@"false"]){
+                    NSString *message=[dict objectForKey:@"result"];
+                    [SVProgressHUD showErrorWithStatus:message maskType:SVProgressHUDMaskTypeBlack];
+                }
+            }];
+
+        }else if ([[dict objectForKey:@"state"]isEqualToString:@"false"]){
+            [SVProgressHUD showErrorWithStatus:@"该推荐人不存在" maskType:SVProgressHUDMaskTypeBlack];
+        }
     }];
 }
 

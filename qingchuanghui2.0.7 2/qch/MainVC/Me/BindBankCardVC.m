@@ -10,7 +10,7 @@
 #import "WithdrawalsViewController.h"
 #import "WJAdsView.h"
 
-@interface BindBankCardVC ()<WJAdsViewDelegate>
+@interface BindBankCardVC ()<WJAdsViewDelegate,UIScrollViewDelegate>
 {
     UITextField *cardTF;
     UITextField *bandTF;
@@ -23,6 +23,7 @@
     UILabel *Money;
     UILabel *Moneylab;
     UIView *backview;
+    UIScrollView *scrollView;
 }
 @end
 
@@ -58,11 +59,20 @@
 }
 // 绑定银行卡
 - (void)bindBankCard {
+    
+    scrollView=[[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    [scrollView setBackgroundColor:[UIColor themeGrayColor]];
+    scrollView.contentOffset = CGPointMake(0, 0);
+    scrollView.scrollEnabled = YES;
+    scrollView.delegate = self;
+    [self.view addSubview:scrollView];
+    [scrollView setContentSize:CGSizeMake(SCREEN_WIDTH, ScreenHeight)];
+    
     BackView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
     BackView.backgroundColor = [UIColor themeGrayColor];
-    [self.view addSubview:BackView];
+    [scrollView addSubview:BackView];
     
-    UIView *bgkView = [[UIView alloc] initWithFrame:CGRectMake(0, 8*PMBHEIGHT, ScreenWidth, 320*SCREEN_WHCALE)];
+    UIView *bgkView = [[UIView alloc] initWithFrame:CGRectMake(0, 8*PMBHEIGHT, ScreenWidth, 375*SCREEN_WHCALE)];
     bgkView.backgroundColor = [UIColor whiteColor];
     [BackView addSubview:bgkView];
     UILabel *cardNum = [self createLabelFrame:CGRectMake(27*PMBWIDTH, 8*PMBHEIGHT, ScreenWidth - 30*PMBWIDTH, 30) color:[UIColor blackColor] font:Font(15) text:@"卡号"];
@@ -72,19 +82,21 @@
     cardTF.layer.masksToBounds = YES;
     cardTF.layer.borderWidth = 0.6;
     cardTF.layer.borderColor = TSEColor(230, 230, 230).CGColor;
-    UIView *paddingView1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 12*PMBWIDTH, 30)];
+    cardTF.textColor = [UIColor blackColor];
+    UIView *paddingView1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10*PMBWIDTH, 0)];
     cardTF.leftView = paddingView1;
     cardTF.leftViewMode = UITextFieldViewModeAlways;
     [bgkView addSubview:cardTF];
     
     UILabel *bandNum = [self createLabelFrame:CGRectMake(27*PMBWIDTH, cardTF.bottom + 8*PMBHEIGHT, ScreenWidth - 30*PMBWIDTH, 30) color:[UIColor blackColor] font:Font(15) text:@"开户银行"];
     [bgkView addSubview:bandNum];
-    bandTF = [self createTextFieldFrame:CGRectMake(15*PMBWIDTH, bandNum.bottom+8*PMBHEIGHT, bandNum.width, 35) font:Font(15) placeholder:@"请输入开户银行, 如**银行**支行"];
+    bandTF = [self createTextFieldFrame:CGRectMake(15*PMBWIDTH, bandNum.bottom+8*PMBHEIGHT, bandNum.width, 35) font:Font(15) placeholder:@"请输入开户银行,如xx银行xx支行"];
     bandTF.layer.cornerRadius = bandTF.height/2;
     bandTF.layer.masksToBounds = YES;
     bandTF.layer.borderWidth = 0.6;
     bandTF.layer.borderColor = TSEColor(230, 230, 230).CGColor;
-    UIView *paddingView2 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 12*PMBWIDTH, 30)];
+    bandTF.textColor = [UIColor blackColor];
+    UIView *paddingView2 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10*PMBWIDTH, 0)];
     bandTF.leftView = paddingView2;
     bandTF.leftViewMode = UITextFieldViewModeAlways;
     [bgkView addSubview:bandTF];
@@ -93,20 +105,36 @@
     line.backgroundColor = [UIColor themeGrayColor];
     [bgkView addSubview:line];
     
-    accountNum = [self createLabelFrame:CGRectMake(27*PMBWIDTH, line.bottom + 8*PMBHEIGHT, 200*PMBWIDTH, 30*PMBWIDTH) color:[UIColor blackColor] font:Font(15) text:@"开户人:"];
+    accountNum = [self createLabelFrame:CGRectMake(27*PMBWIDTH, line.bottom + 8*PMBHEIGHT, 200*PMBWIDTH, 30*PMBWIDTH) color:[UIColor lightGrayColor] font:Font(15) text:@"开户人:"];
     [bgkView addSubview:accountNum];
     
     
     UIView *line1 = [[UIView alloc] initWithFrame:CGRectMake(0, accountNum.bottom+8*PMBHEIGHT, ScreenWidth, 8*PMBHEIGHT)];
     line1.backgroundColor = [UIColor themeGrayColor];
     [bgkView addSubview:line1];
-    UILabel *codeNum = [self createLabelFrame:CGRectMake(27*PMBWIDTH, line1.bottom + 8*PMBHEIGHT, ScreenWidth - 30*PMBWIDTH, 30) color:[UIColor blackColor] font:Font(15) text:@"验证码"];
+    
+    UILabel *phonelab = [[UILabel alloc]initWithFrame:CGRectMake(0, line1.bottom+8*PMBWIDTH, ScreenWidth, 45*PMBWIDTH)];
+    phonelab.backgroundColor = [UIColor whiteColor];
+    phonelab.text = [NSString stringWithFormat:@"        手机号:%@",UserDefaultEntity.account];
+    phonelab.textColor = [UIColor lightGrayColor];
+    phonelab.font = Font(15);
+    [bgkView addSubview:phonelab];
+    
+    
+    UIView *line3 = [[UIView alloc] initWithFrame:CGRectMake(0, phonelab.bottom+8*PMBHEIGHT, ScreenWidth, 8*PMBHEIGHT)];
+    line3.backgroundColor = [UIColor themeGrayColor];
+    [bgkView addSubview:line3];
+
+    
+    UILabel *codeNum = [self createLabelFrame:CGRectMake(27*PMBWIDTH, line3.bottom + 8*PMBHEIGHT, ScreenWidth - 30*PMBWIDTH, 30) color:[UIColor blackColor] font:Font(15) text:@"验证码"];
     [bgkView addSubview:codeNum];
+    
     codeTF = [self createTextFieldFrame:CGRectMake(15*PMBWIDTH, codeNum.bottom + 8*PMBHEIGHT, 170*PMBWIDTH, 35) font:Font(15) placeholder:@"请输入验证码"];
     codeTF.layer.cornerRadius = codeTF.height/2;
     codeTF.layer.masksToBounds = YES;
     codeTF.layer.borderWidth = 0.6;
     codeTF.layer.borderColor = TSEColor(230, 230, 230).CGColor;
+    codeTF.textColor = [UIColor blackColor];
     UIView *paddingView3 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 12*PMBWIDTH, 30)];
     codeTF.leftView = paddingView3;
     codeTF.leftViewMode = UITextFieldViewModeAlways;
@@ -122,7 +150,7 @@
     [authCodeButton addTarget:self action:@selector(getCodeAction) forControlEvents:UIControlEventTouchUpInside];
     [bgkView addSubview:authCodeButton];
     
-    UILabel *messageLabel = [self createLabelFrame:CGRectMake(15*PMBWIDTH, bgkView.bottom+2*PMBWIDTH, ScreenWidth - 30*PMBWIDTH, 42) color:TSEColor(110, 151, 245) font:Font(12) text:@"注：提现操作前请务必绑定与本人身份信息一致的银行卡号，仅支持借记卡，银行卡绑定成功后暂无法修改，请仔细核对填写"];
+    UILabel *messageLabel = [self createLabelFrame:CGRectMake(15*PMBWIDTH, bgkView.bottom+2*PMBWIDTH, ScreenWidth - 30*PMBWIDTH, 60) color:TSEColor(110, 151, 245) font:Font(12) text:@"注：提现操作前请务必绑定与本人身份信息一致的银行卡，仅支持借记卡，已绑定银行卡暂不支持修改，如有疑问请致电青创汇客服：400-169-0999"];
     messageLabel.numberOfLines = 0;
     [BackView addSubview:messageLabel];
     
@@ -139,6 +167,7 @@
 
 // 展示已经绑定过的卡
 - (void)showBindedBankCardWith:(NSString *)bank account:(NSString *)account number:(NSString *)number {
+    
     UIView *bgkView = [[UIView alloc] initWithFrame:CGRectMake(8*PMBWIDTH, 15*PMBHEIGHT, ScreenWidth-16*PMBWIDTH, 110*PMBHEIGHT)];
     bgkView.backgroundColor = TSEColor(110, 151, 245);
     bgkView.layer.cornerRadius = bgkView.height/15;
@@ -159,6 +188,12 @@
     UILabel *numLabel = [self createLabelFrame:CGRectMake(yinImageView.right+8*PMBWIDTH, accountLabel.bottom, bgkView.width - yinImageView.right - 15*PMBWIDTH, 30) color:[UIColor whiteColor] font:Font(15) text:number];
  
     [bgkView addSubview:numLabel];
+    
+    
+    UILabel *messageLabel = [self createLabelFrame:CGRectMake(15*PMBWIDTH, bgkView.bottom+15*PMBWIDTH, ScreenWidth - 30*PMBWIDTH, 60) color:TSEColor(110, 151, 245) font:Font(12) text:@"注：提现操作前请务必绑定与本人身份信息一致的银行卡，仅支持借记卡，已绑定银行卡暂不支持修改，如有疑问请致电青创汇客服：400-169-0999"];
+    messageLabel.numberOfLines = 0;
+    [self.view addSubview:messageLabel];
+    
 }
 
 // 获取验证码
@@ -176,10 +211,15 @@
         return;
     }
     
+    if ([self deptNameInputShouldChinese]) {
+        [SVProgressHUD showErrorWithStatus:@"请填写正确的开户行" maskType:SVProgressHUDMaskTypeBlack];
+        return;
+    }
+    
     authCodeButton.userInteractionEnabled = NO;
     [authCodeButton setTitle:@"正在发送" forState:UIControlStateNormal];
     
-    [HttpLoginAction SendSMS:UserDefaultEntity.account type:@"" Token:[MyAes aesSecretWith:@"userMobile"] complete:^(id result, NSError *error) {
+    [HttpLoginAction SendSMS:UserDefaultEntity.account type:@"2" Token:[MyAes aesSecretWith:@"userMobile"] complete:^(id result, NSError *error) {
         NSDictionary *dic = result[0];
         if ([[dic objectForKey:@"state"] isEqualToString:@"true"]) {
             code=[dic objectForKey:@"code"];
@@ -217,6 +257,11 @@
     }
     if ([self isBlankString:bandTF.text]) {
         [SVProgressHUD showErrorWithStatus:@"请填写开户行" maskType:SVProgressHUDMaskTypeBlack];
+        return;
+    }
+    
+    if ([self deptNameInputShouldChinese]) {
+        [SVProgressHUD showErrorWithStatus:@"请填写正确的开户行" maskType:SVProgressHUDMaskTypeBlack];
         return;
     }
 
@@ -269,7 +314,7 @@
     UIView *BackView1 = [[UIView alloc]initWithFrame:CGRectMake(0, 0, adsView.mainContainView.frame.size.width, adsView.mainContainView.frame.size.height)];
     BackView1.backgroundColor = [UIColor clearColor];
     
-    UIImageView *backimg = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0*PMBWIDTH, 222*PMBWIDTH, 208*PMBWIDTH)];
+    UIImageView *backimg = [[UIImageView alloc]initWithFrame:CGRectMake(15*PMBWIDTH, 0, 222*PMBWIDTH, 208*PMBWIDTH)];
     backimg.image = [UIImage imageNamed:@"my_beijing2"];
     
     Money = [[UILabel alloc]initWithFrame:CGRectMake(80*PMBWIDTH, 100*PMBWIDTH, 90*PMBWIDTH, 20*PMBWIDTH)];
@@ -291,6 +336,18 @@
     [appDelegate.window addSubview:adsView];
     [adsView showAnimated:YES];
     
+}
+
+#pragma mark--
+#pragma mark 输入中文
+- (BOOL) deptNameInputShouldChinese
+{
+    NSString *regex = @"[\u4e00-\u9fa5]+";
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
+    if (![pred evaluateWithObject:bandTF.text]) {
+        return YES;
+    }
+    return NO;
 }
 
 @end

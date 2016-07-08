@@ -54,7 +54,7 @@
     if (_dynamiclist !=nil) {
         _dynamiclist=[[NSMutableArray alloc]init];
     }
-    //[self showView];
+    
     [self setTableView];
     [self setCertifiedPartnerView];
     if (![UserDefaultEntity.NowNeed isEqualToString:@"0"]) {
@@ -625,7 +625,6 @@
     [backimg addSubview:Moneylab];
     [backview addSubview:backimg];
     UILabel *messageLabel = [self createLabelFrame:CGRectMake(20*PMBWIDTH, Moneylab.bottom+2*PMBWIDTH, backimg.width-37*PMBWIDTH, 15*PMBWIDTH) color:TSEColor(94, 255, 207) font:Font(13) text:@"进行实名认证, 得到更多代金券"];
-    messageLabel.center = CGPointMake(backimg.center.x, messageLabel.center.y);
     messageLabel.textAlignment = NSTextAlignmentCenter;
     [backview addSubview:messageLabel];
     UIButton *sharebtn = [UIButton buttonWithType:UIButtonTypeCustom];

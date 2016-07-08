@@ -46,7 +46,7 @@
         if ([[dict objectForKey:@"state"]isEqualToString:@"true"]) {
             NSArray *array=(NSArray*)[dict objectForKey:@"result"];
              NSDictionary *dict=array[0];
-            if ([dict objectForKey:@"t_Bank_NO"]) {
+            if (![self isBlankString:[dict objectForKey:@"t_Bank_NO"]]) {
                 flag = YES;
             }
         }
