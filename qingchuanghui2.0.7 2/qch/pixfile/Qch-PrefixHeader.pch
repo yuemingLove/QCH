@@ -1,0 +1,160 @@
+//
+//  Qch-PrefixHeader.pch
+//  qch
+//
+//  Created by 苏宾 on 15/12/26.
+//  Copyright © 2015年 qch. All rights reserved.
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_5_0
+#warning "This project uses features only available in iOS SDK 5.0 and later."
+#endif
+
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
+#import <QuartzCore/QuartzCore.h>
+#import <CoreLocation/CoreLocation.h>
+
+//Vendor
+#import <AFNetworking.h>//网络
+#import <SDWebImageManager.h>//图片
+
+#import <RongIMLib/RongIMLib.h>
+#import <RongIMKit/RongIMKit.h>
+#import <RongIMLib/RCUserInfo.h>
+
+#import "RCDUserInfo.h"
+#import "RCDGroupInfo.h"
+
+#import "HttpLoginAction.h"
+
+#import <BaiduMapAPI_Base/BMKBaseComponent.h>
+#import <BaiduMapAPI_Map/BMKMapComponent.h>
+#import <BaiduMapAPI_Location/BMKLocationComponent.h>
+#import <BaiduMapAPI_Search/BMKGeocodeSearch.h>
+#import <BaiduMapAPI_Search/BMKPoiSearchType.h>
+
+#import <SDWebImage/UIImageView+WebCache.h>
+#import <UIButton+WebCache.h>
+//自定义文件
+#import "conndef.h"
+#import "UserDefault.h"
+#import "UIColor+theme.h"
+#import "Utils.h"
+#import "UIViewExt.h"
+#import "BlockObject.h"
+#import "RMMapper.h"
+#import "RongCloudToken.h"
+#import "JpbbMenu.h"
+#import "JPUSHService.h"
+#import "AppDelegate.h"
+#import "QchSelectCityVC.h"
+#import "CommonDes.h"
+#import "XHImageViewer.h"
+#import "BDImagePicker.h"
+#import "IQKeyboardManager.h"
+
+
+//加密文件
+#import "MyAes.h"
+#import "MyDes.h"
+#import "MyMD5.h"
+
+//shareSDK
+#import <shareSDK/shareSDK.h>
+#import <ShareSDKUI/ShareSDKUI.h>
+#import <ShareSDK/ShareSDK+Base.h>
+#import <ShareSDKConnector/ShareSDKConnector.h>
+#import <ShareSDKExtension/SSEThirdPartyLoginHelper.h>
+#import "WXApi.h"
+//#import <WeiboSDK/WeiboSDK.h>
+#import <WeiboSDK.h>
+#import <AlipaySDK/AlipaySDK.h>
+#import "WXApiObject.h"
+#import "SVProgressHUD.h"
+
+
+#import "UserInfo.h"
+#import "DateFormatter.h"
+#import "QchBaseViewController.h"
+#import "QCHWebViewController.h"
+#import "QCHChatVcViewController.h"
+
+#import <GPUImageFastBlurFilter.h>
+#import <GPUImageGaussianBlurFilter.h>
+#import <Masonry/Masonry.h>
+
+#import "PerfectMeansVC.h"
+#import "CommentListVC.h"
+
+#import <MJRefresh/MJRefresh.h>
+#import "UIScrollView+MJRefresh.h"
+#import <Reachability.h>
+#import "QCHMainController.h"
+#import "CycleScrollView.h"
+#import "DOPDropDownMenu.h"
+#import "ActionSheetDatePicker.h"
+//#import <UMengAnalytics/MobClick.h>
+
+//数据请求
+#import "HttpBaseAction.h"
+#import "HttpDiscoverAction.h"
+#import "HttpLoginAction.h"
+#import "HttpActivityAction.h"
+#import "HttpDynamicAction.h"
+#import "HttpProjectAction.h"
+#import "HttpPartnerAction.h"
+#import "HttpRoomAction.h"
+#import "HttpMessageAction.h"
+#import "HttpCenterAction.h"
+#import "HttpInvestPlaceAction.h"
+#import "HttpAlipayAction.h"
+#import "HttpCollegeAction.h"
+#import "HttpCareAction.h"
+#import "HttpSignAction.h"
+#import "HttpUserBankAction.h"
+
+//model
+#import "PActivityModel.h"
+#import "DynamicModel.h"
+#import "DynamicTalkModel.h"
+#import "RootDynamicTalkClass.h"
+#import "RootPartnerClass.h"
+#import "PartnerResult.h"
+#import "PartnerPic.h"
+#import "PartnerTopic.h"
+#import "Best.h"
+#import "FoucsArea.h"
+#import "HistoryWork.h"
+#import "AddHistoryWork.h"
+#import "RootAddHistoryWok.h"
+#import "BestAndDomainVC.h"
+#import "UserProject.h"
+#import "HXTagsView.h"
+#import "MessageModel.h"
+
+#pragma 换行收缩
+#import "TextEntity.h"
+#import "TextShowCell.h"
+
+#import "ProjectTypeVC.h"
+#import "InvestorsInformationVC.h"
+#import "InvestorsCaseVC.h"
+#import "SWTableViewCell.h"
+
+#import "CommitAlertView.h"
+
+#import "QchCityViewController.h"
+
+#import "MyChatViewController.h"
+
+#pragma 支付
+#import "AlipayConfig.h"
+#import "OrderModel.h"
+#import "payRequsestHandler.h"
+
+#endif

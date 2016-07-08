@@ -1,0 +1,1 @@
+../../../RDGPUImage/framework/Source/GPUImageShiTomasiFeatureDetectionFilter.h

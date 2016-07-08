@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="100" id="KGk-i7-Jjw" customClass="RecommendCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="99.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ssa-L2-ewz">
+                        <rect key="frame" x="8" y="10" width="100" height="80"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="80" id="NhZ-FO-0ur"/>
+                            <constraint firstAttribute="width" constant="100" id="sfw-uv-Jsh"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="那南京嗲觉得计算机大家都开始觉得卡上32423422343456789765432456786543242342" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Egy-OA-6Gt">
+                        <rect key="frame" x="118" y="58.5" width="194" height="31.5"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="31.5" id="7Ln-ij-5jI"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="你掌握创业的正确姿态了吗" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eu9-J4-F8M">
+                        <rect key="frame" x="118" y="10" width="194" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="QCc-Bm-sTM"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Egy-OA-6Gt" firstAttribute="leading" secondItem="Eu9-J4-F8M" secondAttribute="leading" id="8hu-qf-Jzu"/>
+                    <constraint firstItem="Eu9-J4-F8M" firstAttribute="leading" secondItem="ssa-L2-ewz" secondAttribute="trailing" constant="10" id="BRX-by-epr"/>
+                    <constraint firstItem="Egy-OA-6Gt" firstAttribute="bottom" secondItem="ssa-L2-ewz" secondAttribute="bottom" id="OQd-Tf-kUb"/>
+                    <constraint firstAttribute="trailing" secondItem="Eu9-J4-F8M" secondAttribute="trailing" constant="8" id="PNS-Vc-9ZO"/>
+                    <constraint firstItem="Egy-OA-6Gt" firstAttribute="trailing" secondItem="Eu9-J4-F8M" secondAttribute="trailing" id="ReG-14-N1s"/>
+                    <constraint firstItem="Eu9-J4-F8M" firstAttribute="top" secondItem="ssa-L2-ewz" secondAttribute="top" id="ZOj-oL-ZrJ"/>
+                    <constraint firstItem="ssa-L2-ewz" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="sdJ-6F-FOP"/>
+                    <constraint firstItem="ssa-L2-ewz" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="tOZ-fF-Kjd"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="HeadImg" destination="ssa-L2-ewz" id="LGZ-gY-4mH"/>
+                <outlet property="Remark" destination="Egy-OA-6Gt" id="Gv0-4p-l5A"/>
+                <outlet property="Title" destination="Eu9-J4-F8M" id="eMm-9H-Mvf"/>
+            </connections>
+            <point key="canvasLocation" x="237" y="237"/>
+        </tableViewCell>
+    </objects>
+</document>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="PlaceCell">
+            <rect key="frame" x="0.0" y="0.0" width="100" height="123"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="100" height="123"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="At9-at-Z5b">
+                        <rect key="frame" x="10" y="10" width="80" height="80"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="80" id="8uC-Mm-xik"/>
+                            <constraint firstAttribute="width" constant="80" id="MEd-X9-Rgf"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MPm-E2-wdG">
+                        <rect key="frame" x="0.0" y="100" width="100" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <constraints>
+                <constraint firstItem="At9-at-Z5b" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="4Uf-D7-3Tq"/>
+                <constraint firstItem="At9-at-Z5b" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="Ep3-yP-Ocy"/>
+                <constraint firstItem="MPm-E2-wdG" firstAttribute="top" secondItem="At9-at-Z5b" secondAttribute="bottom" constant="10" id="K6D-VT-P1M"/>
+                <constraint firstItem="MPm-E2-wdG" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="OZb-1h-wfM"/>
+                <constraint firstAttribute="trailing" secondItem="MPm-E2-wdG" secondAttribute="trailing" id="YBj-PT-uMo"/>
+            </constraints>
+            <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
+            <size key="customSize" width="120" height="253"/>
+            <connections>
+                <outlet property="NameLab" destination="MPm-E2-wdG" id="DfH-cc-UPG"/>
+                <outlet property="PlaceImg" destination="At9-at-Z5b" id="hAP-FP-ae7"/>
+            </connections>
+            <point key="canvasLocation" x="272" y="434.5"/>
+        </collectionViewCell>
+    </objects>
+</document>

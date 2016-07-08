@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="69" id="KGk-i7-Jjw" customClass="IntegralrecordCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="68.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="剩余积分：300" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YtC-Ew-MbN">
+                        <rect key="frame" x="8" y="41" width="145" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ixF-Sy-9Bk">
+                        <rect key="frame" x="171" y="8" width="50" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="1cQ-R4-4LE"/>
+                            <constraint firstAttribute="width" constant="50" id="Yyh-UO-OlH"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="＋1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vTS-9T-l5W">
+                        <rect key="frame" x="239" y="8" width="71" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" red="0.1754326853" green="0.48997452000000002" blue="0.93306107949999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="日常发布项目" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kOE-qY-V1Q">
+                        <rect key="frame" x="239" y="41" width="76" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2016-06-02 09:15:15" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kYm-wQ-oKS">
+                        <rect key="frame" x="8" y="8" width="145" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="145" id="nnI-MO-jOK"/>
+                            <constraint firstAttribute="height" constant="21" id="yFs-fO-4wS"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="vTS-9T-l5W" secondAttribute="trailing" constant="10" id="21D-bu-Vd3"/>
+                    <constraint firstItem="YtC-Ew-MbN" firstAttribute="trailing" secondItem="kYm-wQ-oKS" secondAttribute="trailing" id="2hk-ZZ-cET"/>
+                    <constraint firstItem="YtC-Ew-MbN" firstAttribute="top" secondItem="kYm-wQ-oKS" secondAttribute="bottom" constant="12" id="6U0-zn-QlM"/>
+                    <constraint firstItem="YtC-Ew-MbN" firstAttribute="leading" secondItem="kYm-wQ-oKS" secondAttribute="leading" id="87J-cd-4EW"/>
+                    <constraint firstItem="vTS-9T-l5W" firstAttribute="top" secondItem="ixF-Sy-9Bk" secondAttribute="top" id="CJF-HJ-UxM"/>
+                    <constraint firstItem="kOE-qY-V1Q" firstAttribute="bottom" secondItem="ixF-Sy-9Bk" secondAttribute="bottom" id="Nde-me-Jc1"/>
+                    <constraint firstItem="ixF-Sy-9Bk" firstAttribute="leading" secondItem="YtC-Ew-MbN" secondAttribute="trailing" constant="18" id="Ujk-g7-fNW"/>
+                    <constraint firstItem="ixF-Sy-9Bk" firstAttribute="top" secondItem="kYm-wQ-oKS" secondAttribute="top" id="YCt-Ov-GNF"/>
+                    <constraint firstItem="kYm-wQ-oKS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="dfe-KX-mWc"/>
+                    <constraint firstItem="kOE-qY-V1Q" firstAttribute="leading" secondItem="ixF-Sy-9Bk" secondAttribute="trailing" constant="18" id="gG7-N9-fpU"/>
+                    <constraint firstItem="kOE-qY-V1Q" firstAttribute="top" secondItem="vTS-9T-l5W" secondAttribute="bottom" constant="15" id="ijv-4k-pXm"/>
+                    <constraint firstItem="vTS-9T-l5W" firstAttribute="leading" secondItem="ixF-Sy-9Bk" secondAttribute="trailing" constant="18" id="irv-y4-fym"/>
+                    <constraint firstItem="kYm-wQ-oKS" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="pF3-hG-WBI"/>
+                    <constraint firstItem="ixF-Sy-9Bk" firstAttribute="bottom" secondItem="YtC-Ew-MbN" secondAttribute="bottom" id="plb-cz-msf"/>
+                    <constraint firstAttribute="trailing" secondItem="kOE-qY-V1Q" secondAttribute="trailing" constant="5" id="vC2-e6-Xk7"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="BackImg" destination="ixF-Sy-9Bk" id="psb-Tw-QmD"/>
+                <outlet property="Integarl" destination="YtC-Ew-MbN" id="NeY-rM-2F7"/>
+                <outlet property="Record" destination="vTS-9T-l5W" id="KcM-Ul-OQS"/>
+                <outlet property="Remark" destination="kOE-qY-V1Q" id="Fen-fg-Igq"/>
+                <outlet property="Time" destination="kYm-wQ-oKS" id="Dk8-ax-zGL"/>
+            </connections>
+            <point key="canvasLocation" x="356" y="244.5"/>
+        </tableViewCell>
+    </objects>
+</document>

@@ -1,0 +1,1 @@
+../../../RDGPUImage/framework/Source/GPUImageRGBOpeningFilter.h

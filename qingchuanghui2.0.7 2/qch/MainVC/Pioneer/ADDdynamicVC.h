@@ -1,0 +1,13 @@
+//
+//  ADDdynamicVC.h
+//  qch
+//
+//  Created by 青创汇 on 16/1/18.
+//  Copyright © 2016年 qch. All rights reserved.
+//
+
+#import "QchBaseViewController.h"
+
+@interface ADDdynamicVC : QchBaseViewController
+
+@end

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="129" id="KGk-i7-Jjw" customClass="DynamicTWCell3">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="129"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="128.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="合伙人" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XnL-33-heb">
+                        <rect key="frame" x="85" y="35" width="225" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="contnet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oqv-7H-UGY">
+                        <rect key="frame" x="35" y="60" width="275" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="刘军峰" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IuY-cf-9a8">
+                        <rect key="frame" x="85" y="10" width="39" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RhV-bO-uBx">
+                        <rect key="frame" x="35" y="10" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="eFr-8D-uHh"/>
+                            <constraint firstAttribute="width" constant="40" id="krC-6m-N5H"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="XnL-33-heb" firstAttribute="bottom" secondItem="RhV-bO-uBx" secondAttribute="bottom" id="0et-cW-rpg"/>
+                    <constraint firstItem="oqv-7H-UGY" firstAttribute="leading" secondItem="RhV-bO-uBx" secondAttribute="leading" id="846-vZ-ScB"/>
+                    <constraint firstItem="oqv-7H-UGY" firstAttribute="top" secondItem="RhV-bO-uBx" secondAttribute="bottom" constant="10" id="Hed-fP-qVc"/>
+                    <constraint firstAttribute="trailing" secondItem="oqv-7H-UGY" secondAttribute="trailing" constant="10" id="NWW-cQ-5bZ"/>
+                    <constraint firstItem="RhV-bO-uBx" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="Uzf-yV-h3J"/>
+                    <constraint firstItem="RhV-bO-uBx" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="35" id="X2T-9d-i3w"/>
+                    <constraint firstAttribute="trailing" secondItem="XnL-33-heb" secondAttribute="trailing" constant="10" id="auN-Zq-azd"/>
+                    <constraint firstItem="IuY-cf-9a8" firstAttribute="leading" secondItem="RhV-bO-uBx" secondAttribute="trailing" constant="10" id="ttR-co-qq2"/>
+                    <constraint firstItem="IuY-cf-9a8" firstAttribute="top" secondItem="RhV-bO-uBx" secondAttribute="top" id="vLo-hs-Xoc"/>
+                    <constraint firstItem="XnL-33-heb" firstAttribute="leading" secondItem="IuY-cf-9a8" secondAttribute="leading" id="xdN-3Z-WmY"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="contentLabel" destination="oqv-7H-UGY" id="Hyp-37-lYj"/>
+                <outlet property="headImageView" destination="RhV-bO-uBx" id="r1T-yT-gwH"/>
+                <outlet property="nameLabel" destination="IuY-cf-9a8" id="eew-IJ-qwu"/>
+                <outlet property="positionLabel" destination="XnL-33-heb" id="baE-0y-iFT"/>
+            </connections>
+            <point key="canvasLocation" x="258" y="358.5"/>
+        </tableViewCell>
+    </objects>
+</document>

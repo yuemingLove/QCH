@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="120" id="KGk-i7-Jjw" customClass="ProjectStatusCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="120"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="119.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="融资状况:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Usk-v9-mRE">
+                        <rect key="frame" x="10" y="10" width="70" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="70" id="ILt-UE-5hX"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="融资金额:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KPO-rb-0yW">
+                        <rect key="frame" x="10" y="47" width="70" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="资金用途:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hg8-Cz-GM3">
+                        <rect key="frame" x="10" y="84" width="70" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wtF-2N-9KG">
+                        <rect key="frame" x="270" y="42.5" width="35" height="35"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="35" id="60R-Dd-w2c"/>
+                            <constraint firstAttribute="width" constant="35" id="J0o-9e-BW7"/>
+                        </constraints>
+                        <state key="normal" image="VC_Btn"/>
+                        <connections>
+                            <action selector="SetUserStyle:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="ip9-tl-h01"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="仅投资人可见" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="11g-8U-WMH">
+                        <rect key="frame" x="90" y="47" width="169.5" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.1754326853" green="0.48997452000000002" blue="0.93306107949999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="仅投资人可见" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CNV-bz-ZEL">
+                        <rect key="frame" x="90" y="10" width="169.5" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.1754326853" green="0.48997452000000002" blue="0.93306107949999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="仅投资人可见" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ev2-0H-MyM">
+                        <rect key="frame" x="90" y="84" width="169.5" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.1754326853" green="0.48997452000000002" blue="0.93306107949999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="11g-8U-WMH" firstAttribute="top" secondItem="KPO-rb-0yW" secondAttribute="top" id="3Wv-WL-cPT"/>
+                    <constraint firstItem="CNV-bz-ZEL" firstAttribute="top" secondItem="Usk-v9-mRE" secondAttribute="top" id="68K-iv-qhB"/>
+                    <constraint firstItem="Hg8-Cz-GM3" firstAttribute="trailing" secondItem="Usk-v9-mRE" secondAttribute="trailing" id="7oI-vV-ksX"/>
+                    <constraint firstItem="Hg8-Cz-GM3" firstAttribute="leading" secondItem="Usk-v9-mRE" secondAttribute="leading" id="9UU-T8-dkV"/>
+                    <constraint firstItem="KPO-rb-0yW" firstAttribute="top" secondItem="Usk-v9-mRE" secondAttribute="bottom" constant="20" id="9Yl-2b-gnN"/>
+                    <constraint firstItem="Ev2-0H-MyM" firstAttribute="leading" secondItem="Hg8-Cz-GM3" secondAttribute="trailing" constant="10" id="CAr-f5-vti"/>
+                    <constraint firstItem="Usk-v9-mRE" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="Hya-yK-E2H"/>
+                    <constraint firstItem="CNV-bz-ZEL" firstAttribute="leading" secondItem="Usk-v9-mRE" secondAttribute="trailing" constant="10" id="Izd-Or-fmd"/>
+                    <constraint firstItem="11g-8U-WMH" firstAttribute="leading" secondItem="KPO-rb-0yW" secondAttribute="trailing" constant="10" id="LJa-2Q-wc7"/>
+                    <constraint firstItem="wtF-2N-9KG" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="LOu-qv-1CA"/>
+                    <constraint firstItem="Hg8-Cz-GM3" firstAttribute="top" secondItem="KPO-rb-0yW" secondAttribute="bottom" constant="20" id="Tfc-yb-D43"/>
+                    <constraint firstItem="11g-8U-WMH" firstAttribute="trailing" secondItem="CNV-bz-ZEL" secondAttribute="trailing" id="VlX-ne-pxK"/>
+                    <constraint firstItem="Usk-v9-mRE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="WTu-ls-8G2"/>
+                    <constraint firstItem="wtF-2N-9KG" firstAttribute="leading" secondItem="11g-8U-WMH" secondAttribute="trailing" constant="10" id="ZUT-4k-zFI"/>
+                    <constraint firstItem="Ev2-0H-MyM" firstAttribute="top" secondItem="Hg8-Cz-GM3" secondAttribute="top" id="ajN-qD-IJ6"/>
+                    <constraint firstAttribute="trailing" secondItem="wtF-2N-9KG" secondAttribute="trailing" constant="15" id="g8c-yp-AX3"/>
+                    <constraint firstItem="KPO-rb-0yW" firstAttribute="leading" secondItem="Usk-v9-mRE" secondAttribute="leading" id="iBT-dY-1og"/>
+                    <constraint firstItem="KPO-rb-0yW" firstAttribute="trailing" secondItem="Usk-v9-mRE" secondAttribute="trailing" id="pLc-rp-aiE"/>
+                    <constraint firstItem="Ev2-0H-MyM" firstAttribute="trailing" secondItem="11g-8U-WMH" secondAttribute="trailing" id="ufV-9g-OJ6"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="VCBtn" destination="wtF-2N-9KG" id="SMt-Zf-9Oc"/>
+                <outlet property="rongziLabel" destination="CNV-bz-ZEL" id="6Jn-P7-JMC"/>
+                <outlet property="rzPriceLabel" destination="11g-8U-WMH" id="91L-sL-nBM"/>
+                <outlet property="rzUseLabel" destination="Ev2-0H-MyM" id="1Cf-ul-xUm"/>
+            </connections>
+            <point key="canvasLocation" x="226" y="330"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="VC_Btn" width="41" height="41"/>
+    </resources>
+</document>
