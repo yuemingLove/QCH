@@ -173,6 +173,7 @@
     bindVC.name = account;
     bindVC.bank = bank;
     bindVC.bankNO = number;
+    [bindVC.view setFrame:self.view.frame];
     [self.view addSubview:bindVC.view];
 }
 
