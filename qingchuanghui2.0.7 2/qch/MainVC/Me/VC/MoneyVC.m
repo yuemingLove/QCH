@@ -186,7 +186,6 @@
                     AddCertificationVC *AddCertification = [[AddCertificationVC alloc]init];
                     [self.navigationController pushViewController:AddCertification animated:YES];
                 });
-
             }
         }];
     }

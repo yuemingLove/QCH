@@ -334,6 +334,8 @@
 		4835928B1D24AB2700312F54 /* DynamicTWCell7.xib in Resources */ = {isa = PBXBuildFile; fileRef = 483592821D24AB2700312F54 /* DynamicTWCell7.xib */; };
 		4835928C1D24AB2700312F54 /* DynamicTWCell8.m in Sources */ = {isa = PBXBuildFile; fileRef = 483592841D24AB2700312F54 /* DynamicTWCell8.m */; };
 		4835928D1D24AB2700312F54 /* DynamicTWCell8.xib in Resources */ = {isa = PBXBuildFile; fileRef = 483592851D24AB2700312F54 /* DynamicTWCell8.xib */; };
+		484B43301D2FA9BC00A25DD9 /* BindBankCardVC2VC.m in Sources */ = {isa = PBXBuildFile; fileRef = 484B432E1D2FA9BC00A25DD9 /* BindBankCardVC2VC.m */; };
+		484B43311D2FA9BC00A25DD9 /* BindBankCardVC2VC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 484B432F1D2FA9BC00A25DD9 /* BindBankCardVC2VC.xib */; };
 		5601F8321CE9A2E000A68289 /* InviteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5601F8311CE9A2E000A68289 /* InviteVC.m */; };
 		5601F8371CE9C25A00A68289 /* InviteListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5601F8361CE9C25A00A68289 /* InviteListVC.m */; };
 		5601F83E1CE9C60100A68289 /* InviteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5601F83C1CE9C60100A68289 /* InviteCell.m */; };
@@ -1268,6 +1270,9 @@
 		483592831D24AB2700312F54 /* DynamicTWCell8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicTWCell8.h; sourceTree = "<group>"; };
 		483592841D24AB2700312F54 /* DynamicTWCell8.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicTWCell8.m; sourceTree = "<group>"; };
 		483592851D24AB2700312F54 /* DynamicTWCell8.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DynamicTWCell8.xib; sourceTree = "<group>"; };
+		484B432D1D2FA9BC00A25DD9 /* BindBankCardVC2VC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BindBankCardVC2VC.h; sourceTree = "<group>"; };
+		484B432E1D2FA9BC00A25DD9 /* BindBankCardVC2VC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BindBankCardVC2VC.m; sourceTree = "<group>"; };
+		484B432F1D2FA9BC00A25DD9 /* BindBankCardVC2VC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BindBankCardVC2VC.xib; sourceTree = "<group>"; };
 		5601F8301CE9A2E000A68289 /* InviteVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteVC.h; sourceTree = "<group>"; };
 		5601F8311CE9A2E000A68289 /* InviteVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteVC.m; sourceTree = "<group>"; };
 		5601F8351CE9C25A00A68289 /* InviteListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InviteListVC.h; path = qch/MainVC/Me/VC/InviteListVC.h; sourceTree = SOURCE_ROOT; };
@@ -2792,6 +2797,9 @@
 				56E3E64D1D2C94F2009C3112 /* AddCertificationVC.m */,
 				5678F8881D2CF0DE004EF69D /* BindBankCardVC.h */,
 				5678F8891D2CF0DE004EF69D /* BindBankCardVC.m */,
+				484B432D1D2FA9BC00A25DD9 /* BindBankCardVC2VC.h */,
+				484B432E1D2FA9BC00A25DD9 /* BindBankCardVC2VC.m */,
+				484B432F1D2FA9BC00A25DD9 /* BindBankCardVC2VC.xib */,
 				568520E51CFFC4AC00CDA44A /* MyCouponVC.h */,
 				568520E61CFFC4AC00CDA44A /* MyCouponVC.m */,
 				4017E1811C9BEB3900B0504C /* AccountPayVC.h */,
@@ -3578,6 +3586,7 @@
 				560B1B3F1CC4D60B00F87740 /* close@2x.png in Resources */,
 				563994791CA4D8CF0009A6A4 /* BestAndDocell.xib in Resources */,
 				40D929751C883E6A00C201E3 /* Project2Cell.xib in Resources */,
+				484B43311D2FA9BC00A25DD9 /* BindBankCardVC2VC.xib in Resources */,
 				40D062441C7EDC7500A10816 /* ParntIntCell.xib in Resources */,
 				40D3913F1C57499B008751E7 /* VideoSendIcon@2x.png in Resources */,
 				40DECF211C3CFD3C000ACC42 /* denglu_bj1_img@2x.jpg in Resources */,
@@ -4133,6 +4142,7 @@
 				400879321C46323F00117D18 /* AddFriendViewController.m in Sources */,
 				40D0025D1C8DA3600024082F /* AppDelegate.mm in Sources */,
 				566B75C41C7C302D005B252C /* HttpPartnerAction.m in Sources */,
+				484B43301D2FA9BC00A25DD9 /* BindBankCardVC2VC.m in Sources */,
 				40D74C3F1C8F0F5E0068AB09 /* MyInvestCell.m in Sources */,
 				40D1BEDC1C76C7F900F68B16 /* ProjectDetailCell.m in Sources */,
 				56602F051CC23B210062EE08 /* LiveOnlineListVC.m in Sources */,

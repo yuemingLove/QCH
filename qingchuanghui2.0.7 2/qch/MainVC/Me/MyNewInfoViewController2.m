@@ -183,6 +183,7 @@
             NSDictionary *_parntDict = [result objectForKey:@"result"][0];
             InvestorsInformationVC *person =[[InvestorsInformationVC alloc]init];
             person.hidesBottomBarWhenPushed = YES;
+            
             person.title = @"编辑资料";
             person.InvestArray = (NSMutableArray *)[_parntDict objectForKey:@"InvestCase"];
             NSString *purpose = @"";

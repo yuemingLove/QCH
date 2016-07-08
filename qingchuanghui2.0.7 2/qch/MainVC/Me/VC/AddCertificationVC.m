@@ -76,9 +76,11 @@
 - (void)creatCertification
 
 {
-    UIView *heaerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 200*PMBWIDTH)];
+    UIView *heaerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 140*PMBWIDTH)];
     heaerView.backgroundColor = TSEColor(110, 151, 245);
     [self.view addSubview:heaerView];
+    
+
     
     Iconimg = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 60*PMBWIDTH, 60*PMBWIDTH)];
     Iconimg.center = CGPointMake(ScreenWidth/2, 55*PMBWIDTH);
@@ -88,27 +90,40 @@
     [Iconimg sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"loading_1"]];
     [heaerView addSubview:Iconimg];
     
-    Namelab = [[UILabel alloc]initWithFrame:CGRectMake(0, Iconimg.bottom+15*PMBWIDTH, ScreenWidth, 16*PMBWIDTH)];
-    Namelab.font = Font(15);
-    Namelab.textAlignment = NSTextAlignmentCenter;
-    Namelab.textColor = [UIColor whiteColor];
+    UIImageView *img = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 70*PMBWIDTH, 20*PMBWIDTH)];
+    img.center = CGPointMake(ScreenWidth/2, Iconimg.bottom+25*PMBWIDTH);
+    img.image = [UIImage imageNamed:@"my_new.yirenzheng"];
+    [heaerView addSubview:img];
+    
+    UILabel *nameLab = [self createLabelFrame:CGRectMake(15, heaerView.bottom+15, 40, 21) color:TSEColor(110, 110, 110) font:Font(16) text:@"姓名"];
+    [self.view addSubview:nameLab];
+    
+    Namelab = [[UILabel alloc]initWithFrame:CGRectMake(nameLab.right, nameLab.top, ScreenWidth - 70, 21)];
+    Namelab.font = Font(16);
+    Namelab.textAlignment = NSTextAlignmentRight;
+    Namelab.textColor = TSEColor(110, 110, 110);
     Namelab.text = [userdic objectForKey:@"t_Bank_OpenUser"];
-    [heaerView addSubview:Namelab];
-    
-    userNOlab = [[UILabel alloc]initWithFrame:CGRectMake(0, Namelab.bottom+15*PMBWIDTH, ScreenWidth, 16*PMBWIDTH)];
-    userNOlab.textColor = [UIColor whiteColor];
-    userNOlab.font = Font(15);
-    userNOlab.textAlignment = NSTextAlignmentCenter;
-    
+    [self.view addSubview:Namelab];
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(15, nameLab.bottom+15, ScreenWidth-30, 1)];
+    line.backgroundColor =  TSEColor(220, 220, 220);
+    [self.view addSubview:line];
+    UILabel *userLab = [self createLabelFrame:CGRectMake(nameLab.left, line.bottom+15, 66, 21) color:TSEColor(110, 110, 110) font:Font(16) text:@"身份证"];
+    [self.view addSubview:userLab];
+    userNOlab = [[UILabel alloc]initWithFrame:CGRectMake(userLab.right, userLab.top, ScreenWidth-96, 21)];
+    userNOlab.textColor = TSEColor(110, 110, 110);
+    userNOlab.font = Font(16);
+    userNOlab.textAlignment = NSTextAlignmentRight;
+    [self.view addSubview:userNOlab];
+    UIView *line1 = [[UIView alloc] initWithFrame:CGRectMake(15, userLab.bottom+15, ScreenWidth-30, 1)];
+    line1.backgroundColor =  TSEColor(220, 220, 220);
+    [self.view addSubview:line1];
     NSMutableString *number = [NSMutableString stringWithFormat:@"%@",[userdic objectForKey:@"t_Bank_OpenUserNo"]];
     [number replaceCharactersInRange:NSMakeRange(6, 8) withString:@"********"];
     userNOlab.text = number;
-    [heaerView addSubview:userNOlab];
     
-    UIImageView *img = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 70*PMBWIDTH, 20*PMBWIDTH)];
-    img.center = CGPointMake(ScreenWidth/2, userNOlab.bottom+25*PMBWIDTH);
-    img.image = [UIImage imageNamed:@"my_new.yirenzheng"];
-    [heaerView addSubview:img];
+    UILabel *messageLabel = [self createLabelFrame:CGRectMake(15*PMBWIDTH, line1.bottom+15*PMBWIDTH, ScreenWidth - 30, 60) color:TSEColor(168, 177, 197) font:Font(12) text:@"注：提现操作前请务必进行实名认证，实名认证后暂无法修改，请仔细核对填写. 如有疑问请致电青创汇客服：400-169-0999"];
+    messageLabel.numberOfLines = 0;
+    [self.view addSubview:messageLabel];
     
 }
 

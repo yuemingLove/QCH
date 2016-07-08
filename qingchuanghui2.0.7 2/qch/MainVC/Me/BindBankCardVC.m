@@ -9,6 +9,7 @@
 #import "BindBankCardVC.h"
 #import "WithdrawalsViewController.h"
 #import "WJAdsView.h"
+#import "BindBankCardVC2VC.h"
 
 @interface BindBankCardVC ()<WJAdsViewDelegate,UIScrollViewDelegate>
 {
@@ -35,7 +36,7 @@
     self.title = @"绑定银行卡";
     self.view.backgroundColor = [UIColor themeGrayColor];
     [self getBindCard];
-    
+
 }
 // 获取绑定的卡
 - (void)getBindCard {
@@ -167,33 +168,12 @@
 
 // 展示已经绑定过的卡
 - (void)showBindedBankCardWith:(NSString *)bank account:(NSString *)account number:(NSString *)number {
-    
-    UIView *bgkView = [[UIView alloc] initWithFrame:CGRectMake(8*PMBWIDTH, 15*PMBHEIGHT, ScreenWidth-16*PMBWIDTH, 110*PMBHEIGHT)];
-    bgkView.backgroundColor = TSEColor(110, 151, 245);
-    bgkView.layer.cornerRadius = bgkView.height/15;
-    bgkView.layer.masksToBounds = YES;
-    [self.view addSubview:bgkView];
-    UIImageView *yinImageView = [[UIImageView alloc] initWithFrame:CGRectMake(15*PMBWIDTH, 20*PMBHEIGHT, 44*PMBWIDTH, 24*PMBWIDTH)];
-    yinImageView.image = [UIImage imageNamed:@"UnionPay"];
-   
-    [bgkView addSubview:yinImageView];
-    UILabel *bankLabel = [self createLabelFrame:CGRectMake(yinImageView.right+8*PMBWIDTH, 15*PMBWIDTH, bgkView.width - yinImageView.right - 15*PMBWIDTH, 30) color:[UIColor whiteColor] font:Font(15) text:bank];
-
-    [bgkView addSubview:bankLabel];
-    
-    UILabel *accountLabel = [self createLabelFrame:CGRectMake(yinImageView.right+8*PMBWIDTH, bankLabel.bottom, bgkView.width - yinImageView.right - 15*PMBWIDTH, 30) color:[UIColor whiteColor] font:Font(15) text:account];
-
-    [bgkView addSubview:accountLabel];
-    
-    UILabel *numLabel = [self createLabelFrame:CGRectMake(yinImageView.right+8*PMBWIDTH, accountLabel.bottom, bgkView.width - yinImageView.right - 15*PMBWIDTH, 30) color:[UIColor whiteColor] font:Font(15) text:number];
- 
-    [bgkView addSubview:numLabel];
-    
-    
-    UILabel *messageLabel = [self createLabelFrame:CGRectMake(15*PMBWIDTH, bgkView.bottom+15*PMBWIDTH, ScreenWidth - 30*PMBWIDTH, 60) color:TSEColor(110, 151, 245) font:Font(12) text:@"注：提现操作前请务必绑定与本人身份信息一致的银行卡，仅支持借记卡，已绑定银行卡暂不支持修改，如有疑问请致电青创汇客服：400-169-0999"];
-    messageLabel.numberOfLines = 0;
-    [self.view addSubview:messageLabel];
-    
+    BindBankCardVC2VC *bindVC = [[BindBankCardVC2VC alloc] init];
+    [self addChildViewController:bindVC];
+    bindVC.name = account;
+    bindVC.bank = bank;
+    bindVC.bankNO = number;
+    [self.view addSubview:bindVC.view];
 }
 
 // 获取验证码
