@@ -17,14 +17,18 @@
 
 - (void)awakeFromNib {
     
-    CGRect bounds = _bgkView.bounds;
-    bounds.size.width = ScreenWidth - 20;
-    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:bounds byRoundingCorners:UIRectCornerBottomLeft | UIRectCornerTopLeft cornerRadii:CGSizeMake(5, 5)];
-    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
-    maskLayer.frame = bounds;
-    maskLayer.path = maskPath.CGPath;
-    _bgkView.layer.mask = maskLayer;
+//    CGRect bounds = _bgkView.bounds;
+//    bounds.size.width = ScreenWidth - 20;
+//    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:bounds byRoundingCorners:UIRectCornerBottomLeft | UIRectCornerTopLeft cornerRadii:CGSizeMake(5, 5)];
+//    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+//    maskLayer.frame = bounds;
+//    maskLayer.path = maskPath.CGPath;
+//    _bgkView.layer.mask = maskLayer;
     
+    _bgkView.layer.cornerRadius = 15;
+    _bgkView.layer.borderWidth = 1;
+    _bgkView.layer.borderColor = TSEColor(228, 234, 250).CGColor;
+
     _headImageView.layer.masksToBounds=YES;
     _headImageView.layer.cornerRadius=_headImageView.height/2;
     _professionLabel.layer.cornerRadius = _professionLabel.height/2;

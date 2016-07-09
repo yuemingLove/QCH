@@ -30,6 +30,6 @@
 + (void)OrderView:(NSString*)guid Token:(NSString *)Token complete:(HttpCompleteBlock)block;
 #pragma 添加代金券
 + (void)EditVouher:(NSString*)orderGuid voucherGuid:(NSString *)voucherGuid uservoucherGuid:(NSString *)uservoucherGuid Token:(NSString *)Token complete:(HttpCompleteBlock)block;
-+ (void)EditOrderState:(NSString*)orderGuid Token:(NSString *)Token complete:(HttpCompleteBlock)block;
++ (void)EditOrderState:(NSString*)orderGuid userGuid:(NSString *)userGuid Token:(NSString *)Token complete:(HttpCompleteBlock)block;
 
 @end

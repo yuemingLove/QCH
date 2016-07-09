@@ -23,25 +23,25 @@
 #define JP_APPKEY      @"c5769e566eca15eac9f5bbc3"
 
 //服务器地址
-#define SERIVE_URL      @"http://192.168.1.77:8004/WebService/"
-#define SERIVE_USER    @"http://192.168.1.77:8004/Attach/User/"
-#define SERIVE_IMAGE   @"http://192.168.1.77:8004/Attach/Images/"
-#define SERIVE_NEWURL    @"http://192.168.1.168:9011/api/"
-#define SERIVE_HTML    @"http://192.168.1.77:8004/H5/"
-#define SHARE_HTML        @"http://www.cn-qch.com/h5/"
-#define SERIVE_Discovery @"http://192.168.1.77:8004/Attach/Discovery/"
-#define SERIVE_LIVE    @"http://192.168.1.77:8004/Attach/Media/"
+//#define SERIVE_URL      @"http://192.168.1.77:8004/WebService/"
+//#define SERIVE_USER    @"http://192.168.1.77:8004/Attach/User/"
+//#define SERIVE_IMAGE   @"http://192.168.1.77:8004/Attach/Images/"
+//#define SERIVE_NEWURL    @"http://192.168.1.168:9011/api/"
+//#define SERIVE_HTML    @"http://192.168.1.77:8004/H5/"
+//#define SHARE_HTML        @"http://www.cn-qch.com/h5/"
+//#define SERIVE_Discovery @"http://192.168.1.77:8004/Attach/Discovery/"
+//#define SERIVE_LIVE    @"http://192.168.1.77:8004/Attach/Media/"
 
 
 ///http://120.25.106.244:8001
-//#define SERIVE_URL      @"http://120.25.106.244:8002/WebService/"
-//#define SERIVE_USER    @"http://120.25.106.244:8002/Attach/User/"
-//#define SERIVE_IMAGE   @"http://120.25.106.244:8002/Attach/Images/"
-//#define SERIVE_Discovery @"http://120.25.106.244:8002/Attach/Discovery/"
-//#define SERIVE_NEWURL  @"http://120.25.106.244:9001/api/"
-//#define SERIVE_HTML    @"http://www.cn-qch.com:8002/H5/"
-//#define SHARE_HTML     @"http://www.cn-qch.com/h5/"
-//#define SERIVE_LIVE     @"http://120.25.106.244:8002/Attach/Media/"
+#define SERIVE_URL      @"http://120.25.106.244:8002/WebService/"
+#define SERIVE_USER    @"http://120.25.106.244:8002/Attach/User/"
+#define SERIVE_IMAGE   @"http://120.25.106.244:8002/Attach/Images/"
+#define SERIVE_Discovery @"http://120.25.106.244:8002/Attach/Discovery/"
+#define SERIVE_NEWURL  @"http://120.25.106.244:9001/api/"
+#define SERIVE_HTML    @"http://www.cn-qch.com:8002/H5/"
+#define SHARE_HTML     @"http://www.cn-qch.com/h5/"
+#define SERIVE_LIVE     @"http://120.25.106.244:8002/Attach/Media/"
 
 //NewsView.html  新闻
 

@@ -266,7 +266,7 @@
             NSDictionary *dict=result[0];
             if ([[dict objectForKey:@"state"] isEqualToString:@"true"]) {
               // 修改订单状态
-                [HttpAlipayAction EditOrderState:[_orderDic objectForKey:@"Guid"] Token:[MyAes aesSecretWith:@"orderGuid"] complete:^(id result, NSError *error) {
+                [HttpAlipayAction EditOrderState:[_orderDic objectForKey:@"Guid"] userGuid:UserDefaultEntity.uuid Token:[MyAes aesSecretWith:@"orderGuid"] complete:^(id result, NSError *error) {
                     if ([[dict objectForKey:@"state"] isEqualToString:@"true"]) {
                         // 订单修改成功
                         [self payOrderMenoy:@"0"];

@@ -106,12 +106,12 @@
         NSString *name=[menuArray objectAtIndex:i];
         
         UIView *btnView=[[UIView alloc]initWithFrame:CGRectMake(15*SCREEN_WSCALE+width*i, 0, width, _menuView.height)];
-        
+        btnView.tag = 300+i;
         UIButton *button=[UIButton buttonWithType:UIButtonTypeCustom];
         button.frame = CGRectMake(10*SCREEN_WSCALE, 15*PMBWIDTH, width-20*SCREEN_WSCALE, width-20*SCREEN_WSCALE);
         
         [button setImage:[UIImage imageNamed:[NSString stringWithFormat:@"jifen_%d",i]] forState:UIControlStateNormal];
-        button.tag = i;
+        button.tag = 100+i;
         [button addTarget:self action:@selector(productListButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
         
         [btnView addSubview:button];
@@ -120,10 +120,13 @@
         
         nameLabel.text=name;
         nameLabel.font=Font(15);
+        nameLabel.tag = 200+i;
         nameLabel.textColor=[UIColor blackColor];
         nameLabel.textAlignment=NSTextAlignmentCenter;
         [btnView addSubview:nameLabel];
-        
+        if (nameLabel.tag == 201) {
+            nameLabel.textColor=TSEColor(110, 151, 245);
+        }
         [self.menuView addSubview:btnView];
     }
     [headerView addSubview:_menuView];
@@ -216,7 +219,23 @@
             _Integral = @"0";
 
         }
-        [_tableView reloadData];
+        for (int i = 0; i < self.menuView.subviews.count; i++) {
+            if ([(UIView *)[self.menuView.subviews objectAtIndex:i] tag] == 301) {
+                for (int j = 0; j < [(UIView *)[self.menuView.subviews objectAtIndex:i] subviews].count; j++) {
+                    if ([[(UIView *)[self.menuView.subviews objectAtIndex:i] subviews][j] isKindOfClass:[UILabel class]]) {
+                        UILabel *label = (UILabel *)[(UIView *)[self.menuView.subviews objectAtIndex:i] subviews][j];
+                        NSMutableAttributedString *AttributedStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@ 积分",_Integral]];
+                        
+                        [AttributedStr addAttribute:NSForegroundColorAttributeName
+                                              value:[UIColor blackColor]
+                                              range:NSMakeRange(_Integral.length, 3)];
+                        
+                        label.attributedText = AttributedStr;
+
+                    }
+                }
+            }
+        }
     }];
 }
 
@@ -226,17 +245,17 @@
     button.highlighted=NO;
     NSInteger listed=button.tag;
     
-    if (listed==0) {
+    if (listed==100) {
         [self signButtonAction];
-    }else if (listed==1){
+    }else if (listed==101){
         [self SelectAction];
-    }else if (listed==2){
+    }else if (listed==102){
         QCHWebViewController *qchWeb=[[QCHWebViewController alloc]init];
         qchWeb.theme = @"兑换记录";
         qchWeb.type=2;
         qchWeb.url = [NSString stringWithFormat:@"http://www.cn-qch.com/wx/converRecord.html?Guid=%@",UserDefaultEntity.uuid];
         [self.navigationController pushViewController:qchWeb animated:YES];
-    }else if (listed==3){
+    }else if (listed==103){
         [self ruleAction];
     }
 }

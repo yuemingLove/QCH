@@ -143,8 +143,8 @@
     }];
 }
 
-+ (void)EditOrderState:(NSString*)orderGuid Token:(NSString *)Token complete:(HttpCompleteBlock)block {
-    NSString *mothed=[NSString stringWithFormat:@"orderGuid=%@&Token=%@",orderGuid, Token];
++ (void)EditOrderState:(NSString*)orderGuid userGuid:(NSString *)userGuid Token:(NSString *)Token complete:(HttpCompleteBlock)block {
+    NSString *mothed=[NSString stringWithFormat:@"orderGuid=%@&userGuid=%@&Token=%@",orderGuid, userGuid, Token];
     
     NSString *path=[NSString stringWithFormat:@"%@UserOrder_WebService.asmx/EditOrderState?",SERIVE_URL];
     NSString *url=[NSString stringWithFormat:@"%@%@",path,mothed];

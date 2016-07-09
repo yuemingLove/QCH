@@ -668,7 +668,7 @@
     [CertificationButton setImage:[UIImage imageNamed:@"new_renz"] forState:UIControlStateNormal];
     [CertificationButton setImageEdgeInsets:UIEdgeInsetsMake(0, -2, 0, 2)];
     [CertificationButton setTitle:@"实名认证" forState:UIControlStateNormal];
-    CertificationButton.titleLabel.font = Font(13);
+    CertificationButton.titleLabel.font = Font(14);
     [CertificationButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [CertificationButton addTarget:self action:@selector(CertificationButtonAction) forControlEvents:UIControlEventTouchUpInside];
     [_headerView addSubview:CertificationButton];
@@ -682,7 +682,7 @@
     [jrImageView setImage:[UIImage imageNamed:@"my_jr"]];
     [_headerView addSubview:jrImageView];
     
-    UILabel *detailLabel=[self createLabelFrame:CGRectMake(jrImageView.left - 53, jrImageView.top - 2*SCREEN_WHCALE, 53, 15*SCREEN_WSCALE) color:[UIColor whiteColor] font:Font(13) text:@"个人资料"];
+    UILabel *detailLabel=[self createLabelFrame:CGRectMake(jrImageView.left - 58, jrImageView.top - 2*SCREEN_WHCALE, 66, 16*SCREEN_WSCALE) color:[UIColor whiteColor] font:Font(14) text:@"个人资料"];
     [_headerView addSubview:detailLabel];
     
     _mImgaeView=[[UIImageView alloc]initWithFrame:CGRectMake(1*SCREEN_WSCALE, 1*SCREEN_WSCALE, 60*SCREEN_WSCALE, 60*SCREEN_WSCALE)];
@@ -695,7 +695,7 @@
     _nameLabel=[self createLabelFrame:CGRectMake(imageV.right+10*SCREEN_WSCALE, 65*SCREEN_WSCALE, SCREEN_WIDTH-imageV.width-65*SCREEN_WSCALE, 16*SCREEN_WSCALE) color:[UIColor whiteColor] font:Font(16) text:UserDefaultEntity.realName];
     [_headerView addSubview:_nameLabel];
     
-    _statusImageView  = [[UIImageView alloc] initWithFrame:CGRectMake(_nameLabel.left - 1, _nameLabel.bottom + 10*SCREEN_WSCALE, 64*SCREEN_WSCALE, 21*SCREEN_WSCALE)];
+    _statusImageView  = [[UIImageView alloc] initWithFrame:CGRectMake(_nameLabel.left - 3, _nameLabel.bottom + 10*SCREEN_WSCALE, 74*SCREEN_WSCALE, 21*SCREEN_WSCALE)];
     [_headerView addSubview:_statusImageView];
     
     
@@ -728,7 +728,7 @@
     _dyCount.textAlignment=NSTextAlignmentCenter;
     [fristView addSubview:_dyCount];
     
-    UILabel *dyLabel=[self createLabelFrame:CGRectMake(0, _dyCount.bottom+5*SCREEN_WSCALE, _dyCount.width, _dyCount.height) color:TSEColor(197, 215, 255) font:Font(13) text:@"动态"];
+    UILabel *dyLabel=[self createLabelFrame:CGRectMake(0, _dyCount.bottom+5*SCREEN_WSCALE, _dyCount.width, _dyCount.height) color:TSEColor(197, 215, 255) font:Font(14) text:@"动态"];
     dyLabel.textAlignment=NSTextAlignmentCenter;
     [fristView addSubview:dyLabel];
     
@@ -745,7 +745,7 @@
     _careCount.textAlignment=NSTextAlignmentCenter;
     [secordView addSubview:_careCount];
     
-    UILabel *careLabel=[self createLabelFrame:CGRectMake(0, _careCount.bottom+5*SCREEN_WSCALE, _careCount.width, _careCount.height) color:TSEColor(197, 215, 255) font:Font(13) text:@"关注"];
+    UILabel *careLabel=[self createLabelFrame:CGRectMake(0, _careCount.bottom+5*SCREEN_WSCALE, _careCount.width, _careCount.height) color:TSEColor(197, 215, 255) font:Font(14) text:@"关注"];
     careLabel.textAlignment=NSTextAlignmentCenter;
     [secordView addSubview:careLabel];
     
