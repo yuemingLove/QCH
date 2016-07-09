@@ -28,6 +28,7 @@
     NSDictionary *vouherDic;
     NSInteger index_btn;
     NSIndexPath *index;
+    UILabel *label1;
 }
 
 @property (nonatomic,strong) UIScrollView *scrollView;
@@ -41,6 +42,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setTitle:@"支付"];
+    [self GetMyVoucher];
     vouherDic = [NSDictionary dictionary];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(wxpay:) name:@"wxpay" object:nil];
     
@@ -151,9 +153,6 @@
     [accountBtn addTarget:self action:@selector(selectPayWay:) forControlEvents:UIControlEventTouchUpInside];
     [secordView addSubview:accountBtn];
     
-    //UILabel *line6=[[UILabel alloc]initWithFrame:CGRectMake(line3.left, accountImageView.bottom+10, line3.width, 1)];
-    //line6.backgroundColor=[UIColor themeGrayColor];
-    //[secordView addSubview:line6];
     
     UIView *bgkView = [[UIView alloc] initWithFrame:CGRectMake(0, accountImageView.bottom+10, secordView.width, secordView.bottom - accountImageView.bottom-11)];
     bgkView.backgroundColor = [UIColor themeGrayColor];
@@ -167,10 +166,10 @@
     moneyLabel.textAlignment = NSTextAlignmentRight;
     //moneyLabel.backgroundColor = [UIColor cyanColor];
     [view addSubview:moneyLabel];
-    UILabel *label1 = [self createLabelFrame:CGRectMake(line3.left, label.bottom +  15*PMBHEIGHT, ScreenWidth*0.8, 18) color:TSEColor(170, 170, 170) font:Font(13) text:@"选择您的优惠券,多张优惠券不可叠加使用"];
+    
+    label1 = [self createLabelFrame:CGRectMake(line3.left, label.bottom +  15*PMBHEIGHT, ScreenWidth*0.8, 18) color:TSEColor(170, 170, 170) font:Font(13) text:@""];
     [view addSubview:label1];
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(moneyLabel.right, moneyLabel.top - 1*PMBWIDTH, 20*PMBWIDTH, 20*PMBWIDTH)];
-    //imageView.backgroundColor = [UIColor redColor];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(moneyLabel.right, moneyLabel.top +8*PMBWIDTH, 20*PMBWIDTH, 20*PMBWIDTH)];
     imageView.image = [UIImage imageNamed:@"new_rightA"];
     [view addSubview:imageView];
     
@@ -198,6 +197,18 @@
     self.scrollView.contentSize=CGSizeMake(SCREEN_WIDTH, 560*PMBWIDTH);
     
 }
+
+- (void)GetMyVoucher{
+    [HttpCenterAction GetMyVoucher:UserDefaultEntity.uuid type:@"1" page:PAGE pagesize:PAGESIZE Token:[MyAes aesSecretWith:@"userGuid"] complete:^(id result, NSError *error) {
+        NSDictionary *dict = result[0];
+        if([[dict objectForKey:@"state"]isEqualToString:@"false"]){
+            label1.text = @"无可用代金券";
+        }else if ([[dict objectForKey:@"state"]isEqualToString:@"true"]){
+            label1.text = @"请选择您的代金券";
+        }
+    }];
+}
+
 - (void)buttAction {
     // 选取代金券
     DeductionVC2 *vc = [[DeductionVC2 alloc] init];

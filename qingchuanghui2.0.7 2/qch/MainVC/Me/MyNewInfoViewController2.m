@@ -183,7 +183,6 @@
             NSDictionary *_parntDict = [result objectForKey:@"result"][0];
             InvestorsInformationVC *person =[[InvestorsInformationVC alloc]init];
             person.hidesBottomBarWhenPushed = YES;
-            
             person.title = @"编辑资料";
             person.InvestArray = (NSMutableArray *)[_parntDict objectForKey:@"InvestCase"];
             NSString *purpose = @"";
@@ -195,12 +194,12 @@
                 NSString *ID = [dict objectForKey:@"IntentionID"];
                 if ([self isBlankString:purpose]) {
                     purpose = intention;
-                } else {
+                }else{
                     purpose = [purpose stringByAppendingString:[NSString stringWithFormat:@" %@",intention]];
                 }
                 if ([self isBlankString:purposeid]) {
                     purposeid = ID;
-                } else {
+                }else{
                     purposeid = [purposeid stringByAppendingString:[NSString stringWithFormat:@";%@",ID]];
                 }
             }
@@ -882,6 +881,7 @@
             // 积分
             MyIntegralVC *integralVC = [[MyIntegralVC alloc]init];
             integralVC.hidesBottomBarWhenPushed = YES;
+            integralVC.Integral = _integralNumber;
             [self.navigationController pushViewController:integralVC animated:YES];
         }
             break;

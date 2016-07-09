@@ -157,7 +157,7 @@
             [cell setBackgroundColor:[UIColor clearColor]];
             NSString *cityKey = [titleArray objectAtIndex:indexPath.section - 2];
             NSArray *array = [self.dictionary objectForKey:cityKey];
-//            cell.textLabel.text = [NSString stringWithFormat:@"%@市",[array objectAtIndex:indexPath.row]];
+
             cell.textLabel.text = [array objectAtIndex:indexPath.row];
             cell.textLabel.font = [UIFont systemFontOfSize:16.0];
             cell.textLabel.textColor=[UIColor whiteColor];
@@ -199,7 +199,6 @@
 - (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     if (tableView == _tableView) {
         UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 28)];
-//        headerView.backgroundColor = UIColorFromRGBA(235, 235, 235, 1.0);
         headerView.backgroundColor=[UIColor clearColor];
         headerView.alpha=0.6;
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, ScreenWidth - 15, 28)];
@@ -227,10 +226,6 @@
     }
 }
 
-/**
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 1;
-}**/
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView == _tableView) {
@@ -248,8 +243,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView == _tableView) {
-        if (indexPath.section > 2) {
-            NSString *cityKey = [titleArray objectAtIndex:indexPath.section - 3];
+        if (indexPath.section > 1) {
+            NSString *cityKey = [titleArray objectAtIndex:indexPath.section - 2];
             NSArray *array = [self.dictionary objectForKey:cityKey];
             if ([self.delegate respondsToSelector:@selector(addressPicker:didSelectedCity:)]) {
                 [self.delegate addressPicker:self didSelectedCity:[array objectAtIndex:indexPath.row]];
@@ -275,13 +270,13 @@
     
     bkgImageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     [bkgImageView setImage:blurredImage];
-//    [self.view addSubview:bkgImageView];
+
 }
 
 #pragma mark - init
 - (void)initTableView{
     
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 44, ScreenWidth, ScreenHeight - 44) style:UITableViewStylePlain];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 44, ScreenWidth, ScreenHeight - 44-64) style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.showsVerticalScrollIndicator = NO;

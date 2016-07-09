@@ -177,7 +177,7 @@
     cell.tag = indexPath.row;
     cell.typeLabel.text=[dict objectForKey:@"t_Remark"];
     NSString *price=[dict objectForKey:@"t_UserAccount_AddReward"];
-    if ([price isEqualToString:@"0.00"]) {
+    if ([price isEqualToString:@"0.00"]||[self isBlankString:price]) {
         cell.priceLabel.text=[NSString stringWithFormat:@"-¥%@",[dict objectForKey:@"t_UserAccount_ReduceReward"]];
         cell.priceLabel.textColor=[UIColor colorWithRed:(53.0f / 255.0f) green:(95.0f / 255.0f) blue:(150.0f / 255.0f) alpha:1.0f];
     } else {

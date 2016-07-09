@@ -39,6 +39,9 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"提现" style:UIBarButtonItemStylePlain target:self action:@selector(WithdrawalsAction)];
     [self getbank];
 }
+
+
+
 - (void)getbank
 {
     [HttpUserBankAction GetUserBank:UserDefaultEntity.uuid Token:[MyAes aesSecretWith:@"userGuid"] complete:^(id result, NSError *error) {
@@ -55,6 +58,7 @@
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [self getTotlePrice];
+    [self getbank];
     // 禁用 iOS7 返回手势
     if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
         self.navigationController.interactivePopGestureRecognizer.enabled = NO;
@@ -186,6 +190,7 @@
                     AddCertificationVC *AddCertification = [[AddCertificationVC alloc]init];
                     [self.navigationController pushViewController:AddCertification animated:YES];
                 });
+
             }
         }];
     }

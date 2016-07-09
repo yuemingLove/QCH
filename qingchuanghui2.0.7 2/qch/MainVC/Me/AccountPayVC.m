@@ -53,7 +53,7 @@
     [scrollView addSubview:headImageView];
     
     _numTextField=[[UITextField alloc]initWithFrame:CGRectMake(headImageView.left, headImageView.bottom+10*SCREEN_WSCALE, headImageView.width, 30)];
-    _numTextField.placeholder=@"请输入金额";
+    _numTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"请输入金额" attributes:@{NSForegroundColorAttributeName: [UIColor redColor]}];
     _numTextField.textColor=[UIColor redColor];
     _numTextField.delegate=self;
     _numTextField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
@@ -62,6 +62,10 @@
     [_numTextField addTarget:self action:@selector(updatePriceView:) forControlEvents:UIControlEventEditingChanged];
     [_numTextField addTarget:self action:@selector(complete:) forControlEvents:UIControlEventEditingDidEnd];
     [scrollView addSubview:_numTextField];
+    
+    UILabel *line10=[self createLabelFrame:CGRectMake(_numTextField.left, _numTextField.bottom+1*SCREEN_WSCALE, _numTextField.width, 1) color:[UIColor themeGrayColor] font:Font(0) text:@""];
+    line10.backgroundColor=[UIColor redColor];
+    [scrollView addSubview:line10];
     
     UILabel *line=[self createLabelFrame:CGRectMake(0, _numTextField.bottom+10*SCREEN_WSCALE, SCREEN_WIDTH, 10) color:[UIColor themeGrayColor] font:Font(0) text:@""];
     line.backgroundColor=[UIColor themeGrayColor];

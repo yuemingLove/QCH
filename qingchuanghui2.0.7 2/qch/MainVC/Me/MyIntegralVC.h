@@ -10,4 +10,5 @@
 
 @interface MyIntegralVC : QchBaseViewController
 
+@property (nonatomic,strong)NSString *Integral;
 @end

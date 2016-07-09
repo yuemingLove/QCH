@@ -19,10 +19,12 @@
     UIButton *rulebtn;
     UILabel *integrallab;
     UILabel *rulelab;
+    NSString *jifen;
 }
 
 @property (nonatomic,strong) UITableView *tableView;
 @property (strong, nonatomic) NSArray *modules;
+@property (nonatomic,strong) UIView *menuView;
 
 
 @end
@@ -35,6 +37,10 @@
     if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
         self.navigationController.interactivePopGestureRecognizer.enabled = NO;
     }
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillDisappear:animated];
     [self getdata];
 }
 
@@ -55,16 +61,7 @@
     self.modules = @[@"zhuanpan",@"jifen",@"jifenhuikui"];
     [self createTableView];
     [self creatheaderview];
-    
-    UIButton *signButton=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 60*SCREEN_WSCALE, 39)];
-    [signButton setImage:[UIImage imageNamed:@"my_new_sign"] forState:UIControlStateNormal];
-    [signButton setImageEdgeInsets:UIEdgeInsetsMake(0, -2, 0, 2)];
-    [signButton setTitle:@"签到" forState:UIControlStateNormal];
-    signButton.titleLabel.font = Font(15);
-    [signButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [signButton addTarget:self action:@selector(signButtonAction) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *customButItem=[[UIBarButtonItem alloc]initWithCustomView:signButton];
-    self.navigationItem.rightBarButtonItem = customButItem;
+   
 }
 
 -(void)createTableView{
@@ -95,52 +92,41 @@
 
 - (void)creatheaderview{
     
+    
     headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 104*PMBWIDTH)];
     headerView.backgroundColor = [UIColor whiteColor];
     _tableView.tableHeaderView = headerView;
     
-    UILabel *line1 = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 15*PMBWIDTH)];
-    line1.backgroundColor = [UIColor themeGrayColor];
-    [headerView addSubview:line1];
-    
-    integralbtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    integralbtn.frame = CGRectMake(0, 0, 55*PMBWIDTH, 55*PMBWIDTH);
-    integralbtn.center = CGPointMake(ScreenWidth/4, 50*PMBWIDTH);
-    integralbtn.layer.cornerRadius = integralbtn.height/2;
-    [integralbtn setImage:[UIImage imageNamed:@"my_jifen"] forState:UIControlStateNormal];
-    [integralbtn addTarget:self action:@selector(SelectAction:) forControlEvents:UIControlEventTouchUpInside];
-    [headerView addSubview:integralbtn];
-    
-    integrallab = [[UILabel alloc]initWithFrame:CGRectMake(0, integralbtn.bottom+5*PMBWIDTH, ScreenWidth/4, 15*PMBWIDTH)];
-    integrallab.textAlignment = NSTextAlignmentRight;
-    integrallab.font = Font(14);
-    integrallab.textColor = [UIColor themeBlueColor];
-    [headerView addSubview:integrallab];
-    
-    UILabel *jifenlab = [[UILabel alloc]initWithFrame:CGRectMake(integrallab.right+2*PMBWIDTH, integrallab.top, 30*PMBWIDTH, 15*PMBWIDTH)];
-    jifenlab.text = @"积分";
-    jifenlab.font = Font(14);
-    jifenlab.textColor = [UIColor blackColor];
-    [headerView addSubview:jifenlab];
-    
-    UILabel *line = [[UILabel alloc]initWithFrame:CGRectMake(ScreenWidth/2, integralbtn.top+2*PMBWIDTH, 1*PMBWIDTH, 66*PMBWIDTH)];
-    line.backgroundColor = TSEColor(230, 230, 230);
-    [headerView addSubview:line];
-    
-    rulebtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    rulebtn.frame = CGRectMake(0, 0, 55*PMBWIDTH, 55*PMBWIDTH);
-    rulebtn.center = CGPointMake(line.right+ScreenWidth/4, 50*PMBWIDTH);
-    rulebtn.layer.cornerRadius = rulebtn.height/2;
-    [rulebtn setImage:[UIImage imageNamed:@"my_jifenguize"] forState:UIControlStateNormal];
-    [rulebtn addTarget:self action:@selector(ruleAction:) forControlEvents:UIControlEventTouchUpInside];
-    [headerView addSubview:rulebtn];
-    
-    rulelab = [[UILabel alloc]initWithFrame:CGRectMake(line.right, integrallab.top, ScreenWidth/2, 15*PMBWIDTH)];
-    rulelab.textColor = [UIColor blackColor];
-    rulelab.text = @"积分规则";
-    rulelab.textAlignment = NSTextAlignmentCenter;
-    rulelab.font = Font(14);
-    [headerView addSubview:rulelab];
+    self.menuView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 100.0*SCREEN_WSCALE)];
+    NSString *integral = [NSString stringWithFormat:@"%@ 积分",_Integral];
+    NSArray *menuArray=@[@"签到",integral,@"兑换记录",@"积分规则"];
+    CGFloat width=(self.menuView.frame.size.width-30*SCREEN_WSCALE)/4.0;
+    for (int i=0; i<[menuArray count]; i++) {
+        
+        NSString *name=[menuArray objectAtIndex:i];
+        
+        UIView *btnView=[[UIView alloc]initWithFrame:CGRectMake(15*SCREEN_WSCALE+width*i, 0, width, _menuView.height)];
+        
+        UIButton *button=[UIButton buttonWithType:UIButtonTypeCustom];
+        button.frame = CGRectMake(10*SCREEN_WSCALE, 15*PMBWIDTH, width-20*SCREEN_WSCALE, width-20*SCREEN_WSCALE);
+        
+        [button setImage:[UIImage imageNamed:[NSString stringWithFormat:@"jifen_%d",i]] forState:UIControlStateNormal];
+        button.tag = i;
+        [button addTarget:self action:@selector(productListButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [btnView addSubview:button];
+        
+        UILabel *nameLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, button.bottom+5, btnView.width, 16*SCREEN_WSCALE)];
+        
+        nameLabel.text=name;
+        nameLabel.font=Font(15);
+        nameLabel.textColor=[UIColor blackColor];
+        nameLabel.textAlignment=NSTextAlignmentCenter;
+        [btnView addSubview:nameLabel];
+        
+        [self.menuView addSubview:btnView];
+    }
+    [headerView addSubview:_menuView];
     
     
 }
@@ -195,16 +181,15 @@
         
     }else if ([module isEqualToString:@"jifenhuikui"]){
         QCHWebViewController *weakQchWeb=[[QCHWebViewController alloc]init];
-        weakQchWeb.theme=@"中奖纪录";
+        weakQchWeb.theme=@"积分兑换";
         weakQchWeb.type=2;
         weakQchWeb.url = [NSString stringWithFormat:@"http://www.cn-qch.com/wx/mall.html?UserGuid=%@&Sign=%@",UserDefaultEntity.uuid, [MyMD5 md5:[NSString stringWithFormat:@"%@150919",UserDefaultEntity.uuid]]];
         [self.navigationController pushViewController:weakQchWeb animated:YES];
-        //[SVProgressHUD showErrorWithStatus:@"敬请期待" maskType:SVProgressHUDMaskTypeBlack];
     }
     
 }
 
-- (void)SelectAction:(UIButton *)sender
+- (void)SelectAction
 {
     CreditsLogVC *creditslogvc = [[CreditsLogVC alloc]init];
     creditslogvc.hidesBottomBarWhenPushed = YES;
@@ -212,7 +197,7 @@
     [self.navigationController pushViewController:creditslogvc animated:YES];
 }
 
--(void)ruleAction:(UIButton *)sender
+-(void)ruleAction
 {
     QCHWebViewController *qchWeb=[[QCHWebViewController alloc]init];
     qchWeb.theme = @"积分规则";
@@ -226,13 +211,33 @@
     [HttpCenterAction GetIntegral:UserDefaultEntity.uuid Token:[MyAes aesSecretWith:@"userGuid"] complete:^(id result, NSError *error) {
         NSDictionary *dict = result[0];
         if ([[dict objectForKey:@"state"]isEqualToString:@"true"]) {
-            integrallab.text = [dict objectForKey:@"result"];
-
+            _Integral = [dict objectForKey:@"result"];
         }else if ([[dict objectForKey:@"state"]isEqualToString:@"false"]){
-            integrallab.text = @"0";
-     
+            _Integral = @"0";
+
         }
-        
+        [_tableView reloadData];
     }];
+}
+
+- (void)productListButtonClicked:(UIButton*)sender
+{
+    UIButton *button=(UIButton*)sender;
+    button.highlighted=NO;
+    NSInteger listed=button.tag;
+    
+    if (listed==0) {
+        [self signButtonAction];
+    }else if (listed==1){
+        [self SelectAction];
+    }else if (listed==2){
+        QCHWebViewController *qchWeb=[[QCHWebViewController alloc]init];
+        qchWeb.theme = @"兑换记录";
+        qchWeb.type=2;
+        qchWeb.url = [NSString stringWithFormat:@"http://www.cn-qch.com/wx/converRecord.html?Guid=%@",UserDefaultEntity.uuid];
+        [self.navigationController pushViewController:qchWeb animated:YES];
+    }else if (listed==3){
+        [self ruleAction];
+    }
 }
 @end

@@ -117,11 +117,9 @@
     UIView *line1 = [[UIView alloc] initWithFrame:CGRectMake(15, userLab.bottom+15, ScreenWidth-30, 1)];
     line1.backgroundColor =  TSEColor(220, 220, 220);
     [self.view addSubview:line1];
-    NSMutableString *number = [NSMutableString stringWithFormat:@"%@",[userdic objectForKey:@"t_Bank_OpenUserNo"]];
-    [number replaceCharactersInRange:NSMakeRange(6, 8) withString:@"********"];
-    userNOlab.text = number;
+    userNOlab.text = [userdic objectForKey:@"t_Bank_OpenUserNo"];
     
-    UILabel *messageLabel = [self createLabelFrame:CGRectMake(15*PMBWIDTH, line1.bottom+15*PMBWIDTH, ScreenWidth - 30, 60) color:TSEColor(168, 177, 197) font:Font(12) text:@"注：提现操作前请务必进行实名认证，实名认证后暂无法修改，请仔细核对填写. 如有疑问请致电青创汇客服：400-169-0999"];
+    UILabel *messageLabel = [self createLabelFrame:CGRectMake(15*PMBWIDTH, line1.bottom+15*PMBWIDTH, ScreenWidth - 30, 60) color:TSEColor(168, 177, 197) font:Font(12) text:@"提现操作前请务必进行实名认证，实名认证后暂无法修改，请仔细核对填写. 如有疑问请致电青创汇客服：400-169-0999"];
     messageLabel.numberOfLines = 0;
     [self.view addSubview:messageLabel];
     
@@ -201,7 +199,7 @@
     phonelab.font = Font(15);
     [backview addSubview:phonelab];
     
-    UIView *codeView = [[UIView alloc]initWithFrame:CGRectMake(0, phonelab.bottom+10*PMBWIDTH, ScreenWidth, 90*PMBWIDTH)];
+    UIView *codeView = [[UIView alloc]initWithFrame:CGRectMake(0, phonelab.bottom, ScreenWidth, 90*PMBWIDTH)];
     codeView.backgroundColor = [UIColor whiteColor];
     [backview addSubview:codeView];
     
@@ -229,7 +227,7 @@
     
     authCodeButton=[UIButton buttonWithType:UIButtonTypeCustom];
     authCodeButton.frame=CGRectMake(codeView.width-130*SCREEN_WSCALE, codefield.top, 120*SCREEN_WSCALE, codefield.height);
-    [authCodeButton setTitle:@"获取验证码" forState:UIControlStateNormal];
+    [authCodeButton setTitle:@"获取语音验证码" forState:UIControlStateNormal];
     [authCodeButton setTitleColor:TSEColor(110, 151, 245) forState:UIControlStateNormal];
     [authCodeButton setBackgroundColor:[UIColor whiteColor]];
     authCodeButton.layer.masksToBounds=YES;
@@ -243,7 +241,7 @@
 
     
     UILabel *remarklab = [[UILabel alloc]initWithFrame:CGRectMake(20*PMBWIDTH, codeView.bottom+8*PMBWIDTH, ScreenWidth-30*PMBWIDTH, 30*PMBWIDTH)];
-    remarklab.text = @"注：提现操作前请务必进行实名认证，实名认证成功后暂无法修改，请仔细核对填写。";
+    remarklab.text = @"提现操作前请务必进行实名认证，实名认证成功后暂无法修改，请仔细核对填写。";
     remarklab.textColor = TSEColor(110, 151, 245);
     remarklab.numberOfLines = 0;
     remarklab.font = Font(13);
@@ -295,6 +293,8 @@
         [SVProgressHUD showErrorWithStatus:@"姓名只能输入中文" maskType:SVProgressHUDMaskTypeBlack];
         return;
     }
+    
+    [Utils showToastWithText:@"请注意接听电话，验证码已发送"];
     
     authCodeButton.userInteractionEnabled = NO;
     [authCodeButton setTitle:@"正在发送" forState:UIControlStateNormal];

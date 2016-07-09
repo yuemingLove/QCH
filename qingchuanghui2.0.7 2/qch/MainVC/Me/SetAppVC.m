@@ -62,20 +62,33 @@
 
 -(void)createTableView{
     _tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64) style:UITableViewStylePlain];
+    _tableView.backgroundColor = [UIColor themeGrayColor];
     _tableView.dataSource=self;
     _tableView.delegate=self;
     [self.view addSubview:_tableView];
     
-    self.modules = @[@[@"set_account",@"set_pass",@"set_message",@"clean_lat"],@[@"set_exit"]];
+    self.modules = @[@[@"set_account",@"set_pass",@"set_message",@"clean_lat"]];
     
     self.titles = @{@"set_account":@"解除绑定",
                     @"set_pass":@"修改密码",
                     @"set_message":@"消息提醒",
-                    @"clean_lat":@"清除缓存",
-                    @"set_exit":@"退出登录"};
+                    @"clean_lat":@"清除缓存",};
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"DefaultCell"];
     
     [self cleanTableView:_tableView];
+    
+    UIView *footView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 50*PMBWIDTH)];
+    footView.backgroundColor = [UIColor themeGrayColor];
+    _tableView.tableFooterView = footView;
+    
+    UIButton *quitbtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    quitbtn.frame = CGRectMake(0, 0, ScreenWidth, 30*PMBWIDTH);
+    quitbtn.backgroundColor = [UIColor whiteColor];
+    [quitbtn setTitle:@"退出登录" forState:UIControlStateNormal];
+    [quitbtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    [quitbtn addTarget:self action:@selector(quit:) forControlEvents:UIControlEventTouchUpInside];
+    quitbtn.titleLabel.font = Font(16);
+    [footView addSubview:quitbtn];
 }
 
 -(void)cleanTableView:(UITableView*)tableView{
@@ -97,8 +110,8 @@
     return 48;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 10;
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 30;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -144,6 +157,8 @@
     return cell;
 
 }
+
+
 
 -(void)switchValueChanged:(id)sender{
 
@@ -195,11 +210,14 @@
     }else if ([module isEqualToString:@"clean_lat"]){
         [self clear:nil];
         textlabel.text=[NSString stringWithFormat:@"0.0M"];
-    }else if ([module isEqualToString:@"set_exit"]){
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"确定要退出吗？" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-        alert.tag = 201;
-        [alert show];
     }
+}
+
+- (void)quit:(UIButton*)sender
+{
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"确定要退出吗？" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    alert.tag = 201;
+    [alert show];
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{

@@ -38,6 +38,7 @@
             moneyTF.placeholder = money;
         }else if ([[dict objectForKey:@"state"]isEqualToString:@"false"]){
             account=0.00;
+            moneyTF.placeholder = [NSString stringWithFormat:@"当前余额为0"];
         }
     }];
 }
@@ -50,9 +51,7 @@
     UILabel *bandLabel = [self createLabelFrame:CGRectMake(27*PMBWIDTH, 8*PMBHEIGHT, ScreenWidth - 30*PMBWIDTH, 30) color:[UIColor lightGrayColor] font:Font(15) text:bankname];
     [bgkView addSubview:bandLabel];
     
-    NSMutableString *bankno = [NSMutableString stringWithFormat:@"%@",_t_Bank_NO];
-    [bankno replaceCharactersInRange:NSMakeRange(6, bankno.length-10) withString:@"*****"];
-    NSString *banknum = [NSString stringWithFormat:@"卡号:%@",bankno];
+    NSString *banknum = [NSString stringWithFormat:@"卡号:%@",_t_Bank_NO];
     UILabel *cardNum = [self createLabelFrame:CGRectMake(27*PMBWIDTH, bandLabel.bottom + 8*PMBHEIGHT, ScreenWidth - 30*PMBWIDTH, 30) color:[UIColor lightGrayColor] font:Font(15) text:banknum];
     [bgkView addSubview:cardNum];
     NSString *name =[NSString stringWithFormat:@"姓名:%@",_t_Bank_OpenUser];

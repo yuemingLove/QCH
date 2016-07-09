@@ -203,7 +203,6 @@
     if (tableView == _tableView) {
         UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 28)];
         headerView.backgroundColor = UIColorFromRGBA(235, 235, 235, 1.0);
-//        headerView.backgroundColor=[UIColor wh];
         headerView.alpha=0.6;
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, ScreenWidth - 15, 28)];
         label.font = [UIFont systemFontOfSize:14.0];

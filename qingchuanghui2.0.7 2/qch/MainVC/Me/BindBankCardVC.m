@@ -49,9 +49,7 @@
                 [self bindBankCard];
                 accountNum.text = [NSString stringWithFormat:@"开户人:%@",[dict objectForKey:@"t_Bank_OpenUser"]];
             }else{
-                NSMutableString *t_Bank_NO = [NSMutableString stringWithFormat:@"%@",[dict objectForKey:@"t_Bank_NO"]];
-                [t_Bank_NO replaceCharactersInRange:NSMakeRange(6, t_Bank_NO.length-10) withString:@"******"];
-                [self showBindedBankCardWith:[dict objectForKey:@"t_Bank_Name"] account:[dict objectForKey:@"t_Bank_OpenUser"] number:t_Bank_NO];
+                [self showBindedBankCardWith:[dict objectForKey:@"t_Bank_Name"] account:[dict objectForKey:@"t_Bank_OpenUser"] number:[dict objectForKey:@"t_Bank_NO"]];
             }
         } else if ([[dic objectForKey:@"state"] isEqualToString:@"false"]) {
             [self bindBankCard];
@@ -73,7 +71,7 @@
     BackView.backgroundColor = [UIColor themeGrayColor];
     [scrollView addSubview:BackView];
     
-    UIView *bgkView = [[UIView alloc] initWithFrame:CGRectMake(0, 8*PMBHEIGHT, ScreenWidth, 375*SCREEN_WHCALE)];
+    UIView *bgkView = [[UIView alloc] initWithFrame:CGRectMake(0, 8*PMBHEIGHT, ScreenWidth, 345*SCREEN_WHCALE)];
     bgkView.backgroundColor = [UIColor whiteColor];
     [BackView addSubview:bgkView];
     UILabel *cardNum = [self createLabelFrame:CGRectMake(27*PMBWIDTH, 8*PMBHEIGHT, ScreenWidth - 30*PMBWIDTH, 30) color:[UIColor blackColor] font:Font(15) text:@"卡号"];
@@ -110,24 +108,17 @@
     [bgkView addSubview:accountNum];
     
     
-    UIView *line1 = [[UIView alloc] initWithFrame:CGRectMake(0, accountNum.bottom+8*PMBHEIGHT, ScreenWidth, 8*PMBHEIGHT)];
-    line1.backgroundColor = [UIColor themeGrayColor];
-    [bgkView addSubview:line1];
     
-    UILabel *phonelab = [[UILabel alloc]initWithFrame:CGRectMake(0, line1.bottom+8*PMBWIDTH, ScreenWidth, 45*PMBWIDTH)];
+    UILabel *phonelab = [[UILabel alloc]initWithFrame:CGRectMake(0, accountNum.bottom+8*PMBWIDTH, ScreenWidth, 45*PMBWIDTH)];
     phonelab.backgroundColor = [UIColor whiteColor];
     phonelab.text = [NSString stringWithFormat:@"        手机号:%@",UserDefaultEntity.account];
     phonelab.textColor = [UIColor lightGrayColor];
     phonelab.font = Font(15);
     [bgkView addSubview:phonelab];
     
-    
-    UIView *line3 = [[UIView alloc] initWithFrame:CGRectMake(0, phonelab.bottom+8*PMBHEIGHT, ScreenWidth, 8*PMBHEIGHT)];
-    line3.backgroundColor = [UIColor themeGrayColor];
-    [bgkView addSubview:line3];
 
     
-    UILabel *codeNum = [self createLabelFrame:CGRectMake(27*PMBWIDTH, line3.bottom + 8*PMBHEIGHT, ScreenWidth - 30*PMBWIDTH, 30) color:[UIColor blackColor] font:Font(15) text:@"验证码"];
+    UILabel *codeNum = [self createLabelFrame:CGRectMake(27*PMBWIDTH, phonelab.bottom + 8*PMBHEIGHT, ScreenWidth - 30*PMBWIDTH, 30) color:[UIColor blackColor] font:Font(15) text:@"验证码"];
     [bgkView addSubview:codeNum];
     
     codeTF = [self createTextFieldFrame:CGRectMake(15*PMBWIDTH, codeNum.bottom + 8*PMBHEIGHT, 170*PMBWIDTH, 35) font:Font(15) placeholder:@"请输入验证码"];
@@ -151,7 +142,7 @@
     [authCodeButton addTarget:self action:@selector(getCodeAction) forControlEvents:UIControlEventTouchUpInside];
     [bgkView addSubview:authCodeButton];
     
-    UILabel *messageLabel = [self createLabelFrame:CGRectMake(15*PMBWIDTH, bgkView.bottom+2*PMBWIDTH, ScreenWidth - 30*PMBWIDTH, 60) color:TSEColor(110, 151, 245) font:Font(12) text:@"注：提现操作前请务必绑定与本人身份信息一致的银行卡，仅支持借记卡，已绑定银行卡暂不支持修改，如有疑问请致电青创汇客服：400-169-0999"];
+    UILabel *messageLabel = [self createLabelFrame:CGRectMake(15*PMBWIDTH, bgkView.bottom+2*PMBWIDTH, ScreenWidth - 30*PMBWIDTH, 60) color:TSEColor(110, 151, 245) font:Font(12) text:@"提现操作前请务必绑定与本人身份信息一致的银行卡，仅支持借记卡，已绑定银行卡暂不支持修改，如有疑问请致电青创汇客服：400-169-0999"];
     messageLabel.numberOfLines = 0;
     [BackView addSubview:messageLabel];
     
@@ -173,7 +164,7 @@
     bindVC.name = account;
     bindVC.bank = bank;
     bindVC.bankNO = number;
-    [bindVC.view setFrame:self.view.frame];
+    [bindVC.view setFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
     [self.view addSubview:bindVC.view];
 }
 
