@@ -39,7 +39,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="技术" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0nL-hV-Z3T">
-                                <rect key="frame" x="51" y="61" width="265" height="15"/>
+                                <rect key="frame" x="51" y="56" width="250" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="ZaN-Kw-31Y"/>
                                 </constraints>
@@ -56,9 +56,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="合伙人" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XnL-33-heb">
-                                <rect key="frame" x="51" y="26" width="265" height="30"/>
+                                <rect key="frame" x="51" y="26" width="250" height="25"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="A98-fv-mOT"/>
+                                    <constraint firstAttribute="height" constant="25" id="A98-fv-mOT"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <nil key="highlightedColor"/>
@@ -85,7 +85,7 @@
                             <constraint firstItem="0nL-hV-Z3T" firstAttribute="top" secondItem="XnL-33-heb" secondAttribute="bottom" constant="5" id="lDn-9J-Ewr"/>
                             <constraint firstItem="KEY-J9-ZH2" firstAttribute="leading" secondItem="IuY-cf-9a8" secondAttribute="trailing" constant="8" id="pkE-jX-4zp"/>
                             <constraint firstItem="0nL-hV-Z3T" firstAttribute="leading" secondItem="XnL-33-heb" secondAttribute="leading" id="puQ-jV-Yku"/>
-                            <constraint firstAttribute="trailing" secondItem="XnL-33-heb" secondAttribute="trailing" id="vWg-M1-LsM"/>
+                            <constraint firstAttribute="trailing" secondItem="XnL-33-heb" secondAttribute="trailing" constant="15" id="vWg-M1-LsM"/>
                         </constraints>
                     </view>
                 </subviews>

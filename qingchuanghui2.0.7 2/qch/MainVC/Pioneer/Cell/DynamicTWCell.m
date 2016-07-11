@@ -140,9 +140,9 @@
     CGSize size = [self.contentLabel sizeThatFits:CGSizeMake((self.contentLabel.frame.size.width)*SCREEN_WSCALE, MAXFLOAT)];
     CGFloat height = 0;
     if (self.contentLabel.height>98*PMBWIDTH) {
-        height=_bgkView.bottom+size.height+10+14*PMBWIDTH;
+        height=_bgkView.bottom+size.height+20+14*PMBWIDTH;
     }else{
-        height=_bgkView.bottom+size.height+10;
+        height=_bgkView.bottom+size.height+20;
     }
     
     _imageViews = [NSMutableArray array];
@@ -386,7 +386,7 @@
         hegiht+=15*PMBWIDTH;
     }
     
-    frame.size.height=size.height+_bgkView.bottom+index+hegiht+25;
+    frame.size.height=size.height+_bgkView.bottom+index+hegiht+35;
     
     self.frame = frame;
     

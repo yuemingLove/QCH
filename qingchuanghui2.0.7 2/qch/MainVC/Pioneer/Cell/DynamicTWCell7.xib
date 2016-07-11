@@ -28,7 +28,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="软件工程师 " lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XnL-33-heb">
-                                <rect key="frame" x="55" y="34" width="240" height="15"/>
+                                <rect key="frame" x="55" y="34" width="230" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="lU6-95-6gx"/>
                                 </constraints>
@@ -38,7 +38,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="XnL-33-heb" secondAttribute="trailing" constant="5" id="10W-Eb-U5l"/>
+                            <constraint firstAttribute="trailing" secondItem="XnL-33-heb" secondAttribute="trailing" constant="15" id="10W-Eb-U5l"/>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="80" id="4Ef-Zg-ncN"/>
                             <constraint firstAttribute="height" constant="60" id="7rf-Ma-BRl"/>
                         </constraints>
@@ -64,7 +64,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="contnet" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oqv-7H-UGY">
-                        <rect key="frame" x="40" y="70" width="275" height="17"/>
+                        <rect key="frame" x="40" y="80" width="275" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -76,7 +76,7 @@
                     <constraint firstItem="u75-zs-Nez" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="E9x-Ca-B8l"/>
                     <constraint firstItem="IuY-cf-9a8" firstAttribute="top" secondItem="RhV-bO-uBx" secondAttribute="top" id="QlC-BV-2bL"/>
                     <constraint firstItem="XnL-33-heb" firstAttribute="leading" secondItem="IuY-cf-9a8" secondAttribute="leading" id="Sxy-qV-hBq"/>
-                    <constraint firstItem="oqv-7H-UGY" firstAttribute="top" secondItem="u75-zs-Nez" secondAttribute="bottom" constant="5" id="T2I-qf-cAz"/>
+                    <constraint firstItem="oqv-7H-UGY" firstAttribute="top" secondItem="u75-zs-Nez" secondAttribute="bottom" constant="15" id="T2I-qf-cAz"/>
                     <constraint firstItem="RhV-bO-uBx" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="Uzf-yV-h3J"/>
                     <constraint firstItem="RhV-bO-uBx" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="40" id="X2T-9d-i3w"/>
                     <constraint firstAttribute="trailing" secondItem="u75-zs-Nez" secondAttribute="trailing" constant="-15" id="cgY-bZ-g6K"/>

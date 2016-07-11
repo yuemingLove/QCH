@@ -48,7 +48,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="合伙人" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XnL-33-heb">
-                                <rect key="frame" x="51" y="31" width="265" height="30"/>
+                                <rect key="frame" x="51" y="31" width="250" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="A98-fv-mOT"/>
                                 </constraints>
@@ -74,7 +74,7 @@
                             <constraint firstItem="XnL-33-heb" firstAttribute="top" secondItem="IuY-cf-9a8" secondAttribute="bottom" constant="5" id="T76-8a-J7M"/>
                             <constraint firstAttribute="height" constant="65" id="bOL-bg-kyF"/>
                             <constraint firstItem="KEY-J9-ZH2" firstAttribute="leading" secondItem="IuY-cf-9a8" secondAttribute="trailing" constant="8" id="pkE-jX-4zp"/>
-                            <constraint firstAttribute="trailing" secondItem="XnL-33-heb" secondAttribute="trailing" id="vWg-M1-LsM"/>
+                            <constraint firstAttribute="trailing" secondItem="XnL-33-heb" secondAttribute="trailing" constant="15" id="vWg-M1-LsM"/>
                         </constraints>
                     </view>
                 </subviews>
