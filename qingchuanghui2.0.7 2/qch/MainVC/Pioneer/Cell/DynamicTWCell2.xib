@@ -28,7 +28,7 @@
                         </constraints>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sNj-8Z-vxO">
-                        <rect key="frame" x="20" y="27" width="316" height="100"/>
+                        <rect key="frame" x="20" y="27" width="316" height="105"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="刘军峰" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IuY-cf-9a8">
                                 <rect key="frame" x="51" y="10" width="45" height="16"/>
@@ -114,7 +114,7 @@
                             <constraint firstItem="XnL-33-heb" firstAttribute="top" secondItem="IuY-cf-9a8" secondAttribute="bottom" constant="5" id="T76-8a-J7M"/>
                             <constraint firstItem="0nL-hV-Z3T" firstAttribute="top" secondItem="CBE-bt-duM" secondAttribute="top" id="b3I-cC-k1Z"/>
                             <constraint firstItem="CBE-bt-duM" firstAttribute="leading" secondItem="XnL-33-heb" secondAttribute="leading" id="bEv-bW-aCg"/>
-                            <constraint firstAttribute="height" constant="100" id="bOL-bg-kyF"/>
+                            <constraint firstAttribute="height" constant="105" id="bOL-bg-kyF"/>
                             <constraint firstAttribute="trailing" secondItem="P9n-ME-0Wa" secondAttribute="trailing" constant="15" id="biN-RR-KFl"/>
                             <constraint firstItem="P9n-ME-0Wa" firstAttribute="leading" secondItem="HbR-ea-SSd" secondAttribute="trailing" constant="5" id="hjo-RW-8bL"/>
                             <constraint firstItem="KEY-J9-ZH2" firstAttribute="leading" secondItem="IuY-cf-9a8" secondAttribute="trailing" constant="8" id="pkE-jX-4zp"/>

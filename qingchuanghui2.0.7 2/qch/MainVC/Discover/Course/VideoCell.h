@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^PlayBtnCallBackBlock)(UIButton *);
 @interface VideoCell : UITableViewCell
 
 
@@ -17,6 +18,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *timeDurationLabel;
 @property (weak, nonatomic) IBOutlet UILabel *countLabel;
 @property (weak, nonatomic) IBOutlet UIButton *playBtn;
+/** 播放按钮block */
+@property (nonatomic, copy  ) PlayBtnCallBackBlock playBlock;
 
 -(void)updateFrame:(NSDictionary *)dict;
 

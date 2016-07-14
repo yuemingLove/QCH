@@ -208,6 +208,7 @@ static BOOL isProduction = TRUE;
     NSArray *array=@[
                     @(SSDKPlatformSubTypeWechatSession),
                      @(SSDKPlatformSubTypeWechatTimeline),
+                    @(SSDKPlatformTypeQQ),
                     @(SSDKPlatformTypeSinaWeibo)];
     [ShareSDK registerApp:@"e072e4fff57a" activePlatforms:array onImport:^(SSDKPlatformType platformType) {
         
@@ -215,7 +216,9 @@ static BOOL isProduction = TRUE;
             case SSDKPlatformTypeWechat:
                 [ShareSDKConnector connectWeChat:[WXApi class]];
                 break;
-                
+            case SSDKPlatformTypeQQ:
+                [ShareSDKConnector connectQQ:[QQApiInterface class] tencentOAuthClass:[TencentOAuth class]];
+                break;
             case SSDKPlatformTypeSinaWeibo:
                 [ShareSDKConnector connectWeibo:[WeiboSDK class]];
                 break;
@@ -232,6 +235,11 @@ static BOOL isProduction = TRUE;
                         appSecret:@"0288141bd943763107a83e020ccad6f9"
                                         redirectUri:@"https://api.weibo.com/oauth2/default.html"
                                            authType:SSDKAuthTypeBoth];
+                break;
+            case SSDKPlatformTypeQQ:
+                [appInfo SSDKSetupQQByAppId:@"1104876882"
+                                     appKey:@"owU0BWX7Pv0ZdFvf"
+                                   authType:SSDKAuthTypeBoth];
                 break;
             case SSDKPlatformTypeWechat:
                 [appInfo SSDKSetupWeChatByAppId:@"wx54ec63a8d4b60179" appSecret:@"d4624c36b6795d1d99dcf0547af5443d"];
@@ -320,7 +328,7 @@ static BOOL isProduction = TRUE;
 -(void)presentInitViewController{
     
     QCHWelcomeVC *welcomeVC=[[QCHWelcomeVC alloc]init];
-    _rootNavigationController=[[UINavigationController alloc]initWithRootViewController:welcomeVC];
+    _rootNavigationController=[[QCHNavigationController alloc] initWithRootViewController:welcomeVC];
     [_rootNavigationController setNavigationBarHidden:YES];
     
     [self.window setRootViewController:_rootNavigationController];

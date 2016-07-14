@@ -334,6 +334,10 @@
 		4835928B1D24AB2700312F54 /* DynamicTWCell7.xib in Resources */ = {isa = PBXBuildFile; fileRef = 483592821D24AB2700312F54 /* DynamicTWCell7.xib */; };
 		4835928C1D24AB2700312F54 /* DynamicTWCell8.m in Sources */ = {isa = PBXBuildFile; fileRef = 483592841D24AB2700312F54 /* DynamicTWCell8.m */; };
 		4835928D1D24AB2700312F54 /* DynamicTWCell8.xib in Resources */ = {isa = PBXBuildFile; fileRef = 483592851D24AB2700312F54 /* DynamicTWCell8.xib */; };
+		484103CF1D34CF19007C065C /* WithdrawalsDetailCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 484103CD1D34CF19007C065C /* WithdrawalsDetailCell2.m */; };
+		484103D01D34CF19007C065C /* WithdrawalsDetailCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 484103CE1D34CF19007C065C /* WithdrawalsDetailCell2.xib */; };
+		484103D21D34E6EF007C065C /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 484103D11D34E6EF007C065C /* MediaPlayer.framework */; };
+		484103D41D371F50007C065C /* VideoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 484103D31D371F50007C065C /* VideoCell.xib */; };
 		5601F8321CE9A2E000A68289 /* InviteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5601F8311CE9A2E000A68289 /* InviteVC.m */; };
 		5601F8371CE9C25A00A68289 /* InviteListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5601F8361CE9C25A00A68289 /* InviteListVC.m */; };
 		5601F83E1CE9C60100A68289 /* InviteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5601F83C1CE9C60100A68289 /* InviteCell.m */; };
@@ -345,7 +349,6 @@
 		560B1B251CC4C16700F87740 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 560B1B1C1CC4C16600F87740 /* DataManager.m */; };
 		560B1B261CC4C16700F87740 /* SidModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 560B1B1E1CC4C16600F87740 /* SidModel.m */; };
 		560B1B271CC4C16700F87740 /* VideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 560B1B201CC4C16600F87740 /* VideoCell.m */; };
-		560B1B281CC4C16700F87740 /* VideoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 560B1B211CC4C16600F87740 /* VideoCell.xib */; };
 		560B1B291CC4C16700F87740 /* VideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 560B1B231CC4C16600F87740 /* VideoModel.m */; };
 		560B1B3E1CC4D60B00F87740 /* clear@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 560B1B301CC4D60B00F87740 /* clear@2x.png */; };
 		560B1B3F1CC4D60B00F87740 /* close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 560B1B311CC4D60B00F87740 /* close@2x.png */; };
@@ -1270,6 +1273,11 @@
 		483592831D24AB2700312F54 /* DynamicTWCell8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicTWCell8.h; sourceTree = "<group>"; };
 		483592841D24AB2700312F54 /* DynamicTWCell8.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicTWCell8.m; sourceTree = "<group>"; };
 		483592851D24AB2700312F54 /* DynamicTWCell8.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DynamicTWCell8.xib; sourceTree = "<group>"; };
+		484103CC1D34CF19007C065C /* WithdrawalsDetailCell2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WithdrawalsDetailCell2.h; sourceTree = "<group>"; };
+		484103CD1D34CF19007C065C /* WithdrawalsDetailCell2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WithdrawalsDetailCell2.m; sourceTree = "<group>"; };
+		484103CE1D34CF19007C065C /* WithdrawalsDetailCell2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WithdrawalsDetailCell2.xib; sourceTree = "<group>"; };
+		484103D11D34E6EF007C065C /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		484103D31D371F50007C065C /* VideoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoCell.xib; sourceTree = "<group>"; };
 		5601F8301CE9A2E000A68289 /* InviteVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteVC.h; sourceTree = "<group>"; };
 		5601F8311CE9A2E000A68289 /* InviteVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteVC.m; sourceTree = "<group>"; };
 		5601F8351CE9C25A00A68289 /* InviteListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InviteListVC.h; path = qch/MainVC/Me/VC/InviteListVC.h; sourceTree = SOURCE_ROOT; };
@@ -1290,7 +1298,6 @@
 		560B1B1E1CC4C16600F87740 /* SidModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidModel.m; sourceTree = "<group>"; };
 		560B1B1F1CC4C16600F87740 /* VideoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCell.h; sourceTree = "<group>"; };
 		560B1B201CC4C16600F87740 /* VideoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCell.m; sourceTree = "<group>"; };
-		560B1B211CC4C16600F87740 /* VideoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoCell.xib; sourceTree = "<group>"; };
 		560B1B221CC4C16600F87740 /* VideoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoModel.h; sourceTree = "<group>"; };
 		560B1B231CC4C16600F87740 /* VideoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoModel.m; sourceTree = "<group>"; };
 		560B1B301CC4D60B00F87740 /* clear@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clear@2x.png"; sourceTree = "<group>"; };
@@ -1679,6 +1686,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				484103D21D34E6EF007C065C /* MediaPlayer.framework in Frameworks */,
 				4017E1801C9BE8D100B0504C /* libssl.a in Frameworks */,
 				5667E5921D06694C007AA3D2 /* jpush-ios-2.1.7.a in Frameworks */,
 				EE33754971B07F5E090FF58E /* libPods.a in Frameworks */,
@@ -1835,6 +1843,9 @@
 				56349F081D2F8B5200AF156D /* WithdrawalsDetailCell.h */,
 				56349F091D2F8B5200AF156D /* WithdrawalsDetailCell.m */,
 				56349F0A1D2F8B5200AF156D /* WithdrawalsDetailCell.xib */,
+				484103CC1D34CF19007C065C /* WithdrawalsDetailCell2.h */,
+				484103CD1D34CF19007C065C /* WithdrawalsDetailCell2.m */,
+				484103CE1D34CF19007C065C /* WithdrawalsDetailCell2.xib */,
 				56C81E9C1D1138FF00F8DBD8 /* MyOrderFirstCell.h */,
 				56C81E9D1D1138FF00F8DBD8 /* MyOrderFirstCell.m */,
 				56C81E9E1D1138FF00F8DBD8 /* MyOrderFirstCell.xib */,
@@ -3110,7 +3121,7 @@
 				560B1B1E1CC4C16600F87740 /* SidModel.m */,
 				560B1B1F1CC4C16600F87740 /* VideoCell.h */,
 				560B1B201CC4C16600F87740 /* VideoCell.m */,
-				560B1B211CC4C16600F87740 /* VideoCell.xib */,
+				484103D31D371F50007C065C /* VideoCell.xib */,
 				560B1B221CC4C16600F87740 /* VideoModel.h */,
 				560B1B231CC4C16600F87740 /* VideoModel.m */,
 			);
@@ -3404,6 +3415,7 @@
 		95669E2090819009D9C7855B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				484103D11D34E6EF007C065C /* MediaPlayer.framework */,
 				5667E5911D06694C007AA3D2 /* jpush-ios-2.1.7.a */,
 				4017E17D1C9BE8D100B0504C /* libcrypto.a */,
 				4017E17E1C9BE8D100B0504C /* libssl.a */,
@@ -3536,7 +3548,6 @@
 				5651BF991CC225E10022BA79 /* CrowdfundingCell.xib in Resources */,
 				560B1B451CC4D60C00F87740 /* play.png in Resources */,
 				40D3913E1C57499B008751E7 /* TableViewArrow@2x.png in Resources */,
-				560B1B281CC4C16700F87740 /* VideoCell.xib in Resources */,
 				483592871D24AB2700312F54 /* DynamicTWCell5.xib in Resources */,
 				40D228C61C8188AF00541EE6 /* PresentCell.xib in Resources */,
 				560B1B441CC4D60C00F87740 /* message_s@2x.png in Resources */,
@@ -3606,6 +3617,7 @@
 				567F86CB1CC881AC000C8FCF /* TutorDetailCell.xib in Resources */,
 				40CF81651C51D98A00F129F5 /* zwt_cyzx_img.png in Resources */,
 				407767481C8440B300A9D45E /* MyInfoCell.xib in Resources */,
+				484103D41D371F50007C065C /* VideoCell.xib in Resources */,
 				56E061B21CBDED42005964E3 /* PartnerneedsCell.xib in Resources */,
 				56D42FF21D02AD1100748D4D /* IntegralrecordCell.xib in Resources */,
 				40D3353B1C8967EB00606B9E /* PrivateCell.xib in Resources */,
@@ -3622,6 +3634,7 @@
 				40D335321C89259600606B9E /* ProjectCommCell.xib in Resources */,
 				40D3913D1C57499B008751E7 /* preview_original_def@2x.png in Resources */,
 				40D7C7CA1C2CDF6B00415DCC /* Main.storyboard in Resources */,
+				484103D01D34CF19007C065C /* WithdrawalsDetailCell2.xib in Resources */,
 				40D391341C57499B008751E7 /* navi_back@2x.png in Resources */,
 				5699FA5F1D1FE97A004252F1 /* DadeCell.xib in Resources */,
 				56A939501D18DAF700E53828 /* PreferencesCell.xib in Resources */,
@@ -3796,6 +3809,7 @@
 				56D430081D02D63B00748D4D /* MyDetailThirdCell.m in Sources */,
 				40D3914A1C57499B008751E7 /* UIView+Layout.m in Sources */,
 				40D391051C574896008751E7 /* XHFileAttribute.m in Sources */,
+				484103CF1D34CF19007C065C /* WithdrawalsDetailCell2.m in Sources */,
 				40CF817A1C522C1100F129F5 /* ActivityCell.m in Sources */,
 				40CEDD0D1C3A19F200F25840 /* WMPageController.m in Sources */,
 				40D91A251C3B9C1C0059AE5B /* BlockObject.m in Sources */,

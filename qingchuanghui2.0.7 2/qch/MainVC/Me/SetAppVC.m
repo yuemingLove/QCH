@@ -9,6 +9,8 @@
 #import "SetAppVC.h"
 #import "QCHWelcomeVC.h"
 #import "QCHRegisterVC.h"
+#import "QCHNavigationController.h"
+
 @interface SetAppVC ()<UITableViewDataSource,UITableViewDelegate>{
     UILabel *textlabel;
     
@@ -266,7 +268,7 @@
     
     [[UIApplication sharedApplication] unregisterForRemoteNotifications];
     
-    UINavigationController * nav = [[UINavigationController alloc]initWithRootViewController:welcome];
+    QCHNavigationController * nav = [[QCHNavigationController alloc] initWithRootViewController:welcome];
     AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
     appDelegate.window.rootViewController = nav;
 

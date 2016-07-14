@@ -24,6 +24,15 @@
 
 @implementation QchMobileVC
 
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait ;
+}
+- (BOOL)shouldAutorotate
+{
+    return NO;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setTitle:@"绑定手机号"];
@@ -239,7 +248,7 @@
                 QCHMainController *main = [[QCHMainController alloc] init];
                 [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
                 
-                [self.navigationController pushViewController:main animated:YES];
+                [self presentViewController:main animated:YES completion:nil];
             }else{
                 PerfectMeansVC *perfectVc=[[PerfectMeansVC alloc]init];
                 perfectVc.type=2;

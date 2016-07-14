@@ -35,7 +35,9 @@
     
     UIButton *attionbtn;
     UIButton *joinBtn;
-    
+    UIView *headView;
+    UILabel *acticityAddressLabel;
+    UIView *line5;
     //导航按钮：分享、收藏
     UIButton *shareBtn;
     UIButton *collectBtn;
@@ -162,7 +164,7 @@
     self.webView=[[UIWebView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT-64)];
     [self.scrollView addSubview:self.webView];
     
-    UIView *headView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 400*SCREEN_WHCALE)];
+    headView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 400*SCREEN_WHCALE)];
     headView.backgroundColor=[UIColor whiteColor];
     self.tableView.tableHeaderView=headView;
     
@@ -221,13 +223,13 @@
     line4.backgroundColor=[UIColor themeGrayColor];
     [headView addSubview:line4];
     
-    UILabel *acticityAddressLabel=[self createLabelFrame:CGRectMake(10*SCREEN_WSCALE, line4.bottom+10*SCREEN_WHCALE, 60*SCREEN_WSCALE, 16*SCREEN_WHCALE) color:[UIColor lightGrayColor] font:Font(14) text:@"活动地点:"];
+    acticityAddressLabel=[self createLabelFrame:CGRectMake(10*SCREEN_WSCALE, line4.bottom+10*SCREEN_WHCALE, 60*SCREEN_WSCALE, 16*SCREEN_WHCALE) color:[UIColor lightGrayColor] font:Font(14) text:@"活动地点:"];
     [headView addSubview:acticityAddressLabel];
     
     acticityAddress=[self createLabelFrame:CGRectMake(acticityAddressLabel.right+5*SCREEN_WSCALE,acticityAddressLabel.top, SCREEN_WIDTH-90*SCREEN_WSCALE, acticityName.height) color:[UIColor blackColor] font:Font(14) text:@""];
     [headView addSubview:acticityAddress];
     
-    UIView *line5=[[UIView alloc]initWithFrame:CGRectMake(0, acticityAddressLabel.bottom+10*SCREEN_WHCALE, SCREEN_WIDTH, 8*SCREEN_WHCALE)];
+    line5=[[UIView alloc]initWithFrame:CGRectMake(0, acticityAddressLabel.bottom+10*SCREEN_WHCALE, SCREEN_WIDTH, 8*SCREEN_WHCALE)];
     line5.backgroundColor=[UIColor themeGrayColor];
     [headView addSubview:line5];
     
@@ -321,7 +323,20 @@
             }
             
             acticityTime.text=[NSString stringWithFormat:@"%@--%@",[self stringChangDate:_acticityModel.t_Activity_sDate],[self stringChangDate:_acticityModel.t_Activity_eDate]];
-            
+            CGSize labelsize = [_acticityModel.t_Activity_Street boundingRectWithSize:CGSizeMake(SCREEN_WIDTH-90*SCREEN_WSCALE, 100) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14], } context:nil].size;
+            if (labelsize.height > 16*SCREEN_WSCALE) {
+                [headView setFrame:CGRectMake(0, 0, SCREEN_WIDTH, 416*SCREEN_WHCALE)];
+                [acticityAddressLabel setFrame:CGRectMake(10*SCREEN_WSCALE, acticityTime.bottom+21*SCREEN_WHCALE, 60*SCREEN_WSCALE, 32*SCREEN_WHCALE)];
+                [acticityAddress setFrame:CGRectMake(acticityAddressLabel.right+5*SCREEN_WSCALE,acticityAddressLabel.top, SCREEN_WIDTH-90*SCREEN_WSCALE, acticityAddressLabel.height)];
+                acticityAddress.numberOfLines = 2;
+                [line5 setFrame:CGRectMake(0, acticityAddress.bottom+10*SCREEN_WHCALE, SCREEN_WIDTH, 8*SCREEN_WHCALE)];
+            } else {
+                [headView setFrame:CGRectMake(0, 0, SCREEN_WIDTH, 400*SCREEN_WHCALE)];
+                [acticityAddressLabel setFrame:CGRectMake(10*SCREEN_WSCALE, acticityTime.bottom+21*SCREEN_WHCALE, 60*SCREEN_WSCALE, 16*SCREEN_WHCALE)];
+                [acticityAddress setFrame:CGRectMake(acticityAddressLabel.right+5*SCREEN_WSCALE,acticityAddressLabel.top, SCREEN_WIDTH-90*SCREEN_WSCALE, acticityAddressLabel.height)];
+                acticityAddress.numberOfLines = 1;
+            }
+            self.tableView.tableHeaderView = headView;
             acticityAddress.text=_acticityModel.t_Activity_Street;
             
             _userlist=(NSMutableArray *)[[dict objectForKey:@"result"][0] objectForKey:@"ApplyUsers"];

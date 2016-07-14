@@ -8,178 +8,36 @@
 
 #import "LiveOnlineListVC.h"
 #import "VideoCell.h"
-#import "WMPlayer.h"
 #import "CourseDetailVC.h"
 
 @interface LiveOnlineListVC ()<UITableViewDataSource,UITableViewDelegate>{
     NSIndexPath *currentIndexPath;
-    WMPlayer *wmPlayer;
 }
 
 @property(nonatomic,retain)VideoCell *currentCell;
 @property (nonatomic,strong)UITableView *tableviewlist;
 @property (nonatomic,strong)NSMutableArray *listArray;
+@property (nonatomic, strong) ZFPlayerView   *playerView;
+@property (nonatomic, strong) NSArray     *dataSource;
 
 @end
 
 @implementation LiveOnlineListVC
 
-
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    //旋转屏幕通知
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onDeviceOrientationChange)
-                                                 name:UIDeviceOrientationDidChangeNotification
-                                               object:nil
-     ];
-}
-
--(void)videoDidFinished:(NSNotification *)notice{
-    [self setFullScreen:NO];
-    VideoCell *currentCell = (VideoCell *)[self.tableviewlist cellForRowAtIndexPath:[NSIndexPath indexPathForRow:currentIndexPath.row inSection:0]];
-    [currentCell.playBtn.superview bringSubviewToFront:currentCell.playBtn];
-    [self releaseWMPlayer];
-    [wmPlayer removeFromSuperview];
-    
-}
-
--(void)closeTheVideo:(NSNotification *)obj{
-    
-    VideoCell *currentCell = (VideoCell *)[self.tableviewlist cellForRowAtIndexPath:[NSIndexPath indexPathForRow:currentIndexPath.row inSection:0]];
-    [currentCell.playBtn.superview bringSubviewToFront:currentCell.playBtn];
-    [self releaseWMPlayer];
-    [self setFullScreen:NO];
-    
-}
-
-/**
- *  旋转屏幕通知
- */
-- (void)onDeviceOrientationChange{
-    if (wmPlayer==nil||wmPlayer.superview==nil){
-        return;
-    }
-    
-    UIDeviceOrientation orientation = [UIDevice currentDevice].orientation;
-    UIInterfaceOrientation interfaceOrientation = (UIInterfaceOrientation)orientation;
-    switch (interfaceOrientation) {
-        case UIInterfaceOrientationPortraitUpsideDown:{
-            NSLog(@"第3个旋转方向---电池栏在下");
-        }
-            break;
-        case UIInterfaceOrientationPortrait:{
-            NSLog(@"第0个旋转方向---电池栏在上");
-            if (wmPlayer.isFullscreen) {
-                    [self toCell];
-                
-            }
-            
-        }
-            break;
-        case UIInterfaceOrientationLandscapeLeft:{
-            NSLog(@"第2个旋转方向---电池栏在左");
-            if (wmPlayer.isFullscreen == NO) {
-                [self toFullScreenWithInterfaceOrientation:interfaceOrientation];
-            }
-            
-        }
-            break;
-        case UIInterfaceOrientationLandscapeRight:{
-            NSLog(@"第1个旋转方向---电池栏在右");
-            if (wmPlayer.isFullscreen == NO) {
-                [self toFullScreenWithInterfaceOrientation:interfaceOrientation];
-            }
-            
-        }
-            break;
-        default:
-            break;
-    }
-}
-
--(void)toCell{
-    
-    VideoCell *currentCell = [self currentCell];
-    
-    [wmPlayer removeFromSuperview];
-    NSLog(@"row = %ld",(long)currentIndexPath.row);
-    [UIView animateWithDuration:0.5f animations:^{
-        wmPlayer.transform = CGAffineTransformIdentity;
-        wmPlayer.frame = currentCell.backgroundIV.bounds;
-        wmPlayer.playerLayer.frame =  wmPlayer.bounds;
-        [currentCell.backgroundIV addSubview:wmPlayer];
-        [currentCell.backgroundIV bringSubviewToFront:wmPlayer];
-        [wmPlayer.bottomView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(wmPlayer).with.offset(0);
-            make.right.equalTo(wmPlayer).with.offset(0);
-            make.height.mas_equalTo(40);
-            make.bottom.equalTo(wmPlayer).with.offset(0);
-            
-        }];
-        
-        [wmPlayer.closeBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
-            
-            make.left.equalTo(wmPlayer).with.offset(5);
-            make.height.mas_equalTo(30);
-            make.width.mas_equalTo(30);
-            make.top.equalTo(wmPlayer).with.offset(5);
-            
-        }];
-        
-        
-    }completion:^(BOOL finished) {
-        wmPlayer.isFullscreen = NO;
-        wmPlayer.fullScreenBtn.selected = NO;
-       [self setFullScreen:NO];
-        
-    }];
-    
-}
-
-
--(void)toFullScreenWithInterfaceOrientation:(UIInterfaceOrientation )interfaceOrientation{
-    
-    [self setFullScreen:YES];
-    [wmPlayer removeFromSuperview];
-    wmPlayer.transform = CGAffineTransformIdentity;
-    if (interfaceOrientation==UIInterfaceOrientationLandscapeLeft) {
-        wmPlayer.transform = CGAffineTransformMakeRotation(-M_PI_2);
-    }else if(interfaceOrientation==UIInterfaceOrientationLandscapeRight){
-        wmPlayer.transform = CGAffineTransformMakeRotation(M_PI_2);
-    }
-    wmPlayer.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
-    wmPlayer.playerLayer.frame =  CGRectMake(0,0, self.view.frame.size.height,self.view.frame.size.width);
-    
-    [wmPlayer.bottomView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(40);
-        make.top.mas_equalTo(self.view.frame.size.width-40);
-        make.width.mas_equalTo(self.view.frame.size.height);
-    }];
-    
-    [wmPlayer.closeBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(wmPlayer).with.offset((-self.view.frame.size.height/2));
-        make.height.mas_equalTo(30);
-        make.width.mas_equalTo(30);
-        make.top.equalTo(wmPlayer).with.offset(5);
-        
-    }];
-    
-    
-    [[UIApplication sharedApplication].keyWindow addSubview:wmPlayer];
-    wmPlayer.isFullscreen = YES;
-    wmPlayer.fullScreenBtn.selected = YES;
-    [wmPlayer bringSubviewToFront:wmPlayer.bottomView];
-    
-
-}
-
-- (void)setFullScreen:(BOOL)fullScreen
+// 页面消失时候
+- (void)viewWillDisappear:(BOOL)animated
 {
-    [UIApplication sharedApplication].statusBarHidden = fullScreen;
-    [self.navigationController setNavigationBarHidden:fullScreen];
+    [super viewWillDisappear:animated];
+    [self.playerView resetPlayer];
 }
-
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    if (toInterfaceOrientation == UIInterfaceOrientationPortrait) {
+        self.view.backgroundColor = [UIColor whiteColor];
+    }else if (toInterfaceOrientation == UIInterfaceOrientationLandscapeRight) {
+        self.view.backgroundColor = [UIColor blackColor];
+    }
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -189,38 +47,30 @@
         _listArray = [[NSMutableArray alloc]init];
     }
     
-    //注册播放完成通知
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(videoDidFinished:) name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
-    //注册播放完成通知
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fullScreenBtnClick:) name:@"fullScreenBtnClickNotice" object:nil];
-    
-    
     [self.tableviewlist registerNib:[UINib nibWithNibName:@"VideoCell" bundle:nil] forCellReuseIdentifier:@"VideoCell"];
     
-    //关闭通知
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(closeTheVideo:)
-                                                 name:@"closeTheVideo"
-                                               object:nil
-     ];
-
-    
+    self.dataSource = @[@"http://wvideo.spriteapp.cn/video/2016/0328/56f8ec01d9bfe_wpd.mp4",
+                        @"http://baobab.wdjcdn.com/1456117847747a_x264.mp4",
+                        @"http://baobab.wdjcdn.com/14525705791193.mp4",
+                        @"http://baobab.wdjcdn.com/1456459181808howtoloseweight_x264.mp4",
+                        @"http://baobab.wdjcdn.com/1455968234865481297704.mp4",
+                        @"http://baobab.wdjcdn.com/1455782903700jy.mp4",
+                        @"http://baobab.wdjcdn.com/14564977406580.mp4",
+                        @"http://baobab.wdjcdn.com/1456316686552The.mp4",
+                        @"http://baobab.wdjcdn.com/1456480115661mtl.mp4",
+                        @"http://baobab.wdjcdn.com/1456665467509qingshu.mp4",
+                        @"http://baobab.wdjcdn.com/1455614108256t(2).mp4",
+                        @"http://baobab.wdjcdn.com/1456317490140jiyiyuetai_x264.mp4",
+                        @"http://baobab.wdjcdn.com/1455888619273255747085_x264.mp4",
+                        @"http://baobab.wdjcdn.com/1456734464766B(13).mp4",
+                        @"http://baobab.wdjcdn.com/1456653443902B.mp4",
+                        @"http://baobab.wdjcdn.com/1456231710844S(24).mp4"];
 }
-
--(void)fullScreenBtnClick:(NSNotification *)notice{
-    UIButton *fullScreenBtn = (UIButton *)[notice object];
-    if (fullScreenBtn.isSelected) {//全屏显示
-        [self toFullScreenWithInterfaceOrientation:UIInterfaceOrientationLandscapeLeft];
-    }else{
-            [self toCell];
-    }
-}
-
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self refeleshController];
+    //[self refeleshController];
 }
 
 - (void)creatTableview
@@ -324,7 +174,9 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [_listArray count];
+    //return [_listArray count];
+    return [_dataSource count];
+
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -340,99 +192,42 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    static NSString *identifier = @"VideoCell";
-    VideoCell *cell = (VideoCell *)[tableView dequeueReusableCellWithIdentifier:identifier];
-    NSDictionary *dict = [_listArray objectAtIndex:indexPath.row];
-    [cell.playBtn addTarget:self action:@selector(startPlayVideo:) forControlEvents:UIControlEventTouchUpInside];
-    cell.playBtn.tag = indexPath.row;
+    VideoCell *cell                 = [tableView dequeueReusableCellWithIdentifier:@"VideoCell" forIndexPath:indexPath];
+    //NSDictionary *dict              = [_listArray objectAtIndex:indexPath.row];
+    //[cell updateFrame:dict];
+
     
-    if (wmPlayer&&wmPlayer.superview) {
-        if (indexPath==currentIndexPath) {
-            [cell.playBtn.superview sendSubviewToBack:cell.playBtn];
-        }else{
-            [cell.playBtn.superview bringSubviewToFront:cell.playBtn];
-        }
-        NSArray *indexpaths = [tableView indexPathsForVisibleRows];
-        if (![indexpaths containsObject:currentIndexPath]) {//复用
-            
-            if ([[UIApplication sharedApplication].keyWindow.subviews containsObject:wmPlayer]) {
-                wmPlayer.hidden = NO;
-                
-            }else{
-                wmPlayer.hidden = YES;
-                [cell.playBtn.superview bringSubviewToFront:cell.playBtn];
-            }
-        }else{
-            if ([cell.backgroundIV.subviews containsObject:wmPlayer]) {
-                [cell.backgroundIV addSubview:wmPlayer];
-                
-                [wmPlayer.player play];
-                wmPlayer.playOrPauseBtn.selected = NO;
-                wmPlayer.hidden = NO;
-            }
-            
-        }
-    }
-    [cell updateFrame:dict];
+    __block NSIndexPath *weakIndexPath = indexPath;
+    __block VideoCell *weakCell        = cell;
+    __weak typeof(self) weakSelf       = self;
+    // 点击播放的回调
+    cell.playBlock = ^(UIButton *btn){
+        weakSelf.playerView = [ZFPlayerView sharedPlayerView];
+        // 设置播放前的站位图（需要在设置视频URL之前设置）
+        weakSelf.playerView.placeholderImageName = @"loading_bgView1";
+        
+        // 取出字典中的第一视频URL
+        //NSURL *videoURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",SERIVE_LIVE,[dict objectForKey:@"t_Live_Url"]]];
+        NSURL *videoURL = [NSURL URLWithString:self.dataSource[indexPath.section]];
+        // 设置player相关参数(需要设置imageView的tag值，此处设置的为101)
+        [weakSelf.playerView setVideoURL:videoURL
+                           withTableView:weakSelf.tableviewlist
+                             AtIndexPath:weakIndexPath
+                        withImageViewTag:101];
+        [weakSelf.playerView addPlayerToCellImageView:weakCell.backgroundIV];
+        
+        //（可选设置）可以设置视频的填充模式，默认为（等比例填充，直到一个维度到达区域边界）
+        weakSelf.playerView.playerLayerGravity = ZFPlayerLayerGravityResizeAspect;
+        // 自动播放
+        [weakSelf.playerView autoPlayTheVideo];
+    };
+    
+    
     return cell;
 
 
     
 
-}
-
--(void)startPlayVideo:(UIButton *)sender{
-    
-    currentIndexPath = [NSIndexPath indexPathForRow:sender.tag inSection:0];
-    NSLog(@"currentIndexPath.row = %ld",currentIndexPath.row);
-    
-    self.currentCell = (VideoCell *)sender.superview.superview;
-    NSDictionary *dict = [_listArray objectAtIndex:sender.tag];
-    if (wmPlayer) {
-        [wmPlayer removeFromSuperview];
-        [wmPlayer setVideoURLStr:[NSString stringWithFormat:@"%@%@",SERIVE_LIVE,[dict objectForKey:@"t_Live_Url"]]];
-        [wmPlayer.player play];
-        
-    }else{
-        wmPlayer = [[WMPlayer alloc]initWithFrame:self.currentCell.backgroundIV.bounds videoURLStr:[NSString stringWithFormat:@"%@%@",SERIVE_LIVE,[dict objectForKey:@"t_Live_Url"]]];
-        [wmPlayer.player play];
-        
-    }
-    [self.currentCell.backgroundIV addSubview:wmPlayer];
-    [self.currentCell.backgroundIV bringSubviewToFront:wmPlayer];
-    [self.currentCell.playBtn.superview sendSubviewToBack:self.currentCell.playBtn];
-    [self.tableviewlist reloadData];
-    
-}
-
-
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-}
-
--(void)releaseWMPlayer{
-    [wmPlayer.player.currentItem cancelPendingSeeks];
-    [wmPlayer.player.currentItem.asset cancelLoading];
-    
-    [wmPlayer.player pause];
-    [wmPlayer removeFromSuperview];
-    [wmPlayer.playerLayer removeFromSuperlayer];
-    [wmPlayer.player replaceCurrentItemWithPlayerItem:nil];
-    wmPlayer = nil;
-    wmPlayer.player = nil;
-    wmPlayer.currentItem = nil;
-    
-    wmPlayer.playOrPauseBtn = nil;
-    wmPlayer.playerLayer = nil;
-    currentIndexPath = nil;
-}
-
--(void)dealloc{
-    NSLog(@"%@ dealloc",[self class]);
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    
-    [self releaseWMPlayer];
 }
 
 @end

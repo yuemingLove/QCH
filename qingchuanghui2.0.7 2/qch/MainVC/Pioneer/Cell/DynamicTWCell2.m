@@ -40,7 +40,7 @@
     _headImageView.layer.cornerRadius=_headImageView.height/2;
     [_headImageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapheadImage:)]];
     _headImageView.userInteractionEnabled = YES;
-    self.contentLabel = [[HTCopyableLabel alloc] initWithFrame:CGRectMake(_bgkView.left, _bgkView.bottom + 10, ScreenWidth - 35, 15)];
+    self.contentLabel = [[HTCopyableLabel alloc] initWithFrame:CGRectMake(_bgkView.left, _bgkView.bottom + 15, ScreenWidth - 35, 15)];
     self.contentLabel.font = Font(14);
     [self.contentView addSubview:_contentLabel];
     
@@ -150,7 +150,7 @@
     if (![self isBlankString:model.t_Topic_Contents]) {
         height=_bgkView.bottom+size.height+20;
     } else {
-        height=_bgkView.bottom+size.height+10;
+        height=_bgkView.bottom+size.height+15;
     }
     
     _imageViews = [NSMutableArray array];
@@ -314,7 +314,7 @@
         hegiht+= 50*SCREEN_WSCALE;
     }
     
-    frame.size.height=size.height+_bgkView.bottom+index+hegiht+20;
+    frame.size.height=size.height+_bgkView.bottom+index+hegiht+35;
     
     self.frame = frame;
     

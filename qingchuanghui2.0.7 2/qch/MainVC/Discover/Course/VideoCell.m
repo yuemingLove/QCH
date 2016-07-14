@@ -13,6 +13,7 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    [self.playBtn addTarget:self action:@selector(play:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -28,9 +29,14 @@
     self.countLabel.text = [dict objectForKey:@"t_Live_Counts"];
     self.timeDurationLabel.text = [dict objectForKey:@"t_Live_Times"];
 
-
-    
 }
+- (void)play:(UIButton *)sender {
+    if (self.playBlock) {
+        self.playBlock(sender);
+    }
+}
+
+
 //-(void)setModel:(VideoModel *)model{
 //    self.selectionStyle = UITableViewCellSelectionStyleNone;
 //    self.titleLabel.text = model.title;

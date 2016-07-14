@@ -25,6 +25,7 @@
     _bgkView.layer.cornerRadius = 15;
     _bgkView.layer.borderWidth = 1;
     _bgkView.layer.borderColor = TSEColor(228, 234, 250).CGColor;
+
     _headImageView.layer.masksToBounds=YES;
     _headImageView.layer.cornerRadius=_headImageView.height/2;
     _professionLabel.layer.cornerRadius = _professionLabel.height/2;
@@ -35,7 +36,6 @@
     _headImageView.userInteractionEnabled = YES;
     
 }
-
 - (void)tapheadImage:(UITapGestureRecognizer *)tap{
     if ([self.dyDelegate respondsToSelector:@selector(tapImg:tap:)]) {
         [self.dyDelegate tapImg:self tap:tap];
@@ -151,7 +151,6 @@
        UIImageView *image=[[UIImageView alloc]initWithFrame:CGRectMake(_headImageView.left+(item+2)*(i % 3), height+(2+item)*(i/3), item, item)];
         NSDictionary *pic=array[i];
         image.tag =i;
-
         NSString *path=[NSString stringWithFormat:@"%@%@",SERIVE_IMAGE,[pic objectForKey:@"t_Pic_Url"]];
         [image sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"loading_2"]];
         image.userInteractionEnabled = YES;
@@ -395,6 +394,7 @@
 - (void)layoutSubviews{
     
     [super layoutSubviews];
+
     if ([Userguid isEqualToString: UserDefaultEntity.uuid]) {
         _DeleteBtn.hidden = NO;
     }

@@ -231,7 +231,7 @@
                 [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
                 [SVProgressHUD dismiss];
                 [SVProgressHUD showSuccessWithStatus:@"登录成功" maskType:SVProgressHUDMaskTypeBlack];
-                    [self.navigationController pushViewController:main animated:YES];
+                [self presentViewController:main animated:YES completion:nil];
             }else{
                 PerfectMeansVC *perfect=[[PerfectMeansVC alloc]init];
                 perfect.type=1;

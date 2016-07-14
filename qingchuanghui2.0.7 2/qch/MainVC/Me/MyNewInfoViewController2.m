@@ -814,6 +814,7 @@
 
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    status = 1;
     if (indexPath.section == 0) {
         if (status==0) {
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];

@@ -270,7 +270,7 @@
     timeView.layer.masksToBounds=YES;
     timeView.layer.cornerRadius=timeView.height/2;
     
-    [timeView setBackgroundColor:TSEColor(110, 151, 245)];
+    [timeView setBackgroundColor:TSEColor(182, 203, 253)];
     [view addSubview:timeView];
     
     tabLabel = [[UILabel alloc] init];

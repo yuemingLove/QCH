@@ -33,6 +33,7 @@
     }else if ([[dict objectForKey:@"isvalid"]isEqualToString:@"1"]){
         _LeftbackImg.image = [UIImage imageNamed:@"dikouquan guoqi"];
         _EffectImg.hidden = NO;
+        _DeductionLab.textColor = TSEColor(111, 113, 121);
     }
     
 }

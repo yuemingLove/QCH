@@ -31,6 +31,7 @@
     }else if ([[dict objectForKey:@"isvalid"]isEqualToString:@"1"]){
         _bkgImageView.image = [UIImage imageNamed:@"tiyanquan guoqi"];
         _endLineImageView.hidden = NO;
+        _typeLabel.textColor = TSEColor(158, 158, 158);
     }
     
 }

@@ -233,11 +233,11 @@ static void *PlayViewStatusObservationContext = &PlayViewStatusObservationContex
 }
 #pragma mark
 #pragma mark - fullScreenAction
--(void)fullScreenAction:(UIButton *)sender{
-    sender.selected = !sender.selected;
-    //用通知的形式把点击全屏的时间发送到app的任何地方，方便处理其他逻辑
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"fullScreenBtnClickNotice" object:sender];
-}
+//-(void)fullScreenAction:(UIButton *)sender{
+//    sender.selected = !sender.selected;
+//    //用通知的形式把点击全屏的时间发送到app的任何地方，方便处理其他逻辑
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"fullScreenBtnClickNotice" object:sender];
+//}
 -(void)colseTheVideo:(UIButton *)sender{
     
     

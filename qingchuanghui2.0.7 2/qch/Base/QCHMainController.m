@@ -5,7 +5,9 @@
 //  Created by 苏宾 on 16/1/4.
 //  Copyright © 2016年 qch. All rights reserved.
 //
-
+#import "CrowdDetailsVC.h"
+#import "CourseViewVC.h"
+#import "LiveOnlineListVC.h"
 #import "QCHMainController.h"
 #import "WMPageController.h"
 
@@ -44,6 +46,37 @@
 @end
 
 @implementation QCHMainController
+
+// 哪些页面支持自动转屏
+- (BOOL)shouldAutorotate{
+    
+    UINavigationController *nav = self.viewControllers[self.selectedIndex];
+    
+    // MoviePlayerViewController 、ZFTableViewController 控制器支持自动转屏
+    if ([nav.topViewController isKindOfClass:[CourseViewVC class]] || [nav.topViewController isKindOfClass:[CrowdDetailsVC class]]) {
+        // 调用ZFPlayerSingleton单例记录播放状态是否锁定屏幕方向
+        return !ZFPlayerShared.isLockScreen;
+    }
+    return NO;
+}
+
+// viewcontroller支持哪些转屏方向
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations{
+    
+    UINavigationController *nav = self.viewControllers[self.selectedIndex];
+    if ([nav.topViewController isKindOfClass:[CourseViewVC class]] || [nav.topViewController isKindOfClass:[CrowdDetailsVC class]]) { // MoviePlayerViewController这个页面支持转屏方向
+        return UIInterfaceOrientationMaskAllButUpsideDown;
+    }else if ([nav.topViewController isKindOfClass:[LiveOnlineListVC class]]) { // ZFTableViewController这个页面支持转屏方向
+        if (ZFPlayerShared.isAllowLandscape) {
+            return UIInterfaceOrientationMaskAllButUpsideDown;
+        }else {
+            return UIInterfaceOrientationMaskPortrait;
+        }
+    }
+    // 其他页面
+    return UIInterfaceOrientationMaskPortrait;
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];

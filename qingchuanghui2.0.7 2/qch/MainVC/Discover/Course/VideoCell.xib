@@ -23,7 +23,7 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1Yl-Wr-uuU">
+                    <imageView tag="101" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loading_1" translatesAutoresizingMaskIntoConstraints="NO" id="1Yl-Wr-uuU">
                         <rect key="frame" x="0.0" y="56" width="320" height="184"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="184" id="laj-Kz-T1j"/>
@@ -114,6 +114,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="loading_1" width="90" height="90"/>
         <image name="playcount.png" width="64" height="64"/>
         <image name="time.png" width="64" height="64"/>
         <image name="video_play_btn_bg.png" width="64" height="64"/>

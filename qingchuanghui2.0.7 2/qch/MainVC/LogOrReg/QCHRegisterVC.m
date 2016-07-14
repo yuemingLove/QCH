@@ -26,6 +26,15 @@
 
 @implementation QCHRegisterVC
 
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait ;
+}
+- (BOOL)shouldAutorotate
+{
+    return NO;
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
