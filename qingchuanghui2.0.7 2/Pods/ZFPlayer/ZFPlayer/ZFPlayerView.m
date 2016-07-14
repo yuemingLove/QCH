@@ -1030,6 +1030,7 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
     [imageView addSubview:self];
     [self mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.leading.trailing.bottom.equalTo(imageView);
+   
     }];
 }
 
