@@ -17,7 +17,7 @@ typedef void(^PlayBtnCallBackBlock)(UIButton *);
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundIV;
 @property (weak, nonatomic) IBOutlet UILabel *timeDurationLabel;
 @property (weak, nonatomic) IBOutlet UILabel *countLabel;
-@property (weak, nonatomic) IBOutlet UIButton *playBtn;
+@property (strong, nonatomic) UIButton *playBtn;
 /** 播放按钮block */
 @property (nonatomic, copy  ) PlayBtnCallBackBlock playBlock;
 

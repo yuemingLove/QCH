@@ -50,7 +50,7 @@
 
 -(void)createMainView{
     
-    UITableView *tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 40*PMBWIDTH, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStylePlain];
+    UITableView *tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 40*PMBWIDTH, SCREEN_WIDTH, SCREEN_HEIGHT-64-40*PMBWIDTH) style:UITableViewStylePlain];
     [tableView setBackgroundColor:[UIColor whiteColor]];
     tableView.delegate=self;
     tableView.dataSource=self;

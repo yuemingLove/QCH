@@ -7,7 +7,6 @@
 //
 
 #import "QchBaseViewController.h"
-#import "WMPlayer.h"
 
 @interface CourseDetailVC : QchBaseViewController
 

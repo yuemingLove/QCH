@@ -7,7 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="274" id="KGk-i7-Jjw" customClass="VideoCell">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="274" id="KGk-i7-Jjw" customClass="VideoCell">
             <rect key="frame" x="0.0" y="0.0" width="320" height="274"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -23,16 +23,6 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView tag="101" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loading_1" translatesAutoresizingMaskIntoConstraints="NO" id="1Yl-Wr-uuU">
-                        <rect key="frame" x="0.0" y="56" width="320" height="184"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="184" id="laj-Kz-T1j"/>
-                        </constraints>
-                    </imageView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cax-82-QUE">
-                        <rect key="frame" x="127" y="120" width="66" height="64"/>
-                        <state key="normal" image="video_play_btn_bg.png"/>
-                    </button>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="playcount.png" translatesAutoresizingMaskIntoConstraints="NO" id="lji-oA-ZVu">
                         <rect key="frame" x="8" y="248" width="20" height="20"/>
                         <constraints>
@@ -74,14 +64,17 @@
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView tag="101" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loading_1" translatesAutoresizingMaskIntoConstraints="NO" id="1Yl-Wr-uuU">
+                        <rect key="frame" x="0.0" y="56" width="320" height="184"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="184" id="laj-Kz-T1j"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="yJZ-ZF-MEW" firstAttribute="top" secondItem="cax-82-QUE" secondAttribute="bottom" constant="64" id="05I-ZB-I4N"/>
                     <constraint firstItem="yJZ-ZF-MEW" firstAttribute="top" secondItem="Cor-Ow-SC1" secondAttribute="top" id="2OW-SS-B1x"/>
                     <constraint firstItem="xEd-9K-NaK" firstAttribute="bottom" secondItem="lji-oA-ZVu" secondAttribute="bottom" id="6YM-tA-iwo"/>
-                    <constraint firstItem="cax-82-QUE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="127" id="6yA-dm-KWR"/>
                     <constraint firstItem="IWL-jl-1gR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="EGX-2Q-1aA"/>
-                    <constraint firstAttribute="trailing" secondItem="cax-82-QUE" secondAttribute="trailing" constant="127" id="FWb-jt-Gep"/>
                     <constraint firstItem="1Yl-Wr-uuU" firstAttribute="top" secondItem="IlI-mv-Igm" secondAttribute="bottom" constant="8" id="GNx-Cu-TKp"/>
                     <constraint firstAttribute="trailing" secondItem="IWL-jl-1gR" secondAttribute="trailing" constant="8" id="GQk-MB-2dW"/>
                     <constraint firstItem="yJZ-ZF-MEW" firstAttribute="bottom" secondItem="Cor-Ow-SC1" secondAttribute="bottom" id="IUf-Uv-heV"/>
@@ -98,7 +91,6 @@
                     <constraint firstItem="lji-oA-ZVu" firstAttribute="top" secondItem="1Yl-Wr-uuU" secondAttribute="bottom" constant="8" id="dLf-uB-J0o"/>
                     <constraint firstItem="1Yl-Wr-uuU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="ncN-FP-mAr"/>
                     <constraint firstItem="Cor-Ow-SC1" firstAttribute="top" secondItem="1Yl-Wr-uuU" secondAttribute="bottom" constant="8" id="tlV-Sw-lGv"/>
-                    <constraint firstItem="cax-82-QUE" firstAttribute="top" secondItem="IlI-mv-Igm" secondAttribute="bottom" constant="72" id="wkV-rU-aeX"/>
                     <constraint firstItem="xEd-9K-NaK" firstAttribute="top" secondItem="1Yl-Wr-uuU" secondAttribute="bottom" constant="8" id="xge-Qo-ahv"/>
                 </constraints>
             </tableViewCellContentView>
@@ -106,7 +98,6 @@
                 <outlet property="backgroundIV" destination="1Yl-Wr-uuU" id="vHG-ls-VHL"/>
                 <outlet property="countLabel" destination="yJZ-ZF-MEW" id="91A-Si-13f"/>
                 <outlet property="descriptionLabel" destination="IlI-mv-Igm" id="V2Q-ad-Czj"/>
-                <outlet property="playBtn" destination="cax-82-QUE" id="jlA-T6-oOB"/>
                 <outlet property="timeDurationLabel" destination="xEd-9K-NaK" id="AEu-7u-M06"/>
                 <outlet property="titleLabel" destination="IWL-jl-1gR" id="ji0-zg-In0"/>
             </connections>
@@ -117,6 +108,5 @@
         <image name="loading_1" width="90" height="90"/>
         <image name="playcount.png" width="64" height="64"/>
         <image name="time.png" width="64" height="64"/>
-        <image name="video_play_btn_bg.png" width="64" height="64"/>
     </resources>
 </document>

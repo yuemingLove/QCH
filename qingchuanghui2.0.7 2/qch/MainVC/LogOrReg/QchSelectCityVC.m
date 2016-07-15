@@ -19,15 +19,6 @@
 
 @implementation QchSelectCityVC
 
-- (UIInterfaceOrientationMask)supportedInterfaceOrientations
-{
-    return UIInterfaceOrientationMaskPortrait ;
-}
-- (BOOL)shouldAutorotate
-{
-    return NO;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setTitle:[NSString stringWithFormat:@"当前位置-%@",UserDefaultEntity.city]];

@@ -10,4 +10,6 @@
 
 @interface BindBankCardVC : QchBaseViewController
 
+@property (nonatomic, copy)void(^valueBlock)(NSString *);
+
 @end

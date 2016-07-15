@@ -8,6 +8,7 @@
 #import "CrowdDetailsVC.h"
 #import "CourseViewVC.h"
 #import "LiveOnlineListVC.h"
+
 #import "QCHMainController.h"
 #import "WMPageController.h"
 
@@ -53,7 +54,7 @@
     UINavigationController *nav = self.viewControllers[self.selectedIndex];
     
     // MoviePlayerViewController 、ZFTableViewController 控制器支持自动转屏
-    if ([nav.topViewController isKindOfClass:[CourseViewVC class]] || [nav.topViewController isKindOfClass:[CrowdDetailsVC class]]) {
+    if ([nav.topViewController isKindOfClass:[CourseViewVC class]] || [nav.topViewController isKindOfClass:[CrowdDetailsVC class]] || [nav.topViewController isKindOfClass:[LiveOnlineListVC class]]) {
         // 调用ZFPlayerSingleton单例记录播放状态是否锁定屏幕方向
         return !ZFPlayerShared.isLockScreen;
     }
@@ -76,7 +77,6 @@
     // 其他页面
     return UIInterfaceOrientationMaskPortrait;
 }
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];

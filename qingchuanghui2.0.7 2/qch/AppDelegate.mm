@@ -126,7 +126,10 @@ static BOOL isProduction = TRUE;
     } else {
         NSLog(@"该启动事件不包含来自融云的推送服务");
     }
-
+    
+//    NSDictionary *remoteNotificationUserInfo = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
+//    
+    
     return YES;
 }
 
@@ -207,20 +210,22 @@ static BOOL isProduction = TRUE;
     
     NSArray *array=@[
                     @(SSDKPlatformSubTypeWechatSession),
-                     @(SSDKPlatformSubTypeWechatTimeline),
-                    @(SSDKPlatformTypeQQ),
-                    @(SSDKPlatformTypeSinaWeibo)];
+                    @(SSDKPlatformSubTypeWechatTimeline),
+                    @(SSDKPlatformTypeSinaWeibo),
+                    @(SSDKPlatformTypeQQ)];
     [ShareSDK registerApp:@"e072e4fff57a" activePlatforms:array onImport:^(SSDKPlatformType platformType) {
         
         switch (platformType){
             case SSDKPlatformTypeWechat:
                 [ShareSDKConnector connectWeChat:[WXApi class]];
                 break;
-            case SSDKPlatformTypeQQ:
-                [ShareSDKConnector connectQQ:[QQApiInterface class] tencentOAuthClass:[TencentOAuth class]];
-                break;
+                
             case SSDKPlatformTypeSinaWeibo:
                 [ShareSDKConnector connectWeibo:[WeiboSDK class]];
+                break;
+                
+            case SSDKPlatformTypeQQ:
+                 [ShareSDKConnector connectQQ:[QQApiInterface class] tencentOAuthClass:[TencentOAuth class]];
                 break;
             default:
                 break;
@@ -236,13 +241,13 @@ static BOOL isProduction = TRUE;
                                         redirectUri:@"https://api.weibo.com/oauth2/default.html"
                                            authType:SSDKAuthTypeBoth];
                 break;
+            case SSDKPlatformTypeWechat:
+                [appInfo SSDKSetupWeChatByAppId:@"wx54ec63a8d4b60179" appSecret:@"d4624c36b6795d1d99dcf0547af5443d"];
+                break;
             case SSDKPlatformTypeQQ:
                 [appInfo SSDKSetupQQByAppId:@"1104876882"
                                      appKey:@"owU0BWX7Pv0ZdFvf"
                                    authType:SSDKAuthTypeBoth];
-                break;
-            case SSDKPlatformTypeWechat:
-                [appInfo SSDKSetupWeChatByAppId:@"wx54ec63a8d4b60179" appSecret:@"d4624c36b6795d1d99dcf0547af5443d"];
                 break;
             default:
                 break;
@@ -287,11 +292,11 @@ static BOOL isProduction = TRUE;
     [RCIM sharedRCIM].enableReadReceipt=YES;
     [[RCIM sharedRCIM] setUserInfoDataSource:self];
     [RCIM sharedRCIM].globalNavigationBarTintColor = [UIColor blackColor];
-    [[NSNotificationCenter defaultCenter]
-     addObserver:self
-     selector:@selector(didReceiveMessageNotification:)
-     name:RCKitDispatchMessageNotification
-     object:nil];
+//    [[NSNotificationCenter defaultCenter]
+//     addObserver:self
+//     selector:@selector(didReceiveMessageNotification:)
+//     name:RCKitDispatchMessageNotification
+//     object:nil];
     
 
 }
@@ -328,7 +333,7 @@ static BOOL isProduction = TRUE;
 -(void)presentInitViewController{
     
     QCHWelcomeVC *welcomeVC=[[QCHWelcomeVC alloc]init];
-    _rootNavigationController=[[QCHNavigationController alloc] initWithRootViewController:welcomeVC];
+    _rootNavigationController=[[QCHNavigationController alloc]initWithRootViewController:welcomeVC];
     [_rootNavigationController setNavigationBarHidden:YES];
     
     [self.window setRootViewController:_rootNavigationController];
@@ -489,6 +494,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 //系统通知  消息类型
 
 - (void)didReceiveMessageNotification:(NSNotification *)notification {
+    
     [UIApplication sharedApplication].applicationIconBadgeNumber =
     [UIApplication sharedApplication].applicationIconBadgeNumber + 1;
     if (self.badgeBlock) {
@@ -496,12 +502,12 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     }
 }
 
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter]
-     removeObserver:self
-     name:RCKitDispatchMessageNotification
-     object:nil];
-}
+//- (void)dealloc {
+//    [[NSNotificationCenter defaultCenter]
+//     removeObserver:self
+//     name:RCKitDispatchMessageNotification
+//     object:nil];
+//}
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
 
@@ -571,8 +577,8 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
         if (buttonIndex==0) {
             [self quitExit];
             QCHWelcomeVC *welcome=[[QCHWelcomeVC alloc]init];
-            UINavigationController *_navi =
-            [[UINavigationController alloc] initWithRootViewController:welcome];
+            QCHNavigationController *_navi =
+            [[QCHNavigationController alloc] initWithRootViewController:welcome];
             self.window.rootViewController = _navi;
              [[UIApplication sharedApplication]unregisterForRemoteNotifications];
         }

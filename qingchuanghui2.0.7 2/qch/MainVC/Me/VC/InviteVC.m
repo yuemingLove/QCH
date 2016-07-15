@@ -229,7 +229,6 @@
                        manager.enableAutoToolbar = NO;
                        switch (state) {
                            case SSDKResponseStateSuccess:{
-                               [self ShareIntegral:@"14"];
                                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"分享成功"
                                                                                    message:nil
                                                                                   delegate:nil

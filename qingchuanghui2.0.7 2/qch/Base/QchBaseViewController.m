@@ -159,7 +159,6 @@
 - (void)ShareIntegral:(NSString *)type
 {
     [HttpCenterAction ShareIntegral:UserDefaultEntity.uuid type:type Token:[MyAes aesSecretWith:@"userGuid"] complete:^(id result, NSError *error) {
-        [SVProgressHUD showSuccessWithStatus:@"恭喜获得分享积分" maskType:SVProgressHUDMaskTypeBlack];
     }];
 }
 

@@ -9,152 +9,78 @@
 #import "CourseDetailVC.h"
 
 @interface CourseDetailVC (){
-    WMPlayer *wmPlayer;
     CGRect playerFrame;
 }
+@property (strong, nonatomic) ZFPlayerView *playerView;
 
 
 @end
 
 @implementation CourseDetailVC
 
-- (instancetype)init{
-    
-    self = [super init];
-    if (self) {
-        //注册播放完成通知
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fullScreenBtnClick:) name:@"fullScreenBtnClickNotice" object:nil];
-        
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    if (toInterfaceOrientation == UIInterfaceOrientationPortrait) {
+        self.view.backgroundColor = [UIColor whiteColor];
+        //if use Masonry,Please open this annotation
+        /*
+         [self.playerView mas_updateConstraints:^(MASConstraintMaker *make) {
+         make.top.equalTo(self.view).offset(20);
+         }];
+         */
+    }else if (toInterfaceOrientation == UIInterfaceOrientationLandscapeRight || toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft) {
+        self.view.backgroundColor = [UIColor blackColor];
+        //if use Masonry,Please open this annotation
+        /*
+         [self.playerView mas_updateConstraints:^(MASConstraintMaker *make) {
+         make.top.equalTo(self.view).offset(0);
+         }];
+         */
     }
-    return self;
+}
+- (void)dealloc
+{
+    Liu_DBG(@"%@释放了",self.class);
+    [self.playerView cancelAutoFadeOutControlBar];
 }
 
-- (void)viewWillAppear:(BOOL)animated{
+- (void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
-    //旋转屏幕通知
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onDeviceOrientationChange)
-                                                 name:UIDeviceOrientationDidChangeNotification
-                                               object:nil
-     ];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+    self.navigationController.navigationBarHidden = YES;
 }
 
--(void)toFullScreenWithInterfaceOrientation:(UIInterfaceOrientation )interfaceOrientation{
-    [[UIApplication sharedApplication] setStatusBarHidden:YES animated:NO];
-    [wmPlayer removeFromSuperview];
-    wmPlayer.transform = CGAffineTransformIdentity;
-    if (interfaceOrientation==UIInterfaceOrientationLandscapeLeft) {
-        wmPlayer.transform = CGAffineTransformMakeRotation(-M_PI_2);
-    }else if(interfaceOrientation==UIInterfaceOrientationLandscapeRight){
-        wmPlayer.transform = CGAffineTransformMakeRotation(M_PI_2);
-    }
-    
-    wmPlayer.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-    wmPlayer.playerLayer.frame =  CGRectMake(0,0, SCREEN_HEIGHT,SCREEN_WIDTH);
-    
-    [wmPlayer.bottomView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(40);
-        make.top.mas_equalTo(self.view.frame.size.width-40);
-        make.width.mas_equalTo(self.view.frame.size.height);
-    }];
-    
-    [wmPlayer.closeBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(wmPlayer).with.offset((-self.view.frame.size.height/2));
-        make.height.mas_equalTo(30);
-        make.width.mas_equalTo(30);
-        make.top.equalTo(wmPlayer).with.offset(5);
-        
-    }];
-    [[UIApplication sharedApplication].keyWindow addSubview:wmPlayer];
-    wmPlayer.isFullscreen = YES;
-    wmPlayer.fullScreenBtn.selected = YES;
-    [wmPlayer bringSubviewToFront:wmPlayer.bottomView];
-    
-}
--(void)toNormal{
-    [wmPlayer removeFromSuperview];
-    [UIView animateWithDuration:0.5f animations:^{
-        wmPlayer.transform = CGAffineTransformIdentity;
-        wmPlayer.frame =CGRectMake(playerFrame.origin.x, playerFrame.origin.y, playerFrame.size.width, playerFrame.size.height);
-        wmPlayer.playerLayer.frame =  wmPlayer.bounds;
-        [self.view addSubview:wmPlayer];
-        [wmPlayer.bottomView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(wmPlayer).with.offset(0);
-            make.right.equalTo(wmPlayer).with.offset(0);
-            make.height.mas_equalTo(40);
-            make.bottom.equalTo(wmPlayer).with.offset(0);
-        }];
-        [wmPlayer.closeBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(wmPlayer).with.offset(5);
-            make.height.mas_equalTo(30);
-            make.width.mas_equalTo(30);
-            make.top.equalTo(wmPlayer).with.offset(5);
-        }];
-        
-    }completion:^(BOOL finished) {
-        wmPlayer.isFullscreen = NO;
-        wmPlayer.fullScreenBtn.selected = NO;
-        [[UIApplication sharedApplication] setStatusBarHidden:NO animated:NO];
-        
-    }];
-}
--(void)fullScreenBtnClick:(NSNotification *)notice{
-    UIButton *fullScreenBtn = (UIButton *)[notice object];
-    if (fullScreenBtn.isSelected) {//全屏显示
-        [self toFullScreenWithInterfaceOrientation:UIInterfaceOrientationLandscapeLeft];
-    }else{
-        [self toNormal];
-    }
-}
-/**
- *  旋转屏幕通知
- */
-- (void)onDeviceOrientationChange{
-    if (wmPlayer==nil||wmPlayer.superview==nil){
-        return;
-    }
-    
-    UIDeviceOrientation orientation = [UIDevice currentDevice].orientation;
-    UIInterfaceOrientation interfaceOrientation = (UIInterfaceOrientation)orientation;
-    switch (interfaceOrientation) {
-        case UIInterfaceOrientationPortraitUpsideDown:{
-            NSLog(@"第3个旋转方向---电池栏在下");
-        }
-            break;
-        case UIInterfaceOrientationPortrait:{
-            NSLog(@"第0个旋转方向---电池栏在上");
-            if (wmPlayer.isFullscreen) {
-                [self toNormal];
-            }
-        }
-            break;
-        case UIInterfaceOrientationLandscapeLeft:{
-            NSLog(@"第2个旋转方向---电池栏在左");
-            if (wmPlayer.isFullscreen == NO) {
-                [self toFullScreenWithInterfaceOrientation:interfaceOrientation];
-            }
-        }
-            break;
-        case UIInterfaceOrientationLandscapeRight:{
-            NSLog(@"第1个旋转方向---电池栏在右");
-            if (wmPlayer.isFullscreen == NO) {
-                [self toFullScreenWithInterfaceOrientation:interfaceOrientation];
-            }
-        }
-            break;
-        default:
-            break;
-    }
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [UIApplication sharedApplication].statusBarHidden = NO;
+    self.navigationController.navigationBarHidden = NO;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     playerFrame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64);
-    wmPlayer = [[WMPlayer alloc]initWithFrame:playerFrame videoURLStr:self.URLString];
-    wmPlayer.closeBtn.hidden = YES;
-    [self.view addSubview:wmPlayer];
-    [wmPlayer.player play];
+        // 设置播放前的占位图（需要在设置视频URL之前设置）
+        self.playerView.placeholderImageName = @"nolive.jpg";
+        self.playerView = [[ZFPlayerView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenWidth/2)];
+        self.playerView.videoURL = [NSURL URLWithString:self.URLString];
+        [self.view addSubview:_playerView];
+        //self.playerView.controlView.backBtn.hidden = YES;
+        self.playerView.playerLayerGravity = ZFPlayerLayerGravityResizeAspect;
+        [self.playerView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.view).offset(0);
+            make.left.right.equalTo(self.view);
+            // 注意此处，宽高比16：9优先级比1000低就行，在因为iPhone 4S宽高比不是16：9
+            make.height.equalTo(self.playerView.mas_width).multipliedBy(9.0f/16.0f).with.priority(750);
+        }];
+        [self.playerView autoPlayTheVideo];
+        __weak typeof(self) weakSelf = self;
+        self.playerView.goBackBlock = ^{
+            [weakSelf.navigationController popViewControllerAnimated:YES];
+        };
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -162,26 +88,5 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)releaseWMPlayer{
-    [wmPlayer.player.currentItem cancelPendingSeeks];
-    [wmPlayer.player.currentItem.asset cancelLoading];
-    
-    [wmPlayer.player pause];
-    [wmPlayer removeFromSuperview];
-    [wmPlayer.playerLayer removeFromSuperlayer];
-    [wmPlayer.player replaceCurrentItemWithPlayerItem:nil];
-    wmPlayer = nil;
-    wmPlayer.player = nil;
-    wmPlayer.currentItem = nil;
-    
-    wmPlayer.playOrPauseBtn = nil;
-    wmPlayer.playerLayer = nil;
-}
-
--(void)dealloc{
-    [self releaseWMPlayer];
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    NSLog(@"player deallco");
-}
 
 @end

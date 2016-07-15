@@ -20,7 +20,7 @@
             
             NSDictionary *model = [self.adsArray objectAtIndex:pageIndex];
             UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10*SCREEN_WSCALE, 10*SCREEN_WSCALE, SCREEN_WIDTH-20, 160*SCREEN_WSCALE)];
-            NSString *url= [NSString stringWithFormat:@"%@%@",SERIVE_IMAGE,[model objectForKey:@"t_Pic_Url"]];
+            NSString *url= [[NSString stringWithFormat:@"%@%@",SERIVE_IMAGE,[model objectForKey:@"t_Pic_Url"]]stringByReplacingOccurrencesOfString:@"min" withString:@""];
             [imageView sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"loading_3"]];
             imageView.userInteractionEnabled = YES;
             [imageView setContentScaleFactor:[[UIScreen mainScreen] scale]];

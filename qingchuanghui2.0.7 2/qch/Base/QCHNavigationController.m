@@ -21,6 +21,7 @@
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
     return UIInterfaceOrientationMaskPortrait;
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     //[self setupNavigationBarTheme];

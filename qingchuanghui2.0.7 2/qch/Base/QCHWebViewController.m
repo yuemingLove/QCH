@@ -8,9 +8,13 @@
 
 #import "QCHWebViewController.h"
 
-@interface QCHWebViewController ()<UIWebViewDelegate>
+@interface QCHWebViewController ()<UIWebViewDelegate,UIGestureRecognizerDelegate>
 
 @property (nonatomic,strong) UIWebView *htmlWebView;
+
+@property (nonatomic, weak) UIButton * backItem;
+@property (nonatomic, weak) UIButton * closeItem;
+@property (nonatomic, weak) UIActivityIndicatorView * activityView;
 
 @end
 
@@ -30,6 +34,7 @@
         NSArray *array=[self.url componentsSeparatedByString:@"."];
         [self.htmlWebView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:array[0] ofType:array[1]]]]];
     }else{
+        [self initNaviBar];
         if ([_sharebtn isEqualToString:@"1"]) {
             UIBarButtonItem *shareView=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"fenxiang_btn"] style:UIBarButtonItemStylePlain target:self action:@selector(share:)];
             self.navigationItem.rightBarButtonItem=shareView;
@@ -41,6 +46,85 @@
     }
 }
 
+- (void)initNaviBar{
+    
+    UIView * backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 100, 44)];
+    UIButton * backItem = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 56, 44)];
+    [backItem setImage:[UIImage imageNamed:@"back_arrow"] forState:UIControlStateNormal];
+    [backItem setImageEdgeInsets:UIEdgeInsetsMake(0, -15, 0, 0)];
+    [backItem setTitle:@"返回" forState:UIControlStateNormal];
+    [backItem setTitleEdgeInsets:UIEdgeInsetsMake(0, -15, 0, 0)];
+    [backItem setTitleColor:[UIColor colorWithRed:0.000 green:0.502 blue:1.000 alpha:1.000] forState:UIControlStateNormal];
+    [backItem addTarget:self action:@selector(clickedBackItem:) forControlEvents:UIControlEventTouchUpInside];
+    self.backItem = backItem;
+    [backView addSubview:backItem];
+    
+    UIButton * closeItem = [[UIButton alloc]initWithFrame:CGRectMake(44+12, 0, 44, 44)];
+    [closeItem setTitle:@"关闭" forState:UIControlStateNormal];
+    [closeItem setTitleColor:[UIColor colorWithRed:0.000 green:0.502 blue:1.000 alpha:1.000] forState:UIControlStateNormal];
+    [closeItem addTarget:self action:@selector(clickedCloseItem:) forControlEvents:UIControlEventTouchUpInside];
+    closeItem.hidden = YES;
+    self.closeItem = closeItem;
+    [backView addSubview:closeItem];
+    
+    UIBarButtonItem * leftItemBar = [[UIBarButtonItem alloc]initWithCustomView:backView];
+    self.navigationItem.leftBarButtonItem = leftItemBar;
+    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+    self.navigationController.interactivePopGestureRecognizer.delegate = self;
+}
+
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
+{
+    if (self.htmlWebView.canGoBack) {
+        [self.htmlWebView goBack];
+        self.closeItem.hidden = NO;
+        return NO;
+    }
+    return YES;
+}
+
+#pragma mark - clickedBackItem
+- (void)clickedBackItem:(UIBarButtonItem *)btn{
+    if (self.htmlWebView.canGoBack) {
+        [self.htmlWebView goBack];
+        self.closeItem.hidden = NO;
+    }else{
+        [self clickedCloseItem:nil];
+    }
+}
+
+#pragma mark - clickedCloseItem
+- (void)clickedCloseItem:(UIButton *)btn{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+
+#pragma mark - UIWebViewDelegate
+- (void)webViewDidStartLoad:(UIWebView *)webView{
+    self.activityView.hidden = NO;
+}
+
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
+    
+    
+    NSLog(@"url: %@", request.URL.absoluteURL.description);
+    
+    if (self.htmlWebView.canGoBack) {
+        self.closeItem.hidden = NO;
+    }
+    return YES;
+}
+
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView{
+    self.activityView.hidden = YES;
+    self.title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+}
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
+    self.activityView.hidden = YES;
+}
 
 - (void)share:(UIButton *)sender{
     
@@ -146,14 +230,14 @@
     }
 }
 
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
-{
-    //判断是否是单击
-    if (navigationType == UIWebViewNavigationTypeLinkClicked && self.clickBlock)
-    {
-        self.clickBlock();
-        return NO;
-    }
-    return YES;
-}
+//- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+//{
+//    //判断是否是单击
+//    if (navigationType == UIWebViewNavigationTypeLinkClicked && self.clickBlock)
+//    {
+//        self.clickBlock();
+//        return NO;
+//    }
+//    return YES;
+//}
 @end

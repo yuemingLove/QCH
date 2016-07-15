@@ -31,18 +31,6 @@
 
 @implementation QCHWelcomeVC
 
-- (UIInterfaceOrientationMask)supportedInterfaceOrientations
-{
-    return UIInterfaceOrientationMaskPortrait ;
-}
-- (BOOL)shouldAutorotate
-{
-    return NO;
-}
--(UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
-{
-    return UIInterfaceOrientationPortrait;
-}
 - (void)viewDidLoad {
     
     [super viewDidLoad];
@@ -286,8 +274,10 @@
                 }
                 
                 QCHMainController *main = [[QCHMainController alloc] init];
+                main.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
                 [self presentViewController:main animated:YES completion:nil];
-            } else {
+//                [self.navigationController pushViewController:main animated:YES];
+                }else{
                 UserDefaultEntity.uuid=[item objectForKey:@"Guid"];
                 UserDefaultEntity.is_perfect=is_perfect;
                 [UserDefault saveUserDefault];
@@ -370,8 +360,9 @@
             QCHMainController *main = [[QCHMainController alloc] init];
             [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
             
+            main.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
             [self presentViewController:main animated:YES completion:nil];
-
+//            [self.navigationController pushViewController:main animated:YES];
         }else{
             
         }

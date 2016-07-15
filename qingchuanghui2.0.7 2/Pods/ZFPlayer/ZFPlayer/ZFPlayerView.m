@@ -832,7 +832,7 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
         [self interfaceOrientation:UIInterfaceOrientationPortrait];
         return;
     }
-   
+    
     UIDeviceOrientation orientation             = [UIDevice currentDevice].orientation;
     UIInterfaceOrientation interfaceOrientation = (UIInterfaceOrientation)orientation;
     switch (interfaceOrientation) {
@@ -845,7 +845,7 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
         case UIInterfaceOrientationPortrait:{
             ZFPlayerShared.isAllowLandscape = YES;
             [self interfaceOrientation:UIInterfaceOrientationLandscapeRight];
-             //[[NSNotificationCenter defaultCenter] postNotificationName:@"fullScreenAction1" object:self];
+            //[[NSNotificationCenter defaultCenter] postNotificationName:@"fullScreenAction1" object:self];
         }
             break;
         case UIInterfaceOrientationLandscapeLeft:{
@@ -865,7 +865,7 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
             } else {
                 ZFPlayerShared.isAllowLandscape = NO;
                 [self interfaceOrientation:UIInterfaceOrientationPortrait];
-                 //[[NSNotificationCenter defaultCenter] postNotificationName:@"smallScreenAction1" object:self];
+                //[[NSNotificationCenter defaultCenter] postNotificationName:@"smallScreenAction1" object:self];
             }
         }
             break;
@@ -896,21 +896,21 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
     UIDeviceOrientation orientation             = [UIDevice currentDevice].orientation;
     UIInterfaceOrientation interfaceOrientation = (UIInterfaceOrientation)orientation;
     switch (interfaceOrientation) {
-//        case UIInterfaceOrientationPortraitUpsideDown:{
-//            self.controlView.fullScreenBtn.selected = YES;
-//            if (self.isCellVideo) {
-//                [self.controlView.backBtn setImage:[UIImage imageNamed:ZFPlayerSrcName(@"ZFPlayer_back_full")] forState:UIControlStateNormal];
-//            }
-//            // 设置返回按钮的约束
-//            [self.controlView.backBtn mas_updateConstraints:^(MASConstraintMaker *make) {
-//                make.top.mas_equalTo(20);
-//                make.leading.mas_equalTo(7);
-//                make.width.height.mas_equalTo(40);
-//            }];
-//            self.isFullScreen = YES;
-//            
-//        }
-//            break;
+            //        case UIInterfaceOrientationPortraitUpsideDown:{
+            //            self.controlView.fullScreenBtn.selected = YES;
+            //            if (self.isCellVideo) {
+            //                [self.controlView.backBtn setImage:[UIImage imageNamed:ZFPlayerSrcName(@"ZFPlayer_back_full")] forState:UIControlStateNormal];
+            //            }
+            //            // 设置返回按钮的约束
+            //            [self.controlView.backBtn mas_updateConstraints:^(MASConstraintMaker *make) {
+            //                make.top.mas_equalTo(20);
+            //                make.leading.mas_equalTo(7);
+            //                make.width.height.mas_equalTo(40);
+            //            }];
+            //            self.isFullScreen = YES;
+            //
+            //        }
+            //            break;
         case UIInterfaceOrientationPortrait:{
             
             self.isFullScreen = !self.isFullScreen;
@@ -946,19 +946,19 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
             
         }
             break;
-//        case UIInterfaceOrientationLandscapeLeft:{
-//            self.controlView.fullScreenBtn.selected = YES;
-//            if (self.isCellVideo) {
-//                [self.controlView.backBtn setImage:[UIImage imageNamed:ZFPlayerSrcName(@"ZFPlayer_back_full")] forState:UIControlStateNormal];
-//            }
-//            [self.controlView.backBtn mas_updateConstraints:^(MASConstraintMaker *make) {
-//                make.top.mas_equalTo(20);
-//                make.leading.mas_equalTo(7);
-//                make.width.height.mas_equalTo(40);
-//            }];
-//            self.isFullScreen = YES;
-//        }
-//            break;
+        case UIInterfaceOrientationLandscapeLeft:{
+            self.controlView.fullScreenBtn.selected = YES;
+            if (self.isCellVideo) {
+                [self.controlView.backBtn setImage:[UIImage imageNamed:ZFPlayerSrcName(@"ZFPlayer_back_full")] forState:UIControlStateNormal];
+            }
+            [self.controlView.backBtn mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.top.mas_equalTo(20);
+                make.leading.mas_equalTo(7);
+                make.width.height.mas_equalTo(40);
+            }];
+            self.isFullScreen = YES;
+        }
+            break;
         case UIInterfaceOrientationLandscapeRight:{
             [[NSNotificationCenter defaultCenter] postNotificationName:@"fullScreenAction1" object:self];
             self.controlView.fullScreenBtn.selected = YES;
@@ -1030,7 +1030,7 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
     [imageView addSubview:self];
     [self mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.leading.trailing.bottom.equalTo(imageView);
-   
+        
     }];
 }
 

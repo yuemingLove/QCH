@@ -553,8 +553,6 @@
             
             [headImageView setImage:image];
             [headView addSubview:headImageView];
-            //        headView.userInteractionEnabled = NO;
-            
             [headImageView setContentScaleFactor:[[UIScreen mainScreen] scale]];
             headImageView.contentMode =  UIViewContentModeScaleAspectFill;
             headImageView.clipsToBounds  = YES;

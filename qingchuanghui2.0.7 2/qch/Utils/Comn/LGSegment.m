@@ -59,7 +59,7 @@
 
 -(void)commonInit {
     //按钮名称
-    NSMutableArray *titleList = [[NSMutableArray alloc]initWithObjects:@"项目",@"活动",@"合伙人",@"投资人",@"创客", nil];
+    NSMutableArray *titleList = [[NSMutableArray alloc]initWithObjects:@"项目",@"活动",@"合伙人",@"投资人", nil];
     
     self.titleList = titleList;
     
@@ -130,7 +130,6 @@
     UIButton *bt2 = (UIButton *)[self viewWithTag:2];
     UIButton *bt3 = (UIButton *)[self viewWithTag:3];
     UIButton *bt4 = (UIButton *)[self viewWithTag:4];
-    UIButton *bt5 = (UIButton *)[self viewWithTag:5];
     
     CGFloat bannerX = btn.center.x;
     
@@ -153,9 +152,6 @@
             [self didSelectButton:bt4];
             [self.delegate scrollToPage:3];
             break;
-        case 5:
-            [self didSelectButton:bt5];
-            [self.delegate scrollToPage:4];
         default:
             break;
     }
@@ -169,7 +165,6 @@
     UIButton *bt2 = (UIButton *)[self viewWithTag:2];
     UIButton *bt3 = (UIButton *)[self viewWithTag:3];
     UIButton *bt4 = (UIButton *)[self viewWithTag:4];
-    UIButton *bt5 = (UIButton *)[self viewWithTag:5];
     CGFloat bannerX = bt1.center.x;
     CGFloat offSet = offsetX;
     CGFloat addX = offSet/LG_ScreenW*(bt2.center.x - bt1.center.x);
@@ -186,8 +181,6 @@
         [self didSelectButton:bt3];
     }else if (bannerX == bt4.center.x){
         [self didSelectButton:bt4];
-    }else if (bannerX == bt5.center.x){
-        [self didSelectButton:bt5];
     }
     
 }
@@ -220,7 +213,6 @@
     UIButton *bt2 = (UIButton *)[self viewWithTag:2];
     UIButton *bt3 = (UIButton *)[self viewWithTag:3];
     UIButton *bt4 = (UIButton *)[self viewWithTag:4];
-    UIButton *bt5 = (UIButton *)[self viewWithTag:5];
     UIButton *btn = Button;
     
     switch (btn.tag) {
@@ -229,35 +221,27 @@
             [bt2 setTitleColor:LG_ButtonColor_UnSelected forState:UIControlStateNormal];
             [bt3 setTitleColor:LG_ButtonColor_UnSelected forState:UIControlStateNormal];
             [bt4 setTitleColor:LG_ButtonColor_UnSelected forState:UIControlStateNormal];
-            [bt5 setTitleColor:LG_ButtonColor_UnSelected forState:UIControlStateNormal];
             break;
         case 2:
             [bt1 setTitleColor:LG_ButtonColor_UnSelected forState:UIControlStateNormal];
             [bt2 setTitleColor:TSEColor(140, 190, 238) forState:UIControlStateNormal];
             [bt3 setTitleColor:LG_ButtonColor_UnSelected forState:UIControlStateNormal];
             [bt4 setTitleColor:LG_ButtonColor_UnSelected forState:UIControlStateNormal];
-            [bt5 setTitleColor:LG_ButtonColor_UnSelected forState:UIControlStateNormal];
             break;
         case 3:
             [bt1 setTitleColor:LG_ButtonColor_UnSelected forState:UIControlStateNormal];
             [bt2 setTitleColor:LG_ButtonColor_UnSelected forState:UIControlStateNormal];
             [bt3 setTitleColor:TSEColor(140, 190, 238) forState:UIControlStateNormal];
             [bt4 setTitleColor:LG_ButtonColor_UnSelected forState:UIControlStateNormal];
-            [bt5 setTitleColor:LG_ButtonColor_UnSelected forState:UIControlStateNormal];
+
             break;
         case 4:
             [bt1 setTitleColor:LG_ButtonColor_UnSelected forState:UIControlStateNormal];
             [bt2 setTitleColor:LG_ButtonColor_UnSelected forState:UIControlStateNormal];
             [bt3 setTitleColor:LG_ButtonColor_UnSelected forState:UIControlStateNormal];
             [bt4 setTitleColor:TSEColor(140, 190, 238) forState:UIControlStateNormal];
-            [bt5 setTitleColor:LG_ButtonColor_UnSelected forState:UIControlStateNormal];
+
             break;
-        case 5:
-            [bt1 setTitleColor:LG_ButtonColor_UnSelected forState:UIControlStateNormal];
-            [bt2 setTitleColor:LG_ButtonColor_UnSelected forState:UIControlStateNormal];
-            [bt3 setTitleColor:LG_ButtonColor_UnSelected forState:UIControlStateNormal];
-            [bt4 setTitleColor:LG_ButtonColor_UnSelected forState:UIControlStateNormal];
-            [bt5 setTitleColor:TSEColor(140, 190, 238) forState:UIControlStateNormal];
         default:
             break;
     }

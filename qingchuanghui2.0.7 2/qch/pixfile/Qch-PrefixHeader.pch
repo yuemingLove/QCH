@@ -18,6 +18,7 @@
 #import <CoreData/CoreData.h>
 #import <QuartzCore/QuartzCore.h>
 #import <CoreLocation/CoreLocation.h>
+#import "ZFPlayer.h"
 
 //Vendor
 #import <AFNetworking.h>//网络
@@ -71,10 +72,9 @@
 #import <ShareSDKConnector/ShareSDKConnector.h>
 #import <ShareSDKExtension/SSEThirdPartyLoginHelper.h>
 #import "WXApi.h"
-//#import <WeiboSDK/WeiboSDK.h>
-//腾讯开放平台（对应QQ和QQ空间）SDK头文件
 #import <TencentOpenAPI/TencentOAuth.h>
 #import <TencentOpenAPI/QQApiInterface.h>
+//#import <WeiboSDK/WeiboSDK.h>
 #import <WeiboSDK.h>
 #import <AlipaySDK/AlipaySDK.h>
 #import "WXApiObject.h"
@@ -159,9 +159,5 @@
 #import "AlipayConfig.h"
 #import "OrderModel.h"
 #import "payRequsestHandler.h"
-
-#pragma ZFPlayer
-#import "ZFPlayer.h"
-
 
 #endif

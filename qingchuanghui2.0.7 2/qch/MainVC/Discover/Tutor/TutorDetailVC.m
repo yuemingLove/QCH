@@ -53,8 +53,8 @@
         _funlist=[[NSMutableArray alloc]init];
     }
     
-    UIBarButtonItem *shareView=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"fenxiang_btn"] style:UIBarButtonItemStylePlain target:self action:@selector(share:)];
-    self.navigationItem.rightBarButtonItem=shareView;
+//    UIBarButtonItem *shareView=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"fenxiang_btn"] style:UIBarButtonItemStylePlain target:self action:@selector(share:)];
+//    self.navigationItem.rightBarButtonItem=shareView;
     // back
     UIButton *customBut = [UIButton buttonWithType:UIButtonTypeSystem];
     customBut.frame = CGRectMake(0, 0, 36*PMBWIDTH, 35*PMBHEIGHT);

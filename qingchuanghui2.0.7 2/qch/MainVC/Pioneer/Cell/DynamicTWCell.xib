@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -28,7 +28,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="技术" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eg5-IV-hBy">
-                                <rect key="frame" x="110" y="51" width="175" height="15"/>
+                                <rect key="frame" x="110" y="51" width="170" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="i9S-Mp-u7p"/>
                                 </constraints>
@@ -47,7 +47,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="资金" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WiB-rw-DpT">
-                                <rect key="frame" x="110" y="66" width="175" height="15"/>
+                                <rect key="frame" x="110" y="66" width="170" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="jBL-uI-X9f"/>
                                 </constraints>
@@ -66,7 +66,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="软件工程师 " lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XnL-33-heb">
-                                <rect key="frame" x="55" y="31" width="240" height="15"/>
+                                <rect key="frame" x="55" y="31" width="225" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="lU6-95-6gx"/>
                                 </constraints>
@@ -78,7 +78,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.94509803921568625" green="0.95686274509803915" blue="0.9882352941176471" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="XnL-33-heb" secondAttribute="trailing" constant="5" id="10W-Eb-U5l"/>
+                            <constraint firstAttribute="trailing" secondItem="XnL-33-heb" secondAttribute="trailing" constant="20" id="10W-Eb-U5l"/>
                             <constraint firstItem="Eg5-IV-hBy" firstAttribute="top" secondItem="rnE-rO-Osy" secondAttribute="top" id="2WN-Pn-UHn"/>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="80" id="4Ef-Zg-ncN"/>
                             <constraint firstAttribute="height" constant="90" id="7rf-Ma-BRl"/>
@@ -87,10 +87,10 @@
                             <constraint firstItem="Eg5-IV-hBy" firstAttribute="leading" secondItem="rnE-rO-Osy" secondAttribute="trailing" constant="5" id="EC4-xA-oSc"/>
                             <constraint firstItem="WiB-rw-DpT" firstAttribute="leading" secondItem="S6F-AC-mtR" secondAttribute="trailing" constant="5" id="I3i-Zs-Pir"/>
                             <constraint firstItem="Eg5-IV-hBy" firstAttribute="leading" secondItem="rnE-rO-Osy" secondAttribute="trailing" constant="5" id="Kq2-s9-4IT"/>
-                            <constraint firstAttribute="trailing" secondItem="Eg5-IV-hBy" secondAttribute="trailing" constant="15" id="OhA-BH-Iss"/>
+                            <constraint firstAttribute="trailing" secondItem="Eg5-IV-hBy" secondAttribute="trailing" constant="20" id="OhA-BH-Iss"/>
                             <constraint firstItem="WiB-rw-DpT" firstAttribute="top" secondItem="S6F-AC-mtR" secondAttribute="top" id="PP2-gO-ie7"/>
                             <constraint firstItem="S6F-AC-mtR" firstAttribute="top" secondItem="rnE-rO-Osy" secondAttribute="bottom" id="SdV-Fu-G8P"/>
-                            <constraint firstAttribute="trailing" secondItem="WiB-rw-DpT" secondAttribute="trailing" constant="15" id="cED-tm-xIZ"/>
+                            <constraint firstAttribute="trailing" secondItem="WiB-rw-DpT" secondAttribute="trailing" constant="20" id="cED-tm-xIZ"/>
                             <constraint firstItem="S6F-AC-mtR" firstAttribute="leading" secondItem="rnE-rO-Osy" secondAttribute="leading" id="qTJ-hf-00r"/>
                         </constraints>
                         <variation key="default">
@@ -115,7 +115,7 @@
                             <constraint firstAttribute="width" constant="40" id="krC-6m-N5H"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="contnet" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oqv-7H-UGY">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="contnet" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oqv-7H-UGY">
                         <rect key="frame" x="40" y="110" width="275" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>

@@ -37,11 +37,11 @@
     line1.backgroundColor = [UIColor themeGrayColor];
     [view1 addSubview:line1];
     
-    UIImageView *image1 = [[UIImageView alloc]initWithFrame:CGRectMake(15*PMBWIDTH, 12*PMBWIDTH, 15*PMBWIDTH, 15*PMBWIDTH)];
+    UIImageView *image1 = [[UIImageView alloc]initWithFrame:CGRectMake(15*PMBWIDTH, 12*PMBWIDTH, 20*PMBWIDTH, 20*PMBWIDTH)];
     image1.image = [UIImage imageNamed:@"mingxi_ninchen_img"];
     [view1 addSubview:image1];
     
-    UILabel *namelab = [[UILabel alloc]initWithFrame:CGRectMake(image1.right+3*PMBWIDTH, image1.top, 30*PMBWIDTH, 15*PMBWIDTH)];
+    UILabel *namelab = [[UILabel alloc]initWithFrame:CGRectMake(image1.right+3*PMBWIDTH, image1.top+2*PMBWIDTH, 30*PMBWIDTH, 15*PMBWIDTH)];
     namelab.text = @"昵称";
     namelab.font = Font(14);
     namelab.textColor = [UIColor blackColor];
@@ -64,7 +64,7 @@
     image2.image = [UIImage imageNamed:@"mingxi_zhanghao_img"];
     [view2 addSubview:image2];
     
-    UILabel *numlab = [[UILabel alloc]initWithFrame:CGRectMake(image2.right+3*PMBWIDTH, image2.top, namelab.width, namelab.height)];
+    UILabel *numlab = [[UILabel alloc]initWithFrame:CGRectMake(image2.right+3*PMBWIDTH, image2.top+2*PMBWIDTH, namelab.width, namelab.height)];
     numlab.text= @"账号";
     numlab.textColor = [UIColor blackColor];
     numlab.font = Font(14);
@@ -87,7 +87,7 @@
     image3.image = [UIImage imageNamed:@"mingxi_yaoqingjiangli_img"];
     [view3 addSubview:image3];
     
-    UILabel *rewardslab = [[UILabel alloc]initWithFrame:CGRectMake(image3.right+3*PMBWIDTH, image3.top, 60*PMBWIDTH, namelab.height)];
+    UILabel *rewardslab = [[UILabel alloc]initWithFrame:CGRectMake(image3.right+3*PMBWIDTH, image3.top+2*PMBWIDTH, 60*PMBWIDTH, namelab.height)];
     rewardslab.text = @"邀请奖励";
     rewardslab.textColor = [UIColor blackColor];
     rewardslab.font = Font(14);
@@ -110,7 +110,7 @@
     image4.image = [UIImage imageNamed:@"mingxi_yaoqingrenshu_img"];
     [view4 addSubview:image4];
     
-    UILabel *person = [[UILabel alloc]initWithFrame:CGRectMake(rewardslab.left, image4.top, rewardslab.width, rewardslab.height)];
+    UILabel *person = [[UILabel alloc]initWithFrame:CGRectMake(rewardslab.left, image4.top+2*PMBWIDTH, rewardslab.width, rewardslab.height)];
     person.text = @"邀请人数";
     person.textColor = [UIColor blackColor];
     person.font = Font(14);
@@ -134,7 +134,7 @@
     image5.image = [UIImage imageNamed:@"mingxi_zhuceshijian_img"];
     [view5 addSubview:image5];
     
-    UILabel *timelab = [[UILabel alloc]initWithFrame:CGRectMake(person.left, image5.top, person.width, person.height)];
+    UILabel *timelab = [[UILabel alloc]initWithFrame:CGRectMake(person.left, image5.top+2*PMBWIDTH, person.width, person.height)];
     timelab.text = @"注册时间";
     timelab.textColor = [UIColor blackColor];
     timelab.font = Font(14);
@@ -156,7 +156,7 @@
             Timelab.text = [dic objectForKey:@"t_User_Date"];
             Numlab.text = [dic objectForKey:@"t_User_LoginId"];
             Namelab.text = [dic objectForKey:@"t_User_RealName"];
-            Rewardslab.text = [NSString stringWithFormat:@"%@积分",[dic objectForKey:@"integral"]];
+            Rewardslab.text = [NSString stringWithFormat:@"%@元",[dic objectForKey:@"integral"]];
         }
     }];
 }

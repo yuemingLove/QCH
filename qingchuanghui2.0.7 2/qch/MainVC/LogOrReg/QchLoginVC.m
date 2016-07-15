@@ -186,6 +186,11 @@
     NSString *token=[NSString stringWithFormat:@"%@",delegate.JPtoken];
     [HttpLoginAction loginWithAccount:[MyAes aesSecretWith:accountTfd.text] userPwd:[MyAes aesSecretWith:passwordTfd.text] androidRid:@"" IOSRid:token Token2:[MyAes aesSecretWith:@"userMobile"] complete:^(id result, NSError *error) {
         
+        dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, 1ull * NSEC_PER_SEC);
+        dispatch_after(time, dispatch_get_main_queue(), ^{
+            [SVProgressHUD dismiss];
+        });
+        
         NSDictionary *dict=result[0];
         if ([[dict objectForKey:@"state"] isEqualToString:@"true"]) {
             NSArray *array=[dict objectForKey:@"result"];
@@ -229,9 +234,10 @@
             if (UserDefaultEntity.is_perfect==1) {
                 QCHMainController *main = [[QCHMainController alloc] init];
                 [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-                [SVProgressHUD dismiss];
                 [SVProgressHUD showSuccessWithStatus:@"登录成功" maskType:SVProgressHUDMaskTypeBlack];
+                main.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
                 [self presentViewController:main animated:YES completion:nil];
+//                [self.navigationController pushViewController:main animated:YES];
             }else{
                 PerfectMeansVC *perfect=[[PerfectMeansVC alloc]init];
                 perfect.type=1;
@@ -239,11 +245,11 @@
                 [self.navigationController pushViewController:perfect animated:YES];
             }
             
+        }else if ([[dict objectForKey:@"state"]isEqualToString:@"false"]){
+            [SVProgressHUD showErrorWithStatus:[dict objectForKey:@"result"] maskType:SVProgressHUDMaskTypeBlack];
         }else{
-            [SVProgressHUD dismiss];
-            [SVProgressHUD showErrorWithStatus:@"登录失败，请重新检测登录" maskType:SVProgressHUDMaskTypeBlack];
+            [SVProgressHUD showErrorWithStatus:@"登录出问题了" maskType:SVProgressHUDMaskTypeBlack];
         }
-        
     }];
 }
 

@@ -47,10 +47,10 @@
         if ([Beststring isEqualToString:@""]) {
             Beststring = beststring;
         } else {
-            Beststring = [Beststring stringByAppendingString:[NSString stringWithFormat:@" / %@",beststring]];
+            Beststring = [Beststring stringByAppendingString:[NSString stringWithFormat:@"/%@",beststring]];
         }
     }
-    _Best.text = [NSString stringWithFormat:@"Ta擅长:%@",Beststring];
+    _Best.text = [NSString stringWithFormat:@"•Ta擅长: %@",Beststring];
     
     NSArray *array1 = model.foucsArea;
     FoucsArea *fouce = array1[0];
@@ -73,10 +73,10 @@
             if ([nowNeedName isEqualToString:@""]) {
                 nowNeedName = needstr;
             } else {
-                nowNeedName = [nowNeedName stringByAppendingString:[NSString stringWithFormat:@" / %@",needstr]];
+                nowNeedName = [nowNeedName stringByAppendingString:[NSString stringWithFormat:@"/%@",needstr]];
             }
         }
-        _NowNeed.text = [NSString stringWithFormat:@"Ta需要:%@",nowNeedName];
+        _NowNeed.text = [NSString stringWithFormat:@"•Ta需求: %@",nowNeedName];
     }else{
         _NowNeed.hidden = YES;
         CGRect frame = self.frame;

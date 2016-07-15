@@ -38,6 +38,13 @@
 
 @implementation ViewController
 
+-(BOOL)shouldAutorotate{
+    return NO;
+}
+//支持的方向
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskPortrait;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSArray *images = nil;

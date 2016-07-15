@@ -131,7 +131,7 @@
     codeTF.leftView = paddingView3;
     codeTF.leftViewMode = UITextFieldViewModeAlways;
     [bgkView addSubview:codeTF];
-    authCodeButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    authCodeButton = [UIButton buttonWithType:UIButtonTypeCustom];
     authCodeButton.frame = CGRectMake(codeTF.right + 15*PMBWIDTH, codeTF.top, 100*PMBWIDTH, 35);
     [authCodeButton setTitle:@"获取验证码" forState:UIControlStateNormal];
     [authCodeButton setTitleColor:TSEColor(110, 151, 245) forState:UIControlStateNormal];
@@ -170,6 +170,7 @@
 
 // 获取验证码
 - (void)getCodeAction {
+    
     if ([self isBlankString:cardTF.text]) {
         [SVProgressHUD showErrorWithStatus:@"请填写银行卡号" maskType:SVProgressHUDMaskTypeBlack];
         return;
@@ -208,7 +209,7 @@
         } else if ([[dic objectForKey:@"state"] isEqualToString:@"false"]) {
             [SVProgressHUD showErrorWithStatus:[dic objectForKey:@"result"] maskType:SVProgressHUDMaskTypeBlack];
             [authCodeButton setTitle:@"获取验证码" forState:UIControlStateNormal];
-        }else if ([[dic objectForKey:@"state"] isEqualToString:@"illegal"]) {
+        }else {
             
             [SVProgressHUD showErrorWithStatus:@"获取验证码失败，请重新获取" maskType:SVProgressHUDMaskTypeBlack];
             authCodeButton.userInteractionEnabled = YES;
@@ -254,6 +255,9 @@
                 [BackView removeFromSuperview];
                 [self getBindCard];
                 [self GetVoucherByKey];
+                if (self.valueBlock) {
+                    self.valueBlock(@"绑定");
+                }
             });
         } else if([[dic objectForKey:@"state"] isEqualToString:@"false"]) {
             [SVProgressHUD showErrorWithStatus:[dic objectForKey:@"result"] maskType:SVProgressHUDMaskTypeBlack];
@@ -296,7 +300,7 @@
     Money.textColor = TSEColor(110, 151, 245);
     [backimg addSubview:Money];
     Moneylab = [[UILabel alloc]initWithFrame:CGRectMake(0, 170*PMBWIDTH, backimg.width, 15*PMBWIDTH)];
-    Moneylab.text = [NSString stringWithFormat:@"恭喜！获得%@元代金券",money];
+    Moneylab.text = [NSString stringWithFormat:@"获得%@元空间代金券",money];
     Moneylab.font = Font(17);
     Moneylab.textAlignment = NSTextAlignmentCenter;
     Moneylab.textColor = [UIColor whiteColor];

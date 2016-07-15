@@ -13,7 +13,16 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    // 代码添加playerBtn到imageView上
+    self.playBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.playBtn.frame = CGRectMake(0, 0, 40, 40);
+    [self.playBtn setImage:[UIImage imageNamed:@"video_play_btn_bg"] forState:UIControlStateNormal];
     [self.playBtn addTarget:self action:@selector(play:) forControlEvents:UIControlEventTouchUpInside];
+    [self.backgroundIV addSubview:self.playBtn];
+    [self.playBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(self.backgroundIV);
+    }];
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

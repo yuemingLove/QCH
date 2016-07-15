@@ -18,7 +18,6 @@
 @property (nonatomic,strong)UITableView *tableviewlist;
 @property (nonatomic,strong)NSMutableArray *listArray;
 @property (nonatomic, strong) ZFPlayerView   *playerView;
-@property (nonatomic, strong) NSArray     *dataSource;
 
 @end
 
@@ -38,6 +37,10 @@
         self.view.backgroundColor = [UIColor blackColor];
     }
 }
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -49,28 +52,12 @@
     
     [self.tableviewlist registerNib:[UINib nibWithNibName:@"VideoCell" bundle:nil] forCellReuseIdentifier:@"VideoCell"];
     
-    self.dataSource = @[@"http://wvideo.spriteapp.cn/video/2016/0328/56f8ec01d9bfe_wpd.mp4",
-                        @"http://baobab.wdjcdn.com/1456117847747a_x264.mp4",
-                        @"http://baobab.wdjcdn.com/14525705791193.mp4",
-                        @"http://baobab.wdjcdn.com/1456459181808howtoloseweight_x264.mp4",
-                        @"http://baobab.wdjcdn.com/1455968234865481297704.mp4",
-                        @"http://baobab.wdjcdn.com/1455782903700jy.mp4",
-                        @"http://baobab.wdjcdn.com/14564977406580.mp4",
-                        @"http://baobab.wdjcdn.com/1456316686552The.mp4",
-                        @"http://baobab.wdjcdn.com/1456480115661mtl.mp4",
-                        @"http://baobab.wdjcdn.com/1456665467509qingshu.mp4",
-                        @"http://baobab.wdjcdn.com/1455614108256t(2).mp4",
-                        @"http://baobab.wdjcdn.com/1456317490140jiyiyuetai_x264.mp4",
-                        @"http://baobab.wdjcdn.com/1455888619273255747085_x264.mp4",
-                        @"http://baobab.wdjcdn.com/1456734464766B(13).mp4",
-                        @"http://baobab.wdjcdn.com/1456653443902B.mp4",
-                        @"http://baobab.wdjcdn.com/1456231710844S(24).mp4"];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    //[self refeleshController];
+    [self refeleshController];
 }
 
 - (void)creatTableview
@@ -174,8 +161,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    //return [_listArray count];
-    return [_dataSource count];
+    return [_listArray count];
 
 }
 
@@ -193,8 +179,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     VideoCell *cell                 = [tableView dequeueReusableCellWithIdentifier:@"VideoCell" forIndexPath:indexPath];
-    //NSDictionary *dict              = [_listArray objectAtIndex:indexPath.row];
-    //[cell updateFrame:dict];
+    NSDictionary *dict              = [_listArray objectAtIndex:indexPath.row];
+    [cell updateFrame:dict];
 
     
     __block NSIndexPath *weakIndexPath = indexPath;
@@ -207,8 +193,7 @@
         weakSelf.playerView.placeholderImageName = @"loading_bgView1";
         
         // 取出字典中的第一视频URL
-        //NSURL *videoURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",SERIVE_LIVE,[dict objectForKey:@"t_Live_Url"]]];
-        NSURL *videoURL = [NSURL URLWithString:self.dataSource[indexPath.section]];
+        NSURL *videoURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",SERIVE_LIVE,[dict objectForKey:@"t_Live_Url"]]];
         // 设置player相关参数(需要设置imageView的tag值，此处设置的为101)
         [weakSelf.playerView setVideoURL:videoURL
                            withTableView:weakSelf.tableviewlist
@@ -222,12 +207,7 @@
         [weakSelf.playerView autoPlayTheVideo];
     };
     
-    
     return cell;
-
-
-    
-
 }
 
 @end

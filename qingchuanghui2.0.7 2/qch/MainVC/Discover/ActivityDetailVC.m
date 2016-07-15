@@ -209,7 +209,7 @@
     [telBtn addTarget:self action:@selector(callPhone) forControlEvents:UIControlEventTouchUpInside];
     [headView addSubview:telBtn];
     
-    UIView *line3=[[UIView alloc]initWithFrame:CGRectMake(10*SCREEN_WSCALE, consultTelLabel.bottom+10*SCREEN_WHCALE, SCREEN_WIDTH-10*SCREEN_WSCALE, 1*SCREEN_WHCALE)];
+    UIView *line3=[[UIView alloc]initWithFrame:CGRectMake(10*SCREEN_WSCALE,consultTelLabel.bottom+10*SCREEN_WHCALE, SCREEN_WIDTH-10*SCREEN_WSCALE, 1*SCREEN_WHCALE)];
     line3.backgroundColor=[UIColor themeGrayColor];
     [headView addSubview:line3];
     
@@ -285,7 +285,7 @@
             _funlist = [[NSMutableArray alloc]initWithArray: [RMMapper arrayOfClass:[PActivityModel class] fromArrayOfDictionary:[dict objectForKey:@"result"]]];
             _acticityModel=[_funlist objectAtIndex:0];
             t_Activity_Audit = _acticityModel.t_Activity_Audit;
-            NSString *path=[NSString stringWithFormat:@"%@%@",SERIVE_IMAGE,_acticityModel.t_Activity_CoverPic];
+            NSString *path=[[NSString stringWithFormat:@"%@%@",SERIVE_IMAGE,_acticityModel.t_Activity_CoverPic]stringByReplacingOccurrencesOfString:@"min" withString:@""];
             [bgkImageView sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"loading_3"]];
             [bgkImageView setContentScaleFactor:[[UIScreen mainScreen] scale]];
             bgkImageView.contentMode =  UIViewContentModeScaleAspectFill;
@@ -323,8 +323,8 @@
             }
             
             acticityTime.text=[NSString stringWithFormat:@"%@--%@",[self stringChangDate:_acticityModel.t_Activity_sDate],[self stringChangDate:_acticityModel.t_Activity_eDate]];
-            CGSize labelsize = [_acticityModel.t_Activity_Street boundingRectWithSize:CGSizeMake(SCREEN_WIDTH-90*SCREEN_WSCALE, 100) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14], } context:nil].size;
-            if (labelsize.height > 16*SCREEN_WSCALE) {
+            CGSize labelsize = [_acticityModel.t_Activity_Street boundingRectWithSize:CGSizeMake(SCREEN_WIDTH-80*SCREEN_WSCALE, 100) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14], } context:nil].size;
+            if (labelsize.width > SCREEN_WIDTH-90*SCREEN_WSCALE) {
                 [headView setFrame:CGRectMake(0, 0, SCREEN_WIDTH, 416*SCREEN_WHCALE)];
                 [acticityAddressLabel setFrame:CGRectMake(10*SCREEN_WSCALE, acticityTime.bottom+21*SCREEN_WHCALE, 60*SCREEN_WSCALE, 32*SCREEN_WHCALE)];
                 [acticityAddress setFrame:CGRectMake(acticityAddressLabel.right+5*SCREEN_WSCALE,acticityAddressLabel.top, SCREEN_WIDTH-90*SCREEN_WSCALE, acticityAddressLabel.height)];

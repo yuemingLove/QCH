@@ -608,7 +608,7 @@
     
     if (imageArray) {
 
-        NSString *title = [NSString stringWithFormat:@"青创汇创业合伙人推荐 %@",[_item objectForKey:@"t_User_RealName"]];
+        NSString *title = [NSString stringWithFormat:@"创业合伙人推荐 %@",[_item objectForKey:@"t_User_RealName"]];
         NSString *Intention = @"";
         NSString *description=@"";
         NSDictionary *dict1 = [_item objectForKey:@"FoucsArea"][0];

@@ -67,6 +67,11 @@
         [self refeleshController];
     }
     
+    // 禁用 iOS7 返回手势
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    }
+    
 }
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
@@ -76,7 +81,11 @@
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"nowneed"];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"reflesh"];
     [[NSUserDefaults standardUserDefaults] synchronize];
-
+    
+    // 开启
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+    }
 }
 
 - (void)viewDidLoad {

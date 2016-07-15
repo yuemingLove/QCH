@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '76FB264721163A29ED9FA415'
+               BlueprintIdentifier = 'F793CAF860EAC0EB17B36135'
                BlueprintName = 'RDGPUImage'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libRDGPUImage.a'>

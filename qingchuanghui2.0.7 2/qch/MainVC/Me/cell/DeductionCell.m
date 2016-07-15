@@ -23,7 +23,7 @@
 }
 - (void)updateData:(NSDictionary *)dict
 {
-    _DeductionLab.text = [NSString stringWithFormat:@"%@元现金代金券",[dict objectForKey:@"T_Voucher_Price"]];
+    _DeductionLab.text = [NSString stringWithFormat:@"%@元空间代金券",[dict objectForKey:@"T_Voucher_Price"]];
     _Ramark.text = [dict objectForKey:@"T_Remark"];
     _TimeLab.text = [NSString stringWithFormat:@"有效期至%@",[dict objectForKey:@"edate"]];
     _Money.text = [NSString stringWithFormat:@"¥%@",[dict objectForKey:@"T_Voucher_Price"]];

@@ -314,7 +314,7 @@
         hegiht+= 50*SCREEN_WSCALE;
     }
     
-    frame.size.height=size.height+_bgkView.bottom+index+hegiht+20;
+    frame.size.height=size.height+_bgkView.bottom+index+hegiht+30;
     
     self.frame = frame;
     

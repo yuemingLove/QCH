@@ -7,7 +7,6 @@
 //
 
 #import "CrowdDetailsVC.h"
-#import "WMPlayer.h"
 #import "RecommendCell.h"
 #import "DetialsCell.h"
 #import "TeacherCell.h"
@@ -17,7 +16,6 @@
 #import "TutorDetailVC.h"
 #import "CourseViewVC.h"
 @interface CrowdDetailsVC ()<UITableViewDelegate,UITableViewDataSource,CommitAlertViewDelegate,TalkViewCellDelegate,UIAlertViewDelegate>{
-    WMPlayer *wmPlayer;
     CGRect playerFrame;
     UILabel *Informationlab;
     UILabel *countlab;
@@ -31,175 +29,55 @@
     NSDictionary *FundCoursedic;
     UIButton *supportbtn;
     UIImageView *backgroundIV;
-    UIButton *playBtn;
 
 }
 
 @property (nonatomic,strong)UITableView *tableviewlist;
 @property (nonatomic,strong) NSMutableArray *funlist;
+@property (strong, nonatomic) ZFPlayerView *playerView;
 
 @end
 
 @implementation CrowdDetailsVC
 
-- (instancetype)init
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
-    self = [super init];
-    if (self) {
-        //注册播放完成通知
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fullScreenBtnClick:) name:@"fullScreenBtnClickNotice" object:nil];
-        
-        //注册播放完成通知
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(videoDidFinished:) name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
-        
-        
-        //关闭通知
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(closeTheVideo:)
-                                                     name:@"closeTheVideo"
-                                                   object:nil
-         ];
+    if (toInterfaceOrientation == UIInterfaceOrientationPortrait) {
+        self.view.backgroundColor = [UIColor whiteColor];
+        //if use Masonry,Please open this annotation
+        /*
+         [self.playerView mas_updateConstraints:^(MASConstraintMaker *make) {
+         make.top.equalTo(self.view).offset(20);
+         }];
+         */
+    }else if (toInterfaceOrientation == UIInterfaceOrientationLandscapeRight || toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft) {
+        self.view.backgroundColor = [UIColor blackColor];
+        //if use Masonry,Please open this annotation
+        /*
+         [self.playerView mas_updateConstraints:^(MASConstraintMaker *make) {
+         make.top.equalTo(self.view).offset(0);
+         }];
+         */
     }
-    return self;
 }
-- (void)viewWillAppear:(BOOL)animated{
+
+- (void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
-    //旋转屏幕通知
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onDeviceOrientationChange)
-                                                 name:UIDeviceOrientationDidChangeNotification
-                                               object:nil
-     ];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+    self.navigationController.navigationBarHidden = YES;
 }
 
--(void)closeTheVideo:(NSNotification *)obj{
-
-    [playBtn.superview bringSubviewToFront:playBtn];
-    [self releaseWMPlayer];
-    [self setFullScreen:NO];
-    
-}
-
--(void)videoDidFinished:(NSNotification *)notice{
-    [self setFullScreen:NO];
-    [playBtn.superview bringSubviewToFront:playBtn];
-    [wmPlayer removeFromSuperview];
-    
-}
--(void)toFullScreenWithInterfaceOrientation:(UIInterfaceOrientation )interfaceOrientation{
-    
-    [self setFullScreen:YES];
-    [wmPlayer removeFromSuperview];
-    wmPlayer.transform = CGAffineTransformIdentity;
-    if (interfaceOrientation==UIInterfaceOrientationLandscapeLeft) {
-        wmPlayer.transform = CGAffineTransformMakeRotation(-M_PI_2);
-    }else if(interfaceOrientation==UIInterfaceOrientationLandscapeRight){
-        wmPlayer.transform = CGAffineTransformMakeRotation(M_PI_2);
-    }
-    wmPlayer.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
-    wmPlayer.playerLayer.frame =  CGRectMake(0,0, self.view.frame.size.height,self.view.frame.size.width);
-    
-    [wmPlayer.bottomView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(40);
-        make.top.mas_equalTo(self.view.frame.size.width-40);
-        make.width.mas_equalTo(self.view.frame.size.height);
-    }];
-    
-    [wmPlayer.closeBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(wmPlayer).with.offset((-self.view.frame.size.height/2));
-        make.height.mas_equalTo(30);
-        make.width.mas_equalTo(30);
-        make.top.equalTo(wmPlayer).with.offset(5);
-        
-    }];
-    [[UIApplication sharedApplication].keyWindow addSubview:wmPlayer];
-    wmPlayer.isFullscreen = YES;
-    wmPlayer.fullScreenBtn.selected = YES;
-    [wmPlayer bringSubviewToFront:wmPlayer.bottomView];
-    
-}
-
--(void)toNormal{
-    [wmPlayer removeFromSuperview];
-    [UIView animateWithDuration:0.5f animations:^{
-        wmPlayer.transform = CGAffineTransformIdentity;
-        wmPlayer.frame =CGRectMake(playerFrame.origin.x, playerFrame.origin.y, playerFrame.size.width, playerFrame.size.height);
-        wmPlayer.playerLayer.frame =  wmPlayer.bounds;
-        [self.view addSubview:wmPlayer];
-        [wmPlayer.bottomView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(wmPlayer).with.offset(0);
-            make.right.equalTo(wmPlayer).with.offset(0);
-            make.height.mas_equalTo(40);
-            make.bottom.equalTo(wmPlayer).with.offset(0);
-        }];
-        [wmPlayer.closeBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(wmPlayer).with.offset(5);
-            make.height.mas_equalTo(30);
-            make.width.mas_equalTo(30);
-            make.top.equalTo(wmPlayer).with.offset(5);
-        }];
-        
-    }completion:^(BOOL finished) {
-        wmPlayer.isFullscreen = NO;
-        wmPlayer.fullScreenBtn.selected = NO;
-        [self setFullScreen:NO];
-        
-    }];
-}
-- (void)setFullScreen:(BOOL)fullScreen
+- (void)viewWillDisappear:(BOOL)animated
 {
-     [UIApplication sharedApplication].statusBarHidden = fullScreen;
-     [self.navigationController setNavigationBarHidden:fullScreen];
+    [super viewWillDisappear:animated];
+    [UIApplication sharedApplication].statusBarHidden = NO;
+    self.navigationController.navigationBarHidden = NO;
 }
--(void)fullScreenBtnClick:(NSNotification *)notice{
-    UIButton *fullScreenBtn = (UIButton *)[notice object];
-    if (fullScreenBtn.isSelected) {//全屏显示
-        [self toFullScreenWithInterfaceOrientation:UIInterfaceOrientationLandscapeLeft];
-    }else{
-        [self toNormal];
-    }
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
-/**
- *  旋转屏幕通知
- */
-- (void)onDeviceOrientationChange{
-    if (wmPlayer==nil||wmPlayer.superview==nil){
-        return;
-    }
-    
-    UIDeviceOrientation orientation = [UIDevice currentDevice].orientation;
-    UIInterfaceOrientation interfaceOrientation = (UIInterfaceOrientation)orientation;
-    switch (interfaceOrientation) {
-        case UIInterfaceOrientationPortraitUpsideDown:{
-            NSLog(@"第3个旋转方向---电池栏在下");
-        }
-            break;
-        case UIInterfaceOrientationPortrait:{
-            NSLog(@"第0个旋转方向---电池栏在上");
-            if (wmPlayer.isFullscreen) {
-                [self toNormal];
-            }
-        }
-            break;
-        case UIInterfaceOrientationLandscapeLeft:{
-            NSLog(@"第2个旋转方向---电池栏在左");
-            if (wmPlayer.isFullscreen == NO) {
-                [self toFullScreenWithInterfaceOrientation:interfaceOrientation];
-            }
-        }
-            break;
-        case UIInterfaceOrientationLandscapeRight:{
-            NSLog(@"第1个旋转方向---电池栏在右");
-            if (wmPlayer.isFullscreen == NO) {
-                [self toFullScreenWithInterfaceOrientation:interfaceOrientation];
-            }
-        }
-            break;
-        default:
-            break;
-    }
-}
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -207,15 +85,8 @@
     self.title = @"众筹";
     touserguid = @"";
     playerFrame = CGRectMake(0, 0, self.view.frame.size.width, (self.view.frame.size.width)/2);
-    backgroundIV = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenWidth/2)];
-    playBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    playBtn.frame = CGRectMake(0,0,66*PMBWIDTH,66*PMBWIDTH);
-    playBtn.center = CGPointMake(ScreenWidth/2, 80*PMBWIDTH);
-    [playBtn setImage:[UIImage imageNamed:@"video_play_btn_bg.png"] forState:UIControlStateNormal];
-    [playBtn addTarget:self action:@selector(Playaction:) forControlEvents:UIControlEventTouchUpInside];
-    [playBtn.superview bringSubviewToFront:playBtn];
+    backgroundIV = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenWidth*9./16)];
     [self.view addSubview:backgroundIV];
-    [self.view addSubview:playBtn];
     [self creattableview];
     [self creatheaderView];
     [self creatfootview];
@@ -232,30 +103,39 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cancle:) name:@"quxiao" object:nil];
 }
 
-- (void)Playaction:(UIButton *)sender
+- (void)Playaction
 {
     if ([[FundCoursedic objectForKey:@"isApply"]isEqualToString:@"0"]) {
+        //[self.view bringSubviewToFront:backgroundIV];
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"温馨提示" message:@"是否继续" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"去支持", nil];
         [alert show];
     }else{
-        backgroundIV.image = [UIImage imageNamed:@"nolive.jpg"];
 //    wmPlayer = [[WMPlayer alloc]initWithFrame:backgroundIV.bounds videoURLStr:@"http://192.168.1.77:8004/Attach/Media/1.mp4"];
-//    [wmPlayer.player play];
-//    [self.view addSubview:wmPlayer];
-    [playBtn.superview sendSubviewToBack:playBtn];
+        //[self.view sendSubviewToBack:backgroundIV];
+        if (_playerView == nil) {
+            // 设置播放前的占位图（需要在设置视频URL之前设置）
+            self.playerView.placeholderImageName = @"nolive.jpg";
+            self.playerView = [[ZFPlayerView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenWidth/2)];
+            self.playerView.videoURL = [NSURL URLWithString:_LiveURL];
+            [self.view addSubview:_playerView];
+            //self.playerView.controlView.backBtn.hidden = YES;
+            self.playerView.playerLayerGravity = ZFPlayerLayerGravityResizeAspect;
+            [self.playerView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(self.view).offset(0);
+                make.left.right.equalTo(self.view);
+                // 注意此处，宽高比16：9优先级比1000低就行，在因为iPhone 4S宽高比不是16：9
+                make.height.equalTo(self.playerView.mas_width).multipliedBy(9.0f/16.0f).with.priority(750);
+            }];
+            [self.playerView autoPlayTheVideo];
+            __weak typeof(self) weakSelf = self;
+            self.playerView.goBackBlock = ^{
+                [weakSelf.navigationController popViewControllerAnimated:YES];
+            };
+        }
+
     }
 }
 
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
-    [wmPlayer.player pause];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if(buttonIndex==1){
@@ -279,7 +159,7 @@
 }
 - (void)creattableview
 {
-    UITableView *tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, ScreenWidth/2, SCREEN_WIDTH, SCREEN_HEIGHT-ScreenWidth/2-49-64) style:UITableViewStylePlain];
+    UITableView *tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, ScreenWidth*9./16, SCREEN_WIDTH, SCREEN_HEIGHT-ScreenWidth*9./16-49) style:UITableViewStylePlain];
     [tableView setBackgroundColor:[UIColor whiteColor]];
     tableView.delegate=self;
     tableView.dataSource=self;
@@ -298,7 +178,7 @@
 
 - (void)creatfootview
 {
-    UIView *footerView=[[UIView alloc]initWithFrame:CGRectMake(0, ScreenHeight-49-64, SCREEN_WIDTH, 49)];
+    UIView *footerView=[[UIView alloc]initWithFrame:CGRectMake(0, ScreenHeight-49, SCREEN_WIDTH, 49)];
     footerView.backgroundColor=[UIColor themeBlueThreeColor];
     [self.view addSubview:footerView];
     
@@ -403,20 +283,21 @@
     support.textAlignment = NSTextAlignmentCenter;
     [headerView addSubview:support];
     
-    OfflineMoney = [[UILabel alloc]initWithFrame:CGRectMake(Moneylab.left, Moneylab.bottom+40*PMBWIDTH, 180*PMBWIDTH, 16*PMBWIDTH)];
+    OfflineMoney = [[UILabel alloc]initWithFrame:CGRectMake(Moneylab.left, Moneylab.bottom+30*PMBWIDTH, 180*PMBWIDTH, 32*PMBWIDTH)];
     OfflineMoney.textColor = [UIColor themeRedColor];
     OfflineMoney.font = Font(16);
+    OfflineMoney.numberOfLines=0;
     [headerView addSubview:OfflineMoney];
     
     supportbtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    supportbtn.frame = CGRectMake(ScreenWidth-120*PMBWIDTH,OfflineMoney.top-7*PMBWIDTH, 100*PMBWIDTH, 25*PMBWIDTH);
+    supportbtn.frame = CGRectMake(ScreenWidth-120*PMBWIDTH,OfflineMoney.top, 100*PMBWIDTH, 25*PMBWIDTH);
     supportbtn.titleLabel.font = Font(14);
     supportbtn.layer.borderColor = TSEColor(240, 140, 0).CGColor;
     supportbtn.layer.cornerRadius = supportbtn.height/2;
     supportbtn.layer.borderWidth = 1.0f;
     [headerView addSubview:supportbtn];
     
-    UILabel *line = [[UILabel alloc]initWithFrame:CGRectMake(0, supportbtn.bottom+10*PMBWIDTH, ScreenWidth, 1*PMBWIDTH)];
+    UILabel *line = [[UILabel alloc]initWithFrame:CGRectMake(0, supportbtn.bottom+15*PMBWIDTH, ScreenWidth, 1*PMBWIDTH)];
     line.backgroundColor = [UIColor themeGrayColor];
     [headerView addSubview:line];
     
@@ -630,7 +511,9 @@
         if ([[dict objectForKey:@"state"]isEqualToString:@"true"]) {
             FundCoursedic= [dict objectForKey:@"result"][0];
             [SVProgressHUD dismiss];
-            [backgroundIV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",SERIVE_IMAGE,[FundCoursedic objectForKey:@"T_FundCourse_Pic"]]] placeholderImage:[UIImage imageNamed:@"logo1"]];
+            NSString *path = [[NSString stringWithFormat:@"%@%@",SERIVE_IMAGE,[FundCoursedic objectForKey:@"T_FundCourse_Pic"]]stringByReplacingOccurrencesOfString:@"min" withString:@""];
+            [backgroundIV sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"logo1"]];
+            [self Playaction];
             Informationlab.text = [FundCoursedic objectForKey:@"T_FundCourse_Title"];
             Moneylab.text = [NSString stringWithFormat:@"¥%@",[FundCoursedic objectForKey:@"hadMoney"]];
             
@@ -864,29 +747,6 @@
 
 }
 
-
--(void)releaseWMPlayer{
-    [wmPlayer.player.currentItem cancelPendingSeeks];
-    [wmPlayer.player.currentItem.asset cancelLoading];
-    
-    [wmPlayer.player pause];
-    [wmPlayer removeFromSuperview];
-    [wmPlayer.playerLayer removeFromSuperlayer];
-    [wmPlayer.player replaceCurrentItemWithPlayerItem:nil];
-    wmPlayer = nil;
-    wmPlayer.player = nil;
-    wmPlayer.currentItem = nil;
-    
-    wmPlayer.playOrPauseBtn = nil;
-    wmPlayer.playerLayer = nil;
-}
-
--(void)dealloc{
-    [self releaseWMPlayer];
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    NSLog(@"player deallco");
-}
-
 -(void)cancle:(NSNotification *)text{
     
     touserguid=@"";
@@ -894,6 +754,8 @@
      *  移除通知
      */
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"quxiao" object:nil];
+    Liu_DBG(@"%@释放了",self.class);
+    [self.playerView cancelAutoFadeOutControlBar];
 }
 
 @end

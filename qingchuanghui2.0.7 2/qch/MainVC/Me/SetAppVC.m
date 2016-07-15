@@ -268,7 +268,7 @@
     
     [[UIApplication sharedApplication] unregisterForRemoteNotifications];
     
-    QCHNavigationController * nav = [[QCHNavigationController alloc] initWithRootViewController:welcome];
+    QCHNavigationController * nav = [[QCHNavigationController alloc]initWithRootViewController:welcome];
     AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
     appDelegate.window.rootViewController = nav;
 

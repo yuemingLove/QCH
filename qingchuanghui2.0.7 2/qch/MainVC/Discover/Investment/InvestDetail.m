@@ -521,10 +521,10 @@
     NSArray *imageArray = @[img.image];
     if (imageArray) {
         
-        NSString *title = [NSString stringWithFormat:@"青创汇入驻投资机构推荐 %@",[_parntDict objectForKey:@"t_InvestPlace_Title"]];
+        NSString *title = [NSString stringWithFormat:@"%@ 千万投资基金等你来拿",[_parntDict objectForKey:@"t_InvestPlace_Title"]];
         NSDictionary *dict = [_parntDict objectForKey:@"InvestArea"][0];
         NSString *InvestArea = [dict objectForKey:@"InvestAreaName"];
-        NSString *description = [NSString stringWithFormat:@"%@,正在关注%@领域创业项目,投资金额%@,快来提交吧",title,InvestArea,[_parntDict objectForKey:@"t_InvestPlace_Money"]];
+        NSString *description = [NSString stringWithFormat:@"%@已入驻青创汇,正在关注%@领域创业项目,投资金额%@,快来提交你的项目吧",[_parntDict objectForKey:@"t_InvestPlace_Title"],InvestArea,[_parntDict objectForKey:@"t_InvestPlace_Money"]];
         NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
         [shareParams SSDKSetupShareParamsByText:description
                                          images:imageArray

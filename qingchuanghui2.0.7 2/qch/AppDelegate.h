@@ -7,13 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "QCHNavigationController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate,RCIMUserInfoDataSource,RCIMReceiveMessageDelegate,RCIMConnectionStatusDelegate,BMKGeneralDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
-@property (nonatomic, strong) QCHNavigationController *rootNavigationController;
+@property (nonatomic, strong) UINavigationController *rootNavigationController;
 
 @property (nonatomic,strong) BMKMapManager *mapManager;
 

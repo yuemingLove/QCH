@@ -656,11 +656,11 @@
     [_bgkImageView setImage:[UIImage imageNamed:@"my_new_bg"]];
     //[_headerView addSubview:_bgkImageView];
     
-    UIButton *setButton=[[UIButton alloc]initWithFrame:CGRectMake(15*SCREEN_WSCALE, 25*SCREEN_WSCALE, 18*SCREEN_WSCALE, 18*SCREEN_WSCALE)];
+    UIButton *setButton=[[UIButton alloc]initWithFrame:CGRectMake(15*SCREEN_WSCALE, 12*SCREEN_WSCALE, 40*SCREEN_WSCALE, 40*SCREEN_WSCALE)];
     [setButton setImage:[UIImage imageNamed:@"my_set"] forState:UIControlStateNormal];
     [setButton addTarget:self action:@selector(mySet:) forControlEvents:UIControlEventTouchUpInside];
     [_headerView addSubview:setButton];
-
+    
     UIButton *CertificationButton=[[UIButton alloc]initWithFrame:CGRectMake(ScreenWidth - 88*SCREEN_WSCALE, 21*SCREEN_WSCALE, 90, 30)];
     if (ScreenWidth < 330) {
         [CertificationButton setFrame:CGRectMake(ScreenWidth - 100*SCREEN_WSCALE, 21*SCREEN_WSCALE, 90, 30)];
@@ -814,7 +814,6 @@
 
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    status = 1;
     if (indexPath.section == 0) {
         if (status==0) {
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];

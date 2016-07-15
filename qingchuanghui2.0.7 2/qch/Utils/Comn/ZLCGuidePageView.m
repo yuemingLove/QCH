@@ -8,7 +8,7 @@
 
 #import "ZLCGuidePageView.h"
 #import "QCHWelcomeVC.h"
-
+#import "QCHNavigationController.h"
 
 #define Button_Name    @"开始体验"
 #define SCREEN_WIDTH  [UIScreen mainScreen].bounds.size.width
@@ -116,7 +116,7 @@
 -(void)presentInitViewController{
     
     QCHWelcomeVC *welcomeVC=[[QCHWelcomeVC alloc]init];
-    _rootNavigationController=[[UINavigationController alloc]initWithRootViewController:welcomeVC];
+    _rootNavigationController=[[QCHNavigationController alloc]initWithRootViewController:welcomeVC];
     [_rootNavigationController setNavigationBarHidden:YES];
     
     [[UIApplication sharedApplication].keyWindow setRootViewController:_rootNavigationController];

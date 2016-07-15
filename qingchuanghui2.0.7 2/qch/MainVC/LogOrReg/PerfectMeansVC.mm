@@ -41,15 +41,6 @@
 
 @implementation PerfectMeansVC
 
-- (UIInterfaceOrientationMask)supportedInterfaceOrientations
-{
-    return UIInterfaceOrientationMaskPortrait ;
-}
-- (BOOL)shouldAutorotate
-{
-    return NO;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -373,7 +364,9 @@
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1* NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 QCHMainController *main = [[QCHMainController alloc] init];
                 [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+                main.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
                 [self presentViewController:main animated:YES completion:nil];
+//                [self.navigationController pushViewController:main animated:YES];
             });
         }
     }];

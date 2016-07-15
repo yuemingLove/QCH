@@ -149,7 +149,7 @@
                 
 
                 UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH,  160.0 * PMBWIDTH)];
-                NSString *url= [NSString stringWithFormat:@"%@%@",SERIVE_IMAGE,weakSelf.adsArray[pageIndex]];
+                NSString *url= [[NSString stringWithFormat:@"%@%@",SERIVE_IMAGE,weakSelf.adsArray[pageIndex]]stringByReplacingOccurrencesOfString:@"min" withString:@""];
                 [imageView sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"loading_3"]];
                 
                 [imageView setContentScaleFactor:[[UIScreen mainScreen] scale]];

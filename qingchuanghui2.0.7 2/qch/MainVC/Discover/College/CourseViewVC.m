@@ -34,7 +34,6 @@
     
     UIButton *payCourseBtn;
     
-    UIButton *playBtn;
     UIImageView *backgroundIV;
     NSString *Liveurl;
 
@@ -77,23 +76,24 @@
 {
     Liu_DBG(@"%@释放了",self.class);
     [self.playerView cancelAutoFadeOutControlBar];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"fullScreen" object:nil];
 }
 
-// 哪些页面支持自动转屏
-- (BOOL)shouldAutorotate{
-    
-    return !ZFPlayerShared.isLockScreen;
-    
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+    self.navigationController.navigationBarHidden = YES;
 }
 
-// viewcontroller支持哪些转屏方向
-- (UIInterfaceOrientationMask)supportedInterfaceOrientations{
-    if (ZFPlayerShared.isAllowLandscape) {
-        return UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskLandscapeRight;
-    }else {
-        return UIInterfaceOrientationMaskPortrait;
-    }
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [UIApplication sharedApplication].statusBarHidden = NO;
+    self.navigationController.navigationBarHidden = NO;
+}
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 - (void)viewDidLoad {
@@ -101,15 +101,9 @@
     [self getdata];
     
     playerFrame = CGRectMake(0, 0, self.view.frame.size.width, (self.view.frame.size.width)*1/2);
-    backgroundIV = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenWidth/2)];
-    playBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    playBtn.frame = CGRectMake(0,0,66*PMBWIDTH,66*PMBWIDTH);
-    playBtn.center = CGPointMake(ScreenWidth/2, 80*PMBWIDTH);
-    [playBtn setImage:[UIImage imageNamed:@"video_play_btn_bg.png"] forState:UIControlStateNormal];
-    //[playBtn addTarget:self action:@selector(Playaction:) forControlEvents:UIControlEventTouchUpInside];
-    //[playBtn.superview bringSubviewToFront:playBtn];
+    backgroundIV = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenWidth*9./16)];
+    backgroundIV.image = [UIImage imageNamed:@"nolive.jpg"];
     [self.view addSubview:backgroundIV];
-    //[self.view addSubview:playBtn];
 
     [self creattableview];
     [self creatfootview];
@@ -129,23 +123,10 @@
     
     UIBarButtonItem *shareView=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"fenxiang_btn"] style:UIBarButtonItemStylePlain target:self action:@selector(shareAction:)];
     self.navigationItem.rightBarButtonItem=shareView;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fullScreen) name:@"fullScreenAction1" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(smallScreen) name:@"smallScreenAction1" object:nil];
+    ///[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fullScreen) name:@"fullScreenAction1" object:nil];
+    ///[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(smallScreen) name:@"smallScreenAction1" object:nil];
 }
-// 点击全屏
-- (void)fullScreen {
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
-    self.navigationController.navigationBarHidden = YES;
-    //self.playerView.controlView.backBtn.hidden = NO;
-    //[self.playerView setFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
-     }
-// 到小屏
-- (void)smallScreen {
-    [UIApplication sharedApplication].statusBarHidden = NO;
-    self.navigationController.navigationBarHidden = NO;
-    //self.playerView.controlView.backBtn.hidden = YES;
-    //[self.playerView setFrame:CGRectMake(0, 0, ScreenWidth, ScreenWidth/2)];
-}
+
 -(void)updateData:(NSMutableArray*)array{
     
     _selectArray=array;
@@ -181,7 +162,7 @@
         if ([wifi currentReachabilityStatus] != NotReachable) {
             if (_playerView == nil) {
                 // 设置播放前的占位图（需要在设置视频URL之前设置）
-                self.playerView.placeholderImageName = @"loading_bgView1";
+                self.playerView.placeholderImageName = @"nolive.jpg";
                 self.playerView = [[ZFPlayerView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenWidth/2)];
                 self.playerView.videoURL = [NSURL URLWithString:Liveurl];
                 [self.view addSubview:_playerView];
@@ -194,6 +175,10 @@
                     make.height.equalTo(self.playerView.mas_width).multipliedBy(9.0f/16.0f).with.priority(750);
                 }];
                 [self.playerView autoPlayTheVideo];
+                __weak typeof(self) weakSelf = self;
+                self.playerView.goBackBlock = ^{
+                    [weakSelf.navigationController popViewControllerAnimated:YES];
+                };
             }
         }else{
             UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"温馨提示" message:@"当前网络非Wi-Fi，是否继续播放" delegate:self cancelButtonTitle:@"暂停播放" otherButtonTitles:@"继续播放", nil];
@@ -222,14 +207,18 @@
 
 - (void)creattableview{
     
-    UITableView *tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, ScreenWidth*9./16, SCREEN_WIDTH, SCREEN_HEIGHT-ScreenWidth*9./16-49-64) style:UITableViewStylePlain];
+    UITableView *tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, ScreenWidth*9./16, SCREEN_WIDTH, SCREEN_HEIGHT-ScreenWidth*9./16-49) style:UITableViewStylePlain];
     [tableView setBackgroundColor:[UIColor whiteColor]];
     tableView.delegate=self;
     tableView.dataSource=self;
     self.tableviewlist = tableView;
     [self.view addSubview:tableView];
     [self setExtraCellLineHidden:self.tableviewlist];
-    
+//    [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.right.equalTo(self.view);
+//        make.top.equalTo(self.view).offset(ScreenWidth*9./16);
+//        make.height.mas_equalTo(SCREEN_HEIGHT-ScreenWidth*9./16-49);
+//    }];
 }
 
 -(void)setExtraCellLineHidden: (UITableView *)tableView{
@@ -385,10 +374,13 @@
 
 - (void)creatfootview{
     
-    UIView *footerView=[[UIView alloc]initWithFrame:CGRectMake(0, ScreenHeight-49-64, SCREEN_WIDTH, 49)];
+    UIView *footerView=[[UIView alloc]initWithFrame:CGRectMake(0, ScreenHeight-49, SCREEN_WIDTH, 49)];
     footerView.backgroundColor=[UIColor themeBlueThreeColor];
     [self.view addSubview:footerView];
-    
+//    [footerView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.bottom.right.equalTo(self.view);
+//        make.height.mas_equalTo(49);
+//    }];
     CGFloat width=(SCREEN_WIDTH-1)/2;
     UIView *line=[[UIView alloc]initWithFrame:CGRectMake(width, 8, 1, 33)];
     line.backgroundColor=[UIColor whiteColor];

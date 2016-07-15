@@ -104,7 +104,6 @@
 		40D002581C8DA2340024082F /* SendActivityVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 40D002551C8DA2340024082F /* SendActivityVC.m */; };
 		40D0025D1C8DA3600024082F /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 40D0025A1C8DA3600024082F /* AppDelegate.mm */; };
 		40D0025E1C8DA3600024082F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40D0025C1C8DA3600024082F /* ViewController.m */; };
-		40D002611C8DA4FC0024082F /* MoneyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 40D002601C8DA4FC0024082F /* MoneyVC.m */; };
 		40D003861C4F316E00FCC19D /* CycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40D0037F1C4F316E00FCC19D /* CycleScrollView.m */; };
 		40D003871C4F316E00FCC19D /* NSTimer+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 40D003811C4F316E00FCC19D /* NSTimer+Addition.m */; };
 		40D003881C4F316E00FCC19D /* SMPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 40D003831C4F316E00FCC19D /* SMPageControl.m */; };
@@ -294,7 +293,6 @@
 		40D9297C1C884E5F00C201E3 /* ProjectSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = 40D9297B1C884E5F00C201E3 /* ProjectSegment.m */; };
 		40D99E3B1C433FDC00565003 /* Agreement.html in Resources */ = {isa = PBXBuildFile; fileRef = 40D99E391C433FDC00565003 /* Agreement.html */; };
 		40D99E3C1C433FDC00565003 /* service_rule.html in Resources */ = {isa = PBXBuildFile; fileRef = 40D99E3A1C433FDC00565003 /* service_rule.html */; };
-		40D99E3F1C43429400565003 /* QCHWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40D99E3E1C43429400565003 /* QCHWebViewController.m */; };
 		40D99E501C43A12400565003 /* AESJM.m in Sources */ = {isa = PBXBuildFile; fileRef = 40D99E421C43A12400565003 /* AESJM.m */; };
 		40D99E511C43A12400565003 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 40D99E441C43A12400565003 /* Base64.m */; };
 		40D99E521C43A12400565003 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 40D99E461C43A12400565003 /* GTMBase64.m */; };
@@ -334,21 +332,23 @@
 		4835928B1D24AB2700312F54 /* DynamicTWCell7.xib in Resources */ = {isa = PBXBuildFile; fileRef = 483592821D24AB2700312F54 /* DynamicTWCell7.xib */; };
 		4835928C1D24AB2700312F54 /* DynamicTWCell8.m in Sources */ = {isa = PBXBuildFile; fileRef = 483592841D24AB2700312F54 /* DynamicTWCell8.m */; };
 		4835928D1D24AB2700312F54 /* DynamicTWCell8.xib in Resources */ = {isa = PBXBuildFile; fileRef = 483592851D24AB2700312F54 /* DynamicTWCell8.xib */; };
-		484103CF1D34CF19007C065C /* WithdrawalsDetailCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 484103CD1D34CF19007C065C /* WithdrawalsDetailCell2.m */; };
-		484103D01D34CF19007C065C /* WithdrawalsDetailCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 484103CE1D34CF19007C065C /* WithdrawalsDetailCell2.xib */; };
-		484103D21D34E6EF007C065C /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 484103D11D34E6EF007C065C /* MediaPlayer.framework */; };
-		484103D41D371F50007C065C /* VideoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 484103D31D371F50007C065C /* VideoCell.xib */; };
+		484103D61D3887CD007C065C /* CourseViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 484103D51D3887CD007C065C /* CourseViewVC.m */; };
+		484103D81D388806007C065C /* LiveOnlineListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 484103D71D388806007C065C /* LiveOnlineListVC.m */; };
+		484103DC1D38888C007C065C /* VideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 484103DA1D38888C007C065C /* VideoCell.m */; };
+		484103DD1D38888C007C065C /* VideoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 484103DB1D38888C007C065C /* VideoCell.xib */; };
+		484103DF1D389198007C065C /* QCHWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 484103DE1D389198007C065C /* QCHWebViewController.m */; };
+		484103E31D3895CB007C065C /* WithdrawalsDetailCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 484103E11D3895CB007C065C /* WithdrawalsDetailCell2.m */; };
+		484103E41D3895CB007C065C /* WithdrawalsDetailCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 484103E21D3895CB007C065C /* WithdrawalsDetailCell2.xib */; };
+		484103E61D389620007C065C /* WithdrawalsDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 484103E51D389620007C065C /* WithdrawalsDetailVC.m */; };
+		484103E81D38BF32007C065C /* MoneyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 484103E71D38BF32007C065C /* MoneyVC.m */; };
 		5601F8321CE9A2E000A68289 /* InviteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5601F8311CE9A2E000A68289 /* InviteVC.m */; };
 		5601F8371CE9C25A00A68289 /* InviteListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5601F8361CE9C25A00A68289 /* InviteListVC.m */; };
 		5601F83E1CE9C60100A68289 /* InviteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5601F83C1CE9C60100A68289 /* InviteCell.m */; };
 		5601F83F1CE9C60100A68289 /* InviteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5601F83D1CE9C60100A68289 /* InviteCell.xib */; };
 		5601F8421CE9CFFD00A68289 /* InviteDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5601F8411CE9CFFD00A68289 /* InviteDetailsVC.m */; };
-		560B1B161CC4C09600F87740 /* WMPlayer.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 560B1B131CC4C09600F87740 /* WMPlayer.bundle */; };
-		560B1B171CC4C09600F87740 /* WMPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 560B1B151CC4C09600F87740 /* WMPlayer.m */; };
 		560B1B241CC4C16700F87740 /* CourseDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 560B1B1A1CC4C16600F87740 /* CourseDetailVC.m */; };
 		560B1B251CC4C16700F87740 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 560B1B1C1CC4C16600F87740 /* DataManager.m */; };
 		560B1B261CC4C16700F87740 /* SidModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 560B1B1E1CC4C16600F87740 /* SidModel.m */; };
-		560B1B271CC4C16700F87740 /* VideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 560B1B201CC4C16600F87740 /* VideoCell.m */; };
 		560B1B291CC4C16700F87740 /* VideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 560B1B231CC4C16600F87740 /* VideoModel.m */; };
 		560B1B3E1CC4D60B00F87740 /* clear@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 560B1B301CC4D60B00F87740 /* clear@2x.png */; };
 		560B1B3F1CC4D60B00F87740 /* close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 560B1B311CC4D60B00F87740 /* close@2x.png */; };
@@ -380,7 +380,6 @@
 		560B1B7C1CC76E2B00F87740 /* CourseListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 560B1B7A1CC76E2B00F87740 /* CourseListCell.m */; };
 		560B1B7D1CC76E2B00F87740 /* CourseListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 560B1B7B1CC76E2B00F87740 /* CourseListCell.xib */; };
 		560B1B801CC7795300F87740 /* ApliaySelectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 560B1B7F1CC7795300F87740 /* ApliaySelectVC.m */; };
-		560B1B861CC7AF7200F87740 /* CourseViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 560B1B851CC7AF7200F87740 /* CourseViewVC.m */; };
 		561EA37A1D1EAF000055BC46 /* ZLCGuidePageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 561EA3791D1EAF000055BC46 /* ZLCGuidePageView.m */; };
 		562AE8531CEF045F00EE007D /* ProjectCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 562AE8511CEF045F00EE007D /* ProjectCell2.m */; };
 		562AE8541CEF045F00EE007D /* ProjectCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 562AE8521CEF045F00EE007D /* ProjectCell2.xib */; };
@@ -391,7 +390,6 @@
 		56306AFC1D222138004638EB /* DynamicTWCell3.m in Sources */ = {isa = PBXBuildFile; fileRef = 56306AFA1D222138004638EB /* DynamicTWCell3.m */; };
 		56306B0A1D222B20004638EB /* DynamicTWCell4.m in Sources */ = {isa = PBXBuildFile; fileRef = 56306B081D222B20004638EB /* DynamicTWCell4.m */; };
 		56306B0B1D222B20004638EB /* DynamicTWCell4.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56306B091D222B20004638EB /* DynamicTWCell4.xib */; };
-		56349F071D2F8B3F00AF156D /* WithdrawalsDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 56349F061D2F8B3F00AF156D /* WithdrawalsDetailVC.m */; };
 		56349F0B1D2F8B5200AF156D /* WithdrawalsDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 56349F091D2F8B5200AF156D /* WithdrawalsDetailCell.m */; };
 		56349F0C1D2F8B5200AF156D /* WithdrawalsDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56349F0A1D2F8B5200AF156D /* WithdrawalsDetailCell.xib */; };
 		56349F121D2FBE8200AF156D /* AddCertificationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 56349F0E1D2FBE8200AF156D /* AddCertificationVC.m */; };
@@ -410,7 +408,6 @@
 		5651BF981CC225E10022BA79 /* CrowdfundingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5651BF961CC225E10022BA79 /* CrowdfundingCell.m */; };
 		5651BF991CC225E10022BA79 /* CrowdfundingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5651BF971CC225E10022BA79 /* CrowdfundingCell.xib */; };
 		56600BAB1C3DF64D00EF9401 /* QCHMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56600BAA1C3DF64D00EF9401 /* QCHMainController.m */; };
-		56602F051CC23B210062EE08 /* LiveOnlineListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 56602F041CC23B210062EE08 /* LiveOnlineListVC.m */; };
 		56602F0D1CC46E280062EE08 /* HttpCollegeAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 56602F0C1CC46E280062EE08 /* HttpCollegeAction.m */; };
 		5667E5921D06694C007AA3D2 /* jpush-ios-2.1.7.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5667E5911D06694C007AA3D2 /* jpush-ios-2.1.7.a */; };
 		566B75601C7C2F47005B252C /* BestAndDomainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 566B75281C7C2F47005B252C /* BestAndDomainVC.m */; };
@@ -857,7 +854,6 @@
 		40D0025B1C8DA3600024082F /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = qch/ViewController.h; sourceTree = SOURCE_ROOT; };
 		40D0025C1C8DA3600024082F /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = qch/ViewController.m; sourceTree = SOURCE_ROOT; };
 		40D0025F1C8DA4FC0024082F /* MoneyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoneyVC.h; sourceTree = "<group>"; };
-		40D002601C8DA4FC0024082F /* MoneyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoneyVC.m; sourceTree = "<group>"; };
 		40D0037E1C4F316E00FCC19D /* CycleScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CycleScrollView.h; sourceTree = "<group>"; };
 		40D0037F1C4F316E00FCC19D /* CycleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CycleScrollView.m; sourceTree = "<group>"; };
 		40D003801C4F316E00FCC19D /* NSTimer+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+Addition.h"; sourceTree = "<group>"; };
@@ -1197,7 +1193,6 @@
 		40D99E391C433FDC00565003 /* Agreement.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Agreement.html; sourceTree = "<group>"; };
 		40D99E3A1C433FDC00565003 /* service_rule.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = service_rule.html; sourceTree = "<group>"; };
 		40D99E3D1C43429400565003 /* QCHWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QCHWebViewController.h; sourceTree = "<group>"; };
-		40D99E3E1C43429400565003 /* QCHWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QCHWebViewController.m; sourceTree = "<group>"; };
 		40D99E411C43A12400565003 /* AESJM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AESJM.h; sourceTree = "<group>"; };
 		40D99E421C43A12400565003 /* AESJM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AESJM.m; sourceTree = "<group>"; };
 		40D99E431C43A12400565003 /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
@@ -1273,11 +1268,17 @@
 		483592831D24AB2700312F54 /* DynamicTWCell8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicTWCell8.h; sourceTree = "<group>"; };
 		483592841D24AB2700312F54 /* DynamicTWCell8.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicTWCell8.m; sourceTree = "<group>"; };
 		483592851D24AB2700312F54 /* DynamicTWCell8.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DynamicTWCell8.xib; sourceTree = "<group>"; };
-		484103CC1D34CF19007C065C /* WithdrawalsDetailCell2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WithdrawalsDetailCell2.h; sourceTree = "<group>"; };
-		484103CD1D34CF19007C065C /* WithdrawalsDetailCell2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WithdrawalsDetailCell2.m; sourceTree = "<group>"; };
-		484103CE1D34CF19007C065C /* WithdrawalsDetailCell2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WithdrawalsDetailCell2.xib; sourceTree = "<group>"; };
-		484103D11D34E6EF007C065C /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		484103D31D371F50007C065C /* VideoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoCell.xib; sourceTree = "<group>"; };
+		484103D51D3887CD007C065C /* CourseViewVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseViewVC.m; sourceTree = "<group>"; };
+		484103D71D388806007C065C /* LiveOnlineListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiveOnlineListVC.m; sourceTree = "<group>"; };
+		484103D91D38888C007C065C /* VideoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCell.h; sourceTree = "<group>"; };
+		484103DA1D38888C007C065C /* VideoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCell.m; sourceTree = "<group>"; };
+		484103DB1D38888C007C065C /* VideoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoCell.xib; sourceTree = "<group>"; };
+		484103DE1D389198007C065C /* QCHWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QCHWebViewController.m; sourceTree = "<group>"; };
+		484103E01D3895CB007C065C /* WithdrawalsDetailCell2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WithdrawalsDetailCell2.h; sourceTree = "<group>"; };
+		484103E11D3895CB007C065C /* WithdrawalsDetailCell2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WithdrawalsDetailCell2.m; sourceTree = "<group>"; };
+		484103E21D3895CB007C065C /* WithdrawalsDetailCell2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WithdrawalsDetailCell2.xib; sourceTree = "<group>"; };
+		484103E51D389620007C065C /* WithdrawalsDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WithdrawalsDetailVC.m; sourceTree = "<group>"; };
+		484103E71D38BF32007C065C /* MoneyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoneyVC.m; sourceTree = "<group>"; };
 		5601F8301CE9A2E000A68289 /* InviteVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteVC.h; sourceTree = "<group>"; };
 		5601F8311CE9A2E000A68289 /* InviteVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteVC.m; sourceTree = "<group>"; };
 		5601F8351CE9C25A00A68289 /* InviteListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InviteListVC.h; path = qch/MainVC/Me/VC/InviteListVC.h; sourceTree = SOURCE_ROOT; };
@@ -1287,17 +1288,12 @@
 		5601F83D1CE9C60100A68289 /* InviteCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InviteCell.xib; sourceTree = "<group>"; };
 		5601F8401CE9CFFD00A68289 /* InviteDetailsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteDetailsVC.h; sourceTree = "<group>"; };
 		5601F8411CE9CFFD00A68289 /* InviteDetailsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteDetailsVC.m; sourceTree = "<group>"; };
-		560B1B131CC4C09600F87740 /* WMPlayer.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WMPlayer.bundle; sourceTree = "<group>"; };
-		560B1B141CC4C09600F87740 /* WMPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMPlayer.h; sourceTree = "<group>"; };
-		560B1B151CC4C09600F87740 /* WMPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMPlayer.m; sourceTree = "<group>"; };
 		560B1B191CC4C16600F87740 /* CourseDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseDetailVC.h; sourceTree = "<group>"; };
 		560B1B1A1CC4C16600F87740 /* CourseDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseDetailVC.m; sourceTree = "<group>"; };
 		560B1B1B1CC4C16600F87740 /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
 		560B1B1C1CC4C16600F87740 /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
 		560B1B1D1CC4C16600F87740 /* SidModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidModel.h; sourceTree = "<group>"; };
 		560B1B1E1CC4C16600F87740 /* SidModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidModel.m; sourceTree = "<group>"; };
-		560B1B1F1CC4C16600F87740 /* VideoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCell.h; sourceTree = "<group>"; };
-		560B1B201CC4C16600F87740 /* VideoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCell.m; sourceTree = "<group>"; };
 		560B1B221CC4C16600F87740 /* VideoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoModel.h; sourceTree = "<group>"; };
 		560B1B231CC4C16600F87740 /* VideoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoModel.m; sourceTree = "<group>"; };
 		560B1B301CC4D60B00F87740 /* clear@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clear@2x.png"; sourceTree = "<group>"; };
@@ -1343,7 +1339,6 @@
 		560B1B7E1CC7795300F87740 /* ApliaySelectVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApliaySelectVC.h; sourceTree = "<group>"; };
 		560B1B7F1CC7795300F87740 /* ApliaySelectVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApliaySelectVC.m; sourceTree = "<group>"; };
 		560B1B841CC7AF7200F87740 /* CourseViewVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseViewVC.h; sourceTree = "<group>"; };
-		560B1B851CC7AF7200F87740 /* CourseViewVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseViewVC.m; sourceTree = "<group>"; };
 		561EA3781D1EAF000055BC46 /* ZLCGuidePageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLCGuidePageView.h; sourceTree = "<group>"; };
 		561EA3791D1EAF000055BC46 /* ZLCGuidePageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLCGuidePageView.m; sourceTree = "<group>"; };
 		562AE8501CEF045F00EE007D /* ProjectCell2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectCell2.h; sourceTree = "<group>"; };
@@ -1362,7 +1357,6 @@
 		56306B081D222B20004638EB /* DynamicTWCell4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicTWCell4.m; sourceTree = "<group>"; };
 		56306B091D222B20004638EB /* DynamicTWCell4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DynamicTWCell4.xib; sourceTree = "<group>"; };
 		56349F051D2F8B3F00AF156D /* WithdrawalsDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WithdrawalsDetailVC.h; sourceTree = "<group>"; };
-		56349F061D2F8B3F00AF156D /* WithdrawalsDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WithdrawalsDetailVC.m; sourceTree = "<group>"; };
 		56349F081D2F8B5200AF156D /* WithdrawalsDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WithdrawalsDetailCell.h; sourceTree = "<group>"; };
 		56349F091D2F8B5200AF156D /* WithdrawalsDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WithdrawalsDetailCell.m; sourceTree = "<group>"; };
 		56349F0A1D2F8B5200AF156D /* WithdrawalsDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WithdrawalsDetailCell.xib; sourceTree = "<group>"; };
@@ -1395,7 +1389,6 @@
 		56600BA91C3DF64D00EF9401 /* QCHMainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QCHMainController.h; sourceTree = "<group>"; };
 		56600BAA1C3DF64D00EF9401 /* QCHMainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QCHMainController.m; sourceTree = "<group>"; };
 		56602F031CC23B210062EE08 /* LiveOnlineListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveOnlineListVC.h; sourceTree = "<group>"; };
-		56602F041CC23B210062EE08 /* LiveOnlineListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiveOnlineListVC.m; sourceTree = "<group>"; };
 		56602F0B1CC46E280062EE08 /* HttpCollegeAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpCollegeAction.h; sourceTree = "<group>"; };
 		56602F0C1CC46E280062EE08 /* HttpCollegeAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpCollegeAction.m; sourceTree = "<group>"; };
 		5667E5911D06694C007AA3D2 /* jpush-ios-2.1.7.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-2.1.7.a"; sourceTree = "<group>"; };
@@ -1686,7 +1679,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				484103D21D34E6EF007C065C /* MediaPlayer.framework in Frameworks */,
 				4017E1801C9BE8D100B0504C /* libssl.a in Frameworks */,
 				5667E5921D06694C007AA3D2 /* jpush-ios-2.1.7.a in Frameworks */,
 				EE33754971B07F5E090FF58E /* libPods.a in Frameworks */,
@@ -1843,9 +1835,9 @@
 				56349F081D2F8B5200AF156D /* WithdrawalsDetailCell.h */,
 				56349F091D2F8B5200AF156D /* WithdrawalsDetailCell.m */,
 				56349F0A1D2F8B5200AF156D /* WithdrawalsDetailCell.xib */,
-				484103CC1D34CF19007C065C /* WithdrawalsDetailCell2.h */,
-				484103CD1D34CF19007C065C /* WithdrawalsDetailCell2.m */,
-				484103CE1D34CF19007C065C /* WithdrawalsDetailCell2.xib */,
+				484103E01D3895CB007C065C /* WithdrawalsDetailCell2.h */,
+				484103E11D3895CB007C065C /* WithdrawalsDetailCell2.m */,
+				484103E21D3895CB007C065C /* WithdrawalsDetailCell2.xib */,
 				56C81E9C1D1138FF00F8DBD8 /* MyOrderFirstCell.h */,
 				56C81E9D1D1138FF00F8DBD8 /* MyOrderFirstCell.m */,
 				56C81E9E1D1138FF00F8DBD8 /* MyOrderFirstCell.xib */,
@@ -2316,7 +2308,7 @@
 			isa = PBXGroup;
 			children = (
 				56349F051D2F8B3F00AF156D /* WithdrawalsDetailVC.h */,
-				56349F061D2F8B3F00AF156D /* WithdrawalsDetailVC.m */,
+				484103E51D389620007C065C /* WithdrawalsDetailVC.m */,
 				5678F8851D2CEB85004EF69D /* WithdrawalsViewController.h */,
 				5678F8861D2CEB85004EF69D /* WithdrawalsViewController.m */,
 				563DBDEA1D2A3E6F00777E5F /* SignViewController.h */,
@@ -2357,7 +2349,7 @@
 				56E061B31CBE2611005964E3 /* CertificateDetailVC.h */,
 				56E061B41CBE2611005964E3 /* CertificateDetailVC.m */,
 				40D0025F1C8DA4FC0024082F /* MoneyVC.h */,
-				40D002601C8DA4FC0024082F /* MoneyVC.m */,
+				484103E71D38BF32007C065C /* MoneyVC.m */,
 				40D3354E1C898C8E00606B9E /* MyProject2VC.h */,
 				40D3354F1C898C8E00606B9E /* MyProject2VC.m */,
 				40D335421C8987A400606B9E /* CertificationVC.h */,
@@ -2715,7 +2707,7 @@
 				56600BA91C3DF64D00EF9401 /* QCHMainController.h */,
 				56600BAA1C3DF64D00EF9401 /* QCHMainController.m */,
 				40D99E3D1C43429400565003 /* QCHWebViewController.h */,
-				40D99E3E1C43429400565003 /* QCHWebViewController.m */,
+				484103DE1D389198007C065C /* QCHWebViewController.m */,
 				40D74C331C8ED6F50068AB09 /* QchCityViewController.h */,
 				40D74C341C8ED6F50068AB09 /* QchCityViewController.m */,
 			);
@@ -2741,7 +2733,6 @@
 			children = (
 				569B0D8B1D138399009177AE /* ShowView */,
 				56D42FDB1D02759C00748D4D /* PopMenuView */,
-				560B1B121CC4C09600F87740 /* VMPlayer */,
 				56EDCAA41CB74C0400FC86A2 /* SVProgressHUD */,
 				4017E09C1C9BB3E400B0504C /* Pay */,
 				40CF7D091C857D890090BC01 /* SWTableViewCell */,
@@ -3099,16 +3090,6 @@
 			path = cells;
 			sourceTree = "<group>";
 		};
-		560B1B121CC4C09600F87740 /* VMPlayer */ = {
-			isa = PBXGroup;
-			children = (
-				560B1B131CC4C09600F87740 /* WMPlayer.bundle */,
-				560B1B141CC4C09600F87740 /* WMPlayer.h */,
-				560B1B151CC4C09600F87740 /* WMPlayer.m */,
-			);
-			path = VMPlayer;
-			sourceTree = "<group>";
-		};
 		560B1B181CC4C16600F87740 /* Course */ = {
 			isa = PBXGroup;
 			children = (
@@ -3119,11 +3100,11 @@
 				560B1B1C1CC4C16600F87740 /* DataManager.m */,
 				560B1B1D1CC4C16600F87740 /* SidModel.h */,
 				560B1B1E1CC4C16600F87740 /* SidModel.m */,
-				560B1B1F1CC4C16600F87740 /* VideoCell.h */,
-				560B1B201CC4C16600F87740 /* VideoCell.m */,
-				484103D31D371F50007C065C /* VideoCell.xib */,
 				560B1B221CC4C16600F87740 /* VideoModel.h */,
 				560B1B231CC4C16600F87740 /* VideoModel.m */,
+				484103D91D38888C007C065C /* VideoCell.h */,
+				484103DA1D38888C007C065C /* VideoCell.m */,
+				484103DB1D38888C007C065C /* VideoCell.xib */,
 			);
 			path = Course;
 			sourceTree = "<group>";
@@ -3168,7 +3149,7 @@
 				5693E2681CCA3F890099E134 /* SelectCourseVC.h */,
 				5693E2691CCA3F890099E134 /* SelectCourseVC.m */,
 				560B1B841CC7AF7200F87740 /* CourseViewVC.h */,
-				560B1B851CC7AF7200F87740 /* CourseViewVC.m */,
+				484103D51D3887CD007C065C /* CourseViewVC.m */,
 				560B1B761CC76E2100F87740 /* CourseListViewController.h */,
 				560B1B771CC76E2100F87740 /* CourseListViewController.m */,
 				5651BF8F1CC222600022BA79 /* CollegeVC.h */,
@@ -3180,7 +3161,7 @@
 				560B1B571CC5E19000F87740 /* CrowdDetailsVC.h */,
 				560B1B581CC5E19000F87740 /* CrowdDetailsVC.m */,
 				56602F031CC23B210062EE08 /* LiveOnlineListVC.h */,
-				56602F041CC23B210062EE08 /* LiveOnlineListVC.m */,
+				484103D71D388806007C065C /* LiveOnlineListVC.m */,
 			);
 			path = College;
 			sourceTree = "<group>";
@@ -3415,7 +3396,6 @@
 		95669E2090819009D9C7855B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				484103D11D34E6EF007C065C /* MediaPlayer.framework */,
 				5667E5911D06694C007AA3D2 /* jpush-ios-2.1.7.a */,
 				4017E17D1C9BE8D100B0504C /* libcrypto.a */,
 				4017E17E1C9BE8D100B0504C /* libssl.a */,
@@ -3587,8 +3567,8 @@
 				560B1B3E1CC4D60B00F87740 /* clear@2x.png in Resources */,
 				40D391421C57499B008751E7 /* TZAssetCell.xib in Resources */,
 				483592891D24AB2700312F54 /* DynamicTWCell6.xib in Resources */,
+				484103E41D3895CB007C065C /* WithdrawalsDetailCell2.xib in Resources */,
 				5693E26B1CCA3F890099E134 /* CourseCollCell.xib in Resources */,
-				560B1B161CC4C09600F87740 /* WMPlayer.bundle in Resources */,
 				569B0D901D138399009177AE /* ShowView.xib in Resources */,
 				40D003911C4F801C00FCC19D /* ads_01.jpg in Resources */,
 				407572111C83EBBF00DE2064 /* PlaceCell.xib in Resources */,
@@ -3602,6 +3582,7 @@
 				40D3913F1C57499B008751E7 /* VideoSendIcon@2x.png in Resources */,
 				40DECF211C3CFD3C000ACC42 /* denglu_bj1_img@2x.jpg in Resources */,
 				568520F21CFFD1B500CDA44A /* DeductionCell.xib in Resources */,
+				484103DD1D38888C007C065C /* VideoCell.xib in Resources */,
 				40D7C7CF1C2CDF6B00415DCC /* LaunchScreen.storyboard in Resources */,
 				40D3910D1C57493E008751E7 /* lyf.xcassets in Resources */,
 				40D1BED31C76C00B00F68B16 /* beijingtu_img.png in Resources */,
@@ -3617,7 +3598,6 @@
 				567F86CB1CC881AC000C8FCF /* TutorDetailCell.xib in Resources */,
 				40CF81651C51D98A00F129F5 /* zwt_cyzx_img.png in Resources */,
 				407767481C8440B300A9D45E /* MyInfoCell.xib in Resources */,
-				484103D41D371F50007C065C /* VideoCell.xib in Resources */,
 				56E061B21CBDED42005964E3 /* PartnerneedsCell.xib in Resources */,
 				56D42FF21D02AD1100748D4D /* IntegralrecordCell.xib in Resources */,
 				40D3353B1C8967EB00606B9E /* PrivateCell.xib in Resources */,
@@ -3634,7 +3614,6 @@
 				40D335321C89259600606B9E /* ProjectCommCell.xib in Resources */,
 				40D3913D1C57499B008751E7 /* preview_original_def@2x.png in Resources */,
 				40D7C7CA1C2CDF6B00415DCC /* Main.storyboard in Resources */,
-				484103D01D34CF19007C065C /* WithdrawalsDetailCell2.xib in Resources */,
 				40D391341C57499B008751E7 /* navi_back@2x.png in Resources */,
 				5699FA5F1D1FE97A004252F1 /* DadeCell.xib in Resources */,
 				56A939501D18DAF700E53828 /* PreferencesCell.xib in Resources */,
@@ -3772,7 +3751,6 @@
 				40D086A91C75B3CA00F735F1 /* SendProjectVC.m in Sources */,
 				40D1BED71C76C7D500F68B16 /* ProjectStatusCell.m in Sources */,
 				40CEDD1D1C3A251300F25840 /* PartnViewController.m in Sources */,
-				40D002611C8DA4FC0024082F /* MoneyVC.m in Sources */,
 				562AE85C1CF04BF800EE007D /* FMDBHelper.m in Sources */,
 				563994781CA4D8CF0009A6A4 /* BestAndDocell.m in Sources */,
 				40D7C84E1C2D327B00415DCC /* Utils.m in Sources */,
@@ -3809,7 +3787,6 @@
 				56D430081D02D63B00748D4D /* MyDetailThirdCell.m in Sources */,
 				40D3914A1C57499B008751E7 /* UIView+Layout.m in Sources */,
 				40D391051C574896008751E7 /* XHFileAttribute.m in Sources */,
-				484103CF1D34CF19007C065C /* WithdrawalsDetailCell2.m in Sources */,
 				40CF817A1C522C1100F129F5 /* ActivityCell.m in Sources */,
 				40CEDD0D1C3A19F200F25840 /* WMPageController.m in Sources */,
 				40D91A251C3B9C1C0059AE5B /* BlockObject.m in Sources */,
@@ -3829,7 +3806,6 @@
 				568520E31CFFBED400CDA44A /* getIntegralCell.m in Sources */,
 				40D003871C4F316E00FCC19D /* NSTimer+Addition.m in Sources */,
 				566B756B1C7C2F47005B252C /* PersonDynamicCell.m in Sources */,
-				560B1B861CC7AF7200F87740 /* CourseViewVC.m in Sources */,
 				40CF81721C5209A000F129F5 /* DOPDropDownMenu.m in Sources */,
 				563DBDEC1D2A3E6F00777E5F /* SignViewController.m in Sources */,
 				56D4300D1D02DF3300748D4D /* MsgCell.m in Sources */,
@@ -3841,7 +3817,6 @@
 				40D3352A1C8920BB00606B9E /* MyShowPVC.m in Sources */,
 				40D7C8051C2D20E800415DCC /* MessageViewController.m in Sources */,
 				567F86AF1CC880FE000C8FCF /* OrderDetailVC.m in Sources */,
-				40D99E3F1C43429400565003 /* QCHWebViewController.m in Sources */,
 				566B75B51C7C2F87005B252C /* HeaderCell.m in Sources */,
 				56A939461D154D1300E53828 /* NowNeed.m in Sources */,
 				56D42FE81D02759C00748D4D /* WBPopMenuModel.m in Sources */,
@@ -3857,7 +3832,6 @@
 				40CF7CFF1C8572BE0090BC01 /* HttpMessageAction.m in Sources */,
 				40D7C8391C2D320800415DCC /* UIColor+theme.m in Sources */,
 				566B75B71C7C2F87005B252C /* SupportCell.m in Sources */,
-				56349F071D2F8B3F00AF156D /* WithdrawalsDetailVC.m in Sources */,
 				40D335241C89206B00606B9E /* MyProjectStatusVC.m in Sources */,
 				40CFF4EC1C56270900F185CD /* SWActionSheet.m in Sources */,
 				5651BF911CC222600022BA79 /* CollegeVC.m in Sources */,
@@ -3926,6 +3900,7 @@
 				40D335591C89A15C00606B9E /* ShowAlertView.m in Sources */,
 				5651BF981CC225E10022BA79 /* CrowdfundingCell.m in Sources */,
 				560B1B601CC63D0D00F87740 /* DetialsCell.m in Sources */,
+				484103D61D3887CD007C065C /* CourseViewVC.m in Sources */,
 				566B75AC1C7C2F87005B252C /* CarePersonListVC.m in Sources */,
 				40D7C8421C2D320800415DCC /* NSArray+SafeValue.m in Sources */,
 				560B1B6F1CC7248300F87740 /* MyOrderListVC.m in Sources */,
@@ -3950,6 +3925,7 @@
 				40A9A1081C4CBBC500C3FED5 /* CommonDes.m in Sources */,
 				568520DC1CFEF04F00CDA44A /* CreditsLogVC.m in Sources */,
 				40D015A81C607E00004ED369 /* ActivityPayVC.m in Sources */,
+				484103D81D388806007C065C /* LiveOnlineListVC.m in Sources */,
 				40D887941C2E2FE10031519C /* AddressBookViewController.m in Sources */,
 				56D42FCA1D00156D00748D4D /* SubstituteCell.m in Sources */,
 				5601F83E1CE9C60100A68289 /* InviteCell.m in Sources */,
@@ -3977,10 +3953,9 @@
 				40CEDD081C3A19D600F25840 /* WMMenuView.m in Sources */,
 				40D1E9801C86EBDD00457905 /* ProjectVC.m in Sources */,
 				40CF815B1C51C60200F129F5 /* PConsultCell.m in Sources */,
-				560B1B171CC4C09600F87740 /* WMPlayer.m in Sources */,
+				484103DF1D389198007C065C /* QCHWebViewController.m in Sources */,
 				40D1E9771C86EBDD00457905 /* ActivityVC.m in Sources */,
 				562AE85D1CF04BF800EE007D /* ProjectFunModel.m in Sources */,
-				560B1B271CC4C16700F87740 /* VideoCell.m in Sources */,
 				40CFE4A11C58B96D0016EC42 /* TalkViewCell.m in Sources */,
 				40D99E521C43A12400565003 /* GTMBase64.m in Sources */,
 				567F86B31CC8812A000C8FCF /* MyAccountCell.m in Sources */,
@@ -4034,6 +4009,7 @@
 				40D99E631C43AD3600565003 /* NSObject+RMArchivable.m in Sources */,
 				40D335501C898C8E00606B9E /* MyProject2VC.m in Sources */,
 				40D1E97F1C86EBDD00457905 /* PartnerVC.m in Sources */,
+				484103E31D3895CB007C065C /* WithdrawalsDetailCell2.m in Sources */,
 				40D929691C88227A00C201E3 /* SelectProjectVC.m in Sources */,
 				40D086A61C75B2DE00F735F1 /* ProjectTypeVC.m in Sources */,
 				56D42FEB1D02759C00748D4D /* WBTableViewCell.m in Sources */,
@@ -4126,12 +4102,14 @@
 				56D42FF51D02D5F800748D4D /* MyNewInfoViewController.m in Sources */,
 				40D391441C57499B008751E7 /* TZImageManager.m in Sources */,
 				40D390EC1C5701E4008751E7 /* HttpActivityAction.m in Sources */,
+				484103E81D38BF32007C065C /* MoneyVC.m in Sources */,
 				483592861D24AB2700312F54 /* DynamicTWCell5.m in Sources */,
 				40D7C8441C2D320800415DCC /* NSObject+SafeValueWithJSON.m in Sources */,
 				40D1E97B1C86EBDD00457905 /* MyActivityVC.m in Sources */,
 				40D6E3411C802E4200EF4BCD /* RoomListCell.m in Sources */,
 				560B1B751CC724C400F87740 /* OrderCell.m in Sources */,
 				40D8021E1C47308D000B1E18 /* HttpLoginAction.m in Sources */,
+				484103DC1D38888C007C065C /* VideoCell.m in Sources */,
 				407572141C83F70400DE2064 /* RoomLocationVC.mm in Sources */,
 				56D42FE91D02759C00748D4D /* WBPopMenuSingleton.m in Sources */,
 				566B75CB1C7C3077005B252C /* UIImage+ImageEffects.m in Sources */,
@@ -4157,9 +4135,9 @@
 				400879321C46323F00117D18 /* AddFriendViewController.m in Sources */,
 				40D0025D1C8DA3600024082F /* AppDelegate.mm in Sources */,
 				566B75C41C7C302D005B252C /* HttpPartnerAction.m in Sources */,
+				484103E61D389620007C065C /* WithdrawalsDetailVC.m in Sources */,
 				40D74C3F1C8F0F5E0068AB09 /* MyInvestCell.m in Sources */,
 				40D1BEDC1C76C7F900F68B16 /* ProjectDetailCell.m in Sources */,
-				56602F051CC23B210062EE08 /* LiveOnlineListVC.m in Sources */,
 				4017E1831C9BEB3900B0504C /* AccountPayVC.m in Sources */,
 				40D003891C4F316E00FCC19D /* SongVerticalScrollView.m in Sources */,
 				566B75611C7C2F47005B252C /* BaseInformationCell.m in Sources */,

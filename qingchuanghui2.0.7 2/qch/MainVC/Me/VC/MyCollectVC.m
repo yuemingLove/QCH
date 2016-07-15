@@ -102,7 +102,7 @@
         
     }
     
-    sv.contentSize = CGSizeMake(5 * ScreenWidth, 0);
+    sv.contentSize = CGSizeMake(4 * ScreenWidth, 0);
     self.contentScrollView = sv;
 }
 

@@ -17,12 +17,22 @@
 
 @implementation MyChatViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
     IQKeyboardManager *manager = [IQKeyboardManager sharedManager];
     //启用/禁用键盘
     manager.enable = NO;
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    IQKeyboardManager *manager = [IQKeyboardManager sharedManager];
+    //启用/禁用键盘
+    manager.enable = YES;
+}
+- (void)viewDidLoad {
+    [super viewDidLoad];
     
     self.enableSaveNewPhotoToLocalSystem = YES;
     

@@ -17,7 +17,9 @@
 @interface MoneyVC ()<UITableViewDataSource,UITableViewDelegate>{
     UILabel *Balancelab;
     BOOL flag;
+    BOOL flag1;
     UILabel *detail;
+    NSString *linked;
 }
 
 @property (nonatomic,strong)UITableView *tableview;
@@ -40,8 +42,6 @@
     [self getbank];
 }
 
-
-
 - (void)getbank
 {
     [HttpUserBankAction GetUserBank:UserDefaultEntity.uuid Token:[MyAes aesSecretWith:@"userGuid"] complete:^(id result, NSError *error) {
@@ -53,12 +53,13 @@
                 flag = YES;
             }
         }
+        [self.tableview reloadData];
     }];
 }
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [self getTotlePrice];
-    [self getbank];
+    
     // 禁用 iOS7 返回手势
     if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
         self.navigationController.interactivePopGestureRecognizer.enabled = NO;
@@ -133,9 +134,9 @@
     line.backgroundColor = [UIColor themeGrayColor];
     [cell addSubview:line];
     cell.textLabel.font = Font(14);
-    cell.textLabel.textColor = [UIColor lightGrayColor];
-    cell.detailTextLabel.textColor = [UIColor lightGrayColor];
-    cell.detailTextLabel.font = Font(12);
+    cell.textLabel.textColor = [UIColor blackColor];
+//    cell.detailTextLabel.textColor = [UIColor lightGrayColor];
+//    cell.detailTextLabel.font = Font(12);
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.selectionStyle =UITableViewCellSelectionStyleNone;
     if (indexPath.row==0) {
@@ -149,9 +150,11 @@
         cell.imageView.image = [UIImage imageNamed:@"new_rechange"];
     }else if (indexPath.row==3){
         cell.textLabel.text = @"绑定银行卡";
-        if (flag&&(detail == nil)) {
-            detail = [self createLabelFrame:CGRectMake(cell.right- 65*PMBWIDTH, 15*PMBHEIGHT, 40*PMBWIDTH, 21) color:[UIColor lightGrayColor] font:Font(12) text:@"已绑定"];
-            [cell addSubview:detail];
+        if (flag || ![self isBlankString:linked]) {
+            if (detail == nil) {
+                detail = [self createLabelFrame:CGRectMake(cell.right- 65*PMBWIDTH, 15*PMBHEIGHT, 40*PMBWIDTH, 21) color:[UIColor lightGrayColor] font:Font(12) text:@"已绑定"];
+                [cell addSubview:detail];
+            }
         }
         cell.imageView.image = [UIImage imageNamed:@"new_bind"];
     }
@@ -176,55 +179,71 @@
         AccountPayVC *accountPay=[[AccountPayVC alloc]init];
         [self.navigationController pushViewController:accountPay animated:YES];
     }else if (indexPath.row==3){
+        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        cell.userInteractionEnabled=NO;
         // 绑定银行卡
         [HttpUserBankAction GetUserBank:UserDefaultEntity.uuid Token:[MyAes aesSecretWith:@"userGuid"] complete:^(id result, NSError *error) {
+            
             NSDictionary *dict = result[0];
             if ([[dict objectForKey:@"state"]isEqualToString:@"true"]) {
-                
+                cell.userInteractionEnabled= YES;
                 BindBankCardVC *bindVC = [[BindBankCardVC alloc] init];
+                [bindVC setValueBlock:^(NSString *value) {
+                    linked = value;
+                }];
                 [self.navigationController pushViewController:bindVC animated:YES];
                 
             }else if ([[dict objectForKey:@"state"]isEqualToString:@"false"]){
                 [SVProgressHUD showErrorWithStatus:@"您还没有实名认证,请先进行实名认证" maskType:SVProgressHUDMaskTypeBlack];
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1* NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    cell.userInteractionEnabled= YES;
                     AddCertificationVC *AddCertification = [[AddCertificationVC alloc]init];
                     [self.navigationController pushViewController:AddCertification animated:YES];
                 });
 
+            }else{
+                cell.userInteractionEnabled= YES;
             }
         }];
     }
 }
 #pragma mark - 提现
 - (void)WithdrawalsAction {
-    
-    [HttpUserBankAction GetUserBank:UserDefaultEntity.uuid Token:[MyAes aesSecretWith:@"userGuid"] complete:^(id result, NSError *error) {
-        NSDictionary *dic = result[0];
-        if ([[dic objectForKey:@"state"]isEqualToString:@"true"]) {
-            NSDictionary *dict = [dic objectForKey:@"result"][0];
-            if ([self isBlankString:[dict objectForKey:@"t_Bank_Name"]]) {
-                [SVProgressHUD showErrorWithStatus:@"您还没有绑定银行卡,请先绑定银行卡" maskType:SVProgressHUDMaskTypeBlack];
+    if (flag1 == NO) {
+        flag1 = YES;
+        [HttpUserBankAction GetUserBank:UserDefaultEntity.uuid Token:[MyAes aesSecretWith:@"userGuid"] complete:^(id result, NSError *error) {
+            NSDictionary *dic = result[0];
+            if ([[dic objectForKey:@"state"]isEqualToString:@"true"]) {
+                NSDictionary *dict = [dic objectForKey:@"result"][0];
+                if ([self isBlankString:[dict objectForKey:@"t_Bank_Name"]]) {
+                    [SVProgressHUD showErrorWithStatus:@"您还没有绑定银行卡,请先绑定银行卡" maskType:SVProgressHUDMaskTypeBlack];
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1* NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        flag1 = NO;
+                        BindBankCardVC *bind = [[BindBankCardVC alloc]init];
+                        [self.navigationController pushViewController:bind animated:YES];
+                    });
+                }else{
+                    WithdrawalsViewController *Withdrawals =[[WithdrawalsViewController alloc]init];
+                    Withdrawals.t_Bank_NO = [dict objectForKey:@"t_Bank_NO"];
+                    Withdrawals.t_Bank_Name = [dict objectForKey:@"t_Bank_Name"];
+                    Withdrawals.guid = [dict objectForKey:@"Guid"];
+                    Withdrawals.t_Bank_OpenUser = [dict objectForKey:@"t_Bank_OpenUser"];
+                    Withdrawals.hidesBottomBarWhenPushed = YES;
+                    flag1 = NO;
+                    [self.navigationController pushViewController:Withdrawals animated:YES];
+                }
+            }else if ([[dic objectForKey:@"state"]isEqualToString:@"false"]){
+                [SVProgressHUD showErrorWithStatus:@"您还没有实名认证,请先进行实名认证" maskType:SVProgressHUDMaskTypeBlack];
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1* NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    BindBankCardVC *bind = [[BindBankCardVC alloc]init];
-                    [self.navigationController pushViewController:bind animated:YES];
+                    AddCertificationVC *AddCertification = [[AddCertificationVC alloc]init];
+                    flag1 = NO;
+                    [self.navigationController pushViewController:AddCertification animated:YES];
                 });
             }else{
-                WithdrawalsViewController *Withdrawals =[[WithdrawalsViewController alloc]init];
-                Withdrawals.t_Bank_NO = [dict objectForKey:@"t_Bank_NO"];
-                Withdrawals.t_Bank_Name = [dict objectForKey:@"t_Bank_Name"];
-                Withdrawals.guid = [dict objectForKey:@"Guid"];
-                Withdrawals.t_Bank_OpenUser = [dict objectForKey:@"t_Bank_OpenUser"];
-                Withdrawals.hidesBottomBarWhenPushed = YES;
-                [self.navigationController pushViewController:Withdrawals animated:YES];
+                flag1 = NO;
             }
-        }else if ([[dic objectForKey:@"state"]isEqualToString:@"false"]){
-            [SVProgressHUD showErrorWithStatus:@"您还没有实名认证,请先进行实名认证" maskType:SVProgressHUDMaskTypeBlack];
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1* NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                AddCertificationVC *AddCertification = [[AddCertificationVC alloc]init];
-                [self.navigationController pushViewController:AddCertification animated:YES];
-            });
-        }
-}];
-
+        }];
+        
+    }
 }
 @end

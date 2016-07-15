@@ -294,7 +294,7 @@
         return;
     }
     
-    [Utils showToastWithText:@"请注意接听电话，验证码已发送"];
+    [Utils showToastWithText:@"青创汇将给你拨打电话，通过语音播报验证码，请您注意接听"];
     
     authCodeButton.userInteractionEnabled = NO;
     [authCodeButton setTitle:@"正在发送" forState:UIControlStateNormal];
@@ -313,7 +313,6 @@
                 authCodeButton.userInteractionEnabled = YES;
                 [authCodeButton setTitle:@"获取语言验证码" forState:UIControlStateNormal];
             }];
-            [codefield becomeFirstResponder];
         }else if ([[dict objectForKey:@"state"]isEqualToString:@"false"]){
             [SVProgressHUD showErrorWithStatus:[dict objectForKey:@"result"] maskType:SVProgressHUDMaskTypeBlack];
             [authCodeButton setTitle:@"获取语言验证码" forState:UIControlStateNormal];
@@ -393,6 +392,7 @@
         }
     }];
 }
+
 -(void)GetVoucherByKey{
     [HttpCenterAction GetVoucherByKey:UserDefaultEntity.uuid key:@"shimingrenzheng" Token:[MyAes aesSecretWith:@"userGuid"] complete:^(id result, NSError *error) {
         NSDictionary *dict = result[0];
@@ -427,7 +427,7 @@
     Money.textColor = TSEColor(110, 151, 245);
     [backimg addSubview:Money];
     Moneylab = [[UILabel alloc]initWithFrame:CGRectMake(0, 170*PMBWIDTH, backimg.width, 15*PMBWIDTH)];
-    Moneylab.text = [NSString stringWithFormat:@"恭喜！获得%@元代金券",money];
+    Moneylab.text = [NSString stringWithFormat:@"获得%@元空间代金券",money];
     Moneylab.font = Font(17);
     Moneylab.textAlignment = NSTextAlignmentCenter;
     Moneylab.textColor = [UIColor whiteColor];

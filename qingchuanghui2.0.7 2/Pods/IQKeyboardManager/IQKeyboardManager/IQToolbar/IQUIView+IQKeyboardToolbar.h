@@ -37,32 +37,9 @@
 ///-------------------------
 
 /**
- If `shouldHidePlaceholderText` is YES, then title will not be added to the toolbar. Default to NO.
+ If shouldHideTitle is YES, then title will not be added to the toolbar. Default to NO.
  */
-@property (assign, nonatomic) BOOL shouldHidePlaceholderText;
-
-/**
- `placeholderText` to override default `placeholder` text when drawing text on toolbar.
- */
-@property (nullable, strong, nonatomic) NSString* placeholderText;
-
-/**
- `drawingPlaceholderText` will be actual text used to draw on toolbar. This would either `placeholder` or `placeholderText`.
- */
-@property (nullable, strong, nonatomic, readonly) NSString* drawingPlaceholderText;
-
-/**
- Optional target & action to behave toolbar title button as clickable button
- 
- @param target Target object.
- @param action Target Selector.
- */
--(void)setTitleTarget:(nullable id)target action:(nullable SEL)action;
-
-/**
- Customized Invocation to be called on title button action. titleInvocation is internally created using setTitleTarget:action: method.
- */
-@property (nullable, strong, nonatomic) NSInvocation *titleInvocation;
+@property (assign, nonatomic) BOOL shouldHideTitle;
 
 
 ///-----------------------------------------
@@ -94,17 +71,17 @@
 -(void)setCustomDoneTarget:(nullable id)target action:(nullable SEL)action;
 
 /**
- Customized Invocation to be called on previous arrow action. previousInvocation is internally created using setCustomPreviousTarget:action: method.
+ Customized Invocation to be called on previous arrow action. previousInvocation is internally created using setCustomPreviousTarget: method.
  */
 @property (nullable, strong, nonatomic) NSInvocation *previousInvocation;
 
 /**
- Customized Invocation to be called on next arrow action. nextInvocation is internally created using setCustomNextTarget:action: method.
+ Customized Invocation to be called on next arrow action. nextInvocation is internally created using setCustomNextTarget: method.
  */
 @property (nullable, strong, nonatomic) NSInvocation *nextInvocation;
 
 /**
- Customized Invocation to be called on done action. doneInvocation is internally created using setCustomDoneTarget:action: method.
+ Customized Invocation to be called on done action. doneInvocation is internally created using setCustomDoneTarget: method.
  */
 @property (nullable, strong, nonatomic) NSInvocation *doneInvocation;
 

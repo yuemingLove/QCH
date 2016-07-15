@@ -759,7 +759,7 @@
     
     if (imageArray) {
 
-        NSString *title = [NSString stringWithFormat:@"青创汇创业投资人推荐 %@",[_parntDict objectForKey:@"t_User_RealName"]];
+        NSString *title = [NSString stringWithFormat:@"创业投资人推荐 %@",[_parntDict objectForKey:@"t_User_RealName"]];
         NSDictionary *dict = [_parntDict objectForKey:@"InvestArea"][0];
         NSString *InvestArea = [dict objectForKey:@"InvestAreaName"];
         NSString *description = [NSString stringWithFormat:@"%@,%@,正在寻找%@领域好项目,快来提交吧",[_parntDict objectForKey:@"t_User_RealName"],[_parntDict objectForKey:@"PositionName"],InvestArea];

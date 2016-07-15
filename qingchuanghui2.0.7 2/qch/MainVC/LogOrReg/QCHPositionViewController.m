@@ -27,14 +27,6 @@
 
 @implementation QCHPositionViewController
 
-- (UIInterfaceOrientationMask)supportedInterfaceOrientations
-{
-    return UIInterfaceOrientationMaskPortrait ;
-}
-- (BOOL)shouldAutorotate
-{
-    return NO;
-}
 
 - (void)viewDidLoad{
     
