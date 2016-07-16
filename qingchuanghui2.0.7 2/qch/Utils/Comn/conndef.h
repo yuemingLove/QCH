@@ -16,7 +16,7 @@
 #define NUMBERS @"0123456789\n"
 #define BGK_HEIGHT       200*SCREEN_WSCALE
 #define APP_VERSION @"https://itunes.apple.com/lookup?id=1040438374"
-#define current_version @"2.1.0"
+#define current_version @"2.0.9"
 
 
 //极光推送的指令和秘钥
@@ -53,7 +53,7 @@
 #define PMBWIDTH [UIScreen mainScreen].bounds.size.width / 320
 #define PMBHEIGHT [UIScreen mainScreen].bounds.size.width / 320
 //debug
-#define Liu_DBG(format, ...) //NSLog(format, ## __VA_ARGS__)
+#define Liu_DBG(format, ...) NSLog(format, ## __VA_ARGS__)
 
 #define PAGE         1
 #define PAGESIZE     15

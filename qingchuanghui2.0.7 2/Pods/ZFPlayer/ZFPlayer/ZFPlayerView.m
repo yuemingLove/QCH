@@ -889,7 +889,7 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
  */
 - (void)onDeviceOrientationChange
 {
-    if (self.isLocked) {
+    if (self.isLocked){
         self.isFullScreen = YES;
         return;
     }
@@ -937,9 +937,9 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
                 
             }else {
                 [self.controlView.backBtn mas_updateConstraints:^(MASConstraintMaker *make) {
-                    make.top.mas_equalTo(5);
-                    make.leading.mas_equalTo(7);
-                    make.width.height.mas_equalTo(40);
+                    make.top.mas_equalTo(3);
+                    make.leading.mas_equalTo(2);
+                    make.width.height.mas_equalTo(50);
                 }];
             }
             self.isFullScreen = NO;
@@ -952,9 +952,9 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
                 [self.controlView.backBtn setImage:[UIImage imageNamed:ZFPlayerSrcName(@"ZFPlayer_back_full")] forState:UIControlStateNormal];
             }
             [self.controlView.backBtn mas_updateConstraints:^(MASConstraintMaker *make) {
-                make.top.mas_equalTo(20);
-                make.leading.mas_equalTo(7);
-                make.width.height.mas_equalTo(40);
+                make.top.mas_equalTo(15);
+                make.leading.mas_equalTo(2);
+                make.width.height.mas_equalTo(50);
             }];
             self.isFullScreen = YES;
         }
@@ -966,9 +966,9 @@ typedef NS_ENUM(NSInteger, ZFPlayerState) {
                 [self.controlView.backBtn setImage:[UIImage imageNamed:ZFPlayerSrcName(@"ZFPlayer_back_full")] forState:UIControlStateNormal];
             }
             [self.controlView.backBtn mas_updateConstraints:^(MASConstraintMaker *make) {
-                make.top.mas_equalTo(20);
-                make.leading.mas_equalTo(7);
-                make.width.height.mas_equalTo(40);
+                make.top.mas_equalTo(15);
+                make.leading.mas_equalTo(2);
+                make.width.height.mas_equalTo(50);
             }];
             self.isFullScreen = YES;
         }

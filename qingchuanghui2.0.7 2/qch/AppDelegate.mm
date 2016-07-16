@@ -344,7 +344,7 @@ static BOOL isProduction = TRUE;
 -(void)mainViewController{
     
     QCHMainController *main = [[QCHMainController alloc] init];
-    [main.navigationController setNavigationBarHidden:YES];
+    //[main.navigationController setNavigationBarHidden:YES];
     self.window.rootViewController = main;
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [self.window setBackgroundColor:TSEColor(244, 244, 244)];

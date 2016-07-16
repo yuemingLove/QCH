@@ -133,7 +133,6 @@
     RemindLab.textColor = [UIColor lightGrayColor];
     [self.view addSubview:RemindLab];
     
-    
 }
 #pragma mark UICollectionView
 
@@ -165,7 +164,7 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     HambitusCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"TZTestCell" forIndexPath:indexPath];
-    cell.deleteBtn.hidden = YES;
+    //cell.deleteBtn.hidden = YES;
     cell.hmdelegate = self;
     if (indexPath.row == _selectedPhotos.count) {
         cell.imageView.image = [UIImage imageNamed:@"dongtai_tjzp_btn"];
@@ -201,11 +200,49 @@
 
 - (void)longtapImagewithObject:(HambitusCell *)cell longtap:(UILongPressGestureRecognizer *)longtap
 {
-    cell.deleteBtn.hidden = NO;
+    //判断手势状态
+    switch (longtap.state) {
+        case UIGestureRecognizerStateBegan:{
+            //判断手势落点位置是否在路径上
+            NSIndexPath *indexPath = [_collectionView indexPathForItemAtPoint:[longtap locationInView:_collectionView]];
+            if (indexPath == nil) {
+                break;
+            }
+            //在路径上则开始移动该路径上的cell
+            [_collectionView beginInteractiveMovementForItemAtIndexPath:indexPath];
+        }
+            break;
+        case UIGestureRecognizerStateChanged:
+            //移动过程当中随时更新cell位置
+            [_collectionView updateInteractiveMovementTargetPosition:[longtap locationInView:_collectionView]];
+            break;
+        case UIGestureRecognizerStateEnded:
+            //移动结束后关闭cell移动
+            [_collectionView endInteractiveMovement];
+            break;
+        default:
+            [_collectionView cancelInteractiveMovement];
+            break;
+    }
+}
+- (BOOL)collectionView:(UICollectionView *)collectionView canMoveItemAtIndexPath:(NSIndexPath *)indexPath{
+    //返回YES允许其item移动
+    return YES;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView moveItemAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath*)destinationIndexPath {
+    //取出源item数据
+    id objc = [_selectedPhotos objectAtIndex:sourceIndexPath.item];
+    //从资源数组中移除该数据
+    [_selectedPhotos removeObject:objc];
+    //将数据插入到资源数组中的目标位置上
+    [_selectedPhotos insertObject:objc atIndex:destinationIndexPath.item];
 }
 //删除
 - (void)deleteClickAction:(UIButton *)sender{
-    
+    if (sender.tag == _selectedPhotos.count) {
+        return;
+    }
     NSInteger index=[sender tag];
     [_selectedPhotos removeObjectAtIndex:index];
     NSArray *imageArray=[photoStr componentsSeparatedByString:@","];

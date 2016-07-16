@@ -65,7 +65,6 @@
         
         [headBgkView removeFromSuperview];
     }
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated

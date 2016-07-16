@@ -105,7 +105,7 @@
 -(void)mainViewController{
     
     QCHMainController *main = [[QCHMainController alloc] init];
-    [main.navigationController setNavigationBarHidden:YES];
+    //[main.navigationController setNavigationBarHidden:YES];
     [UIApplication sharedApplication].keyWindow.rootViewController = main;
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [[UIApplication sharedApplication].keyWindow setBackgroundColor:TSEColor(244, 244, 244)];

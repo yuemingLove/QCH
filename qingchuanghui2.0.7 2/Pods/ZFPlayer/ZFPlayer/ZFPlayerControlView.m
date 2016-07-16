@@ -108,9 +108,9 @@
 - (void)makeSubViewsConstraints
 {
     [self.backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.equalTo(self.mas_leading).offset(7);
-        make.top.equalTo(self.mas_top).offset(5);
-        make.width.height.mas_equalTo(40);
+        make.leading.equalTo(self.mas_leading).offset(2);
+        make.top.equalTo(self.mas_top).offset(3);
+        make.width.height.mas_equalTo(50);
     }];
     
     [self.topImageView mas_makeConstraints:^(MASConstraintMaker *make) {

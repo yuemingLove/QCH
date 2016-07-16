@@ -101,6 +101,8 @@
     self.navigationItem.rightBarButtonItem=shareView;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cancle:) name:@"quxiao" object:nil];
+    [self Playaction];
+
 }
 
 - (void)Playaction
@@ -112,7 +114,7 @@
     }else{
 //    wmPlayer = [[WMPlayer alloc]initWithFrame:backgroundIV.bounds videoURLStr:@"http://192.168.1.77:8004/Attach/Media/1.mp4"];
         //[self.view sendSubviewToBack:backgroundIV];
-        if (_playerView == nil) {
+        if (![self isBlankString:_LiveURL]) {
             // 设置播放前的占位图（需要在设置视频URL之前设置）
             self.playerView.placeholderImageName = @"nolive.jpg";
             self.playerView = [[ZFPlayerView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenWidth/2)];
@@ -131,11 +133,20 @@
             self.playerView.goBackBlock = ^{
                 [weakSelf.navigationController popViewControllerAnimated:YES];
             };
+        } else {
+            backgroundIV.userInteractionEnabled = YES;
+            UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+            backBtn.frame = CGRectMake(3*SCREEN_WSCALE, 25*SCREEN_WSCALE, 20*SCREEN_WSCALE, 20*SCREEN_WSCALE);
+            [backBtn setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+            [backBtn addTarget:self action:@selector(pop) forControlEvents:UIControlEventTouchUpInside];
+            [backgroundIV addSubview:backBtn];
         }
 
     }
 }
-
+- (void)pop {
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if(buttonIndex==1){
@@ -513,7 +524,6 @@
             [SVProgressHUD dismiss];
             NSString *path = [[NSString stringWithFormat:@"%@%@",SERIVE_IMAGE,[FundCoursedic objectForKey:@"T_FundCourse_Pic"]]stringByReplacingOccurrencesOfString:@"min" withString:@""];
             [backgroundIV sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"logo1"]];
-            [self Playaction];
             Informationlab.text = [FundCoursedic objectForKey:@"T_FundCourse_Title"];
             Moneylab.text = [NSString stringWithFormat:@"¥%@",[FundCoursedic objectForKey:@"hadMoney"]];
             

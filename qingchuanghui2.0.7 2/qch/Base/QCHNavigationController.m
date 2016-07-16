@@ -24,8 +24,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //[self setupNavigationBarTheme];
-    //[self setupBarButtonItemTheme];
+    [self setupNavigationBarTheme];
+    [self setupBarButtonItemTheme];
 }
 
 - (void)didReceiveMemoryWarning {
