@@ -188,23 +188,52 @@
     __weak typeof(self) weakSelf       = self;
     // 点击播放的回调
     cell.playBlock = ^(UIButton *btn){
-        weakSelf.playerView = [ZFPlayerView sharedPlayerView];
-        // 设置播放前的站位图（需要在设置视频URL之前设置）
-        weakSelf.playerView.placeholderImageName = @"loading_bgView1";
-        
-        // 取出字典中的第一视频URL
-        NSURL *videoURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",SERIVE_LIVE,[dict objectForKey:@"t_Live_Url"]]];
-        // 设置player相关参数(需要设置imageView的tag值，此处设置的为101)
-        [weakSelf.playerView setVideoURL:videoURL
-                           withTableView:weakSelf.tableviewlist
-                             AtIndexPath:weakIndexPath
-                        withImageViewTag:101];
-        [weakSelf.playerView addPlayerToCellImageView:weakCell.backgroundIV];
-        
-        //（可选设置）可以设置视频的填充模式，默认为（等比例填充，直到一个维度到达区域边界）
-        weakSelf.playerView.playerLayerGravity = ZFPlayerLayerGravityResizeAspect;
-        // 自动播放
-        [weakSelf.playerView autoPlayTheVideo];
+        Reachability *wifi=[Reachability reachabilityForLocalWiFi];
+        if ([wifi currentReachabilityStatus] == ReachableViaWiFi) {//wifi下自动创建
+            weakSelf.playerView = [ZFPlayerView sharedPlayerView];
+            // 设置播放前的站位图（需要在设置视频URL之前设置）
+            weakSelf.playerView.placeholderImageName = @"loading_bgView1";
+            
+            // 取出字典中的第一视频URL
+            NSURL *videoURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",SERIVE_LIVE,[dict objectForKey:@"t_Live_Url"]]];
+            // 设置player相关参数(需要设置imageView的tag值，此处设置的为101)
+            [weakSelf.playerView setVideoURL:videoURL
+                               withTableView:weakSelf.tableviewlist
+                                 AtIndexPath:weakIndexPath
+                            withImageViewTag:101];
+            [weakSelf.playerView addPlayerToCellImageView:weakCell.backgroundIV];
+            
+            //（可选设置）可以设置视频的填充模式，默认为（等比例填充，直到一个维度到达区域边界）
+            weakSelf.playerView.playerLayerGravity = ZFPlayerLayerGravityResizeAspect;
+            // 自动播放
+            [weakSelf.playerView autoPlayTheVideo];
+        }else if ([wifi currentReachabilityStatus] == ReachableViaWWAN){// 流量下给提示
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"当前网络非Wi-Fi，是否继续播放" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"继续播放" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            weakSelf.playerView = [ZFPlayerView sharedPlayerView];
+            // 设置播放前的站位图（需要在设置视频URL之前设置）
+            weakSelf.playerView.placeholderImageName = @"loading_bgView1";
+            
+            // 取出字典中的第一视频URL
+            NSURL *videoURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",SERIVE_LIVE,[dict objectForKey:@"t_Live_Url"]]];
+            // 设置player相关参数(需要设置imageView的tag值，此处设置的为101)
+            [weakSelf.playerView setVideoURL:videoURL
+                               withTableView:weakSelf.tableviewlist
+                                 AtIndexPath:weakIndexPath
+                            withImageViewTag:101];
+            [weakSelf.playerView addPlayerToCellImageView:weakCell.backgroundIV];
+            
+            //（可选设置）可以设置视频的填充模式，默认为（等比例填充，直到一个维度到达区域边界）
+            weakSelf.playerView.playerLayerGravity = ZFPlayerLayerGravityResizeAspect;
+            // 自动播放
+            [weakSelf.playerView autoPlayTheVideo];
+            [alert dismissViewControllerAnimated:YES completion:nil];
+        }];
+        UIAlertAction *cancleAction = [UIAlertAction actionWithTitle:@"暂停播放" style:UIAlertActionStyleCancel handler:nil];
+        [alert addAction:okAction];
+        [alert addAction:cancleAction];
+        [weakSelf presentViewController:alert animated:YES completion:nil];
+        }
     };
     
     return cell;

@@ -28,6 +28,7 @@
     
     self.htmlWebView=[[UIWebView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64)];
     self.htmlWebView.delegate = self;
+    self.htmlWebView.scrollView.decelerationRate = 1.f;
     [self.view addSubview:self.htmlWebView];
     
     if(self.type==1){

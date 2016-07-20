@@ -341,6 +341,9 @@
 		484103E41D3895CB007C065C /* WithdrawalsDetailCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 484103E21D3895CB007C065C /* WithdrawalsDetailCell2.xib */; };
 		484103E61D389620007C065C /* WithdrawalsDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 484103E51D389620007C065C /* WithdrawalsDetailVC.m */; };
 		484103E81D38BF32007C065C /* MoneyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 484103E71D38BF32007C065C /* MoneyVC.m */; };
+		484103EC1D3CE1A9007C065C /* WithdrawalsDetailCell3.m in Sources */ = {isa = PBXBuildFile; fileRef = 484103EA1D3CE1A9007C065C /* WithdrawalsDetailCell3.m */; };
+		484103ED1D3CE1A9007C065C /* WithdrawalsDetailCell3.xib in Resources */ = {isa = PBXBuildFile; fileRef = 484103EB1D3CE1A9007C065C /* WithdrawalsDetailCell3.xib */; };
+		484103F01D3DC9E4007C065C /* MyChatViewController1.m in Sources */ = {isa = PBXBuildFile; fileRef = 484103EF1D3DC9E4007C065C /* MyChatViewController1.m */; };
 		5601F8321CE9A2E000A68289 /* InviteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5601F8311CE9A2E000A68289 /* InviteVC.m */; };
 		5601F8371CE9C25A00A68289 /* InviteListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5601F8361CE9C25A00A68289 /* InviteListVC.m */; };
 		5601F83E1CE9C60100A68289 /* InviteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5601F83C1CE9C60100A68289 /* InviteCell.m */; };
@@ -1279,6 +1282,11 @@
 		484103E21D3895CB007C065C /* WithdrawalsDetailCell2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WithdrawalsDetailCell2.xib; sourceTree = "<group>"; };
 		484103E51D389620007C065C /* WithdrawalsDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WithdrawalsDetailVC.m; sourceTree = "<group>"; };
 		484103E71D38BF32007C065C /* MoneyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoneyVC.m; sourceTree = "<group>"; };
+		484103E91D3CE1A9007C065C /* WithdrawalsDetailCell3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WithdrawalsDetailCell3.h; sourceTree = "<group>"; };
+		484103EA1D3CE1A9007C065C /* WithdrawalsDetailCell3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WithdrawalsDetailCell3.m; sourceTree = "<group>"; };
+		484103EB1D3CE1A9007C065C /* WithdrawalsDetailCell3.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WithdrawalsDetailCell3.xib; sourceTree = "<group>"; };
+		484103EE1D3DC9E4007C065C /* MyChatViewController1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyChatViewController1.h; sourceTree = "<group>"; };
+		484103EF1D3DC9E4007C065C /* MyChatViewController1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyChatViewController1.m; sourceTree = "<group>"; };
 		5601F8301CE9A2E000A68289 /* InviteVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteVC.h; sourceTree = "<group>"; };
 		5601F8311CE9A2E000A68289 /* InviteVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteVC.m; sourceTree = "<group>"; };
 		5601F8351CE9C25A00A68289 /* InviteListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InviteListVC.h; path = qch/MainVC/Me/VC/InviteListVC.h; sourceTree = SOURCE_ROOT; };
@@ -1838,6 +1846,9 @@
 				484103E01D3895CB007C065C /* WithdrawalsDetailCell2.h */,
 				484103E11D3895CB007C065C /* WithdrawalsDetailCell2.m */,
 				484103E21D3895CB007C065C /* WithdrawalsDetailCell2.xib */,
+				484103E91D3CE1A9007C065C /* WithdrawalsDetailCell3.h */,
+				484103EA1D3CE1A9007C065C /* WithdrawalsDetailCell3.m */,
+				484103EB1D3CE1A9007C065C /* WithdrawalsDetailCell3.xib */,
 				56C81E9C1D1138FF00F8DBD8 /* MyOrderFirstCell.h */,
 				56C81E9D1D1138FF00F8DBD8 /* MyOrderFirstCell.m */,
 				56C81E9E1D1138FF00F8DBD8 /* MyOrderFirstCell.xib */,
@@ -2829,6 +2840,8 @@
 				40D887931C2E2FE10031519C /* AddressBookViewController.m */,
 				40DB565C1C44930600038043 /* MyChatViewController.h */,
 				40DB565D1C44930600038043 /* MyChatViewController.m */,
+				484103EE1D3DC9E4007C065C /* MyChatViewController1.h */,
+				484103EF1D3DC9E4007C065C /* MyChatViewController1.m */,
 				40DB56BD1C44DA2400038043 /* MyChatListCell.h */,
 				40DB56BE1C44DA2400038043 /* MyChatListCell.m */,
 				400879301C46323F00117D18 /* AddFriendViewController.h */,
@@ -3617,6 +3630,7 @@
 				40D391341C57499B008751E7 /* navi_back@2x.png in Resources */,
 				5699FA5F1D1FE97A004252F1 /* DadeCell.xib in Resources */,
 				56A939501D18DAF700E53828 /* PreferencesCell.xib in Resources */,
+				484103ED1D3CE1A9007C065C /* WithdrawalsDetailCell3.xib in Resources */,
 				40D3913A1C57499B008751E7 /* photo_sel_photoPickerVc@2x.png in Resources */,
 				566B75B81C7C2F87005B252C /* SupportCell.xib in Resources */,
 				566B75B21C7C2F87005B252C /* DynamicTWCell2.xib in Resources */,
@@ -3796,6 +3810,7 @@
 				40D0024F1C8DA1D60024082F /* PartPresonViewController.m in Sources */,
 				40D1E97E1C86EBDD00457905 /* MyProjectVC.m in Sources */,
 				4017E1131C9BB3E400B0504C /* WXUtil.mm in Sources */,
+				484103EC1D3CE1A9007C065C /* WithdrawalsDetailCell3.m in Sources */,
 				40D99E541C43A12400565003 /* MyDes.m in Sources */,
 				40D391471C57499B008751E7 /* TZPhotoPreviewCell.m in Sources */,
 				566B75BF1C7C2F87005B252C /* RootPartnerClass.m in Sources */,
@@ -3952,6 +3967,7 @@
 				5601F8371CE9C25A00A68289 /* InviteListVC.m in Sources */,
 				40CEDD081C3A19D600F25840 /* WMMenuView.m in Sources */,
 				40D1E9801C86EBDD00457905 /* ProjectVC.m in Sources */,
+				484103F01D3DC9E4007C065C /* MyChatViewController1.m in Sources */,
 				40CF815B1C51C60200F129F5 /* PConsultCell.m in Sources */,
 				484103DF1D389198007C065C /* QCHWebViewController.m in Sources */,
 				40D1E9771C86EBDD00457905 /* ActivityVC.m in Sources */,

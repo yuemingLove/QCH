@@ -98,7 +98,7 @@
     index_btn=1;
     
     zfbBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-    zfbBtn.frame=CGRectMake(zfbImageView.right,zfbImageView.top+10*SCREEN_WSCALE, ScreenWidth-zfbImageView.right, 20*SCREEN_WSCALE);
+    zfbBtn.frame=CGRectMake(zfbImageView.right,zfbImageView.top+10*SCREEN_WSCALE, ScreenWidth-zfbImageView.right, 30*SCREEN_WSCALE);
     [zfbBtn setImage:[UIImage imageNamed:@"pay_select"] forState:UIControlStateNormal];
     [zfbBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 85*PMBWIDTH, 0, -85*PMBWIDTH)];
     zfbBtn.tag=1;
@@ -119,9 +119,9 @@
     [secordView addSubview:wxLabel];
     
     wxBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-    zfbBtn.frame=CGRectMake(zfbImageView.right,zfbImageView.top+5*SCREEN_WSCALE, ScreenWidth-zfbImageView.right, 30*SCREEN_WSCALE);
-    [zfbBtn setImage:[UIImage imageNamed:@"pay_select"] forState:UIControlStateNormal];
-    [zfbBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 85*PMBWIDTH, 0, -85*PMBWIDTH)];
+    wxBtn.frame=CGRectMake(wxImageView.right,wxImageView.top+5*SCREEN_WSCALE, ScreenWidth-wxImageView.right, 30*SCREEN_WSCALE);
+    [wxBtn setImage:[UIImage imageNamed:@"pay_normal"] forState:UIControlStateNormal];
+    [wxBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 85*PMBWIDTH, 0, -85*PMBWIDTH)];
     wxBtn.tag=2;
     [wxBtn addTarget:self action:@selector(selectPayWay:) forControlEvents:UIControlEventTouchUpInside];
     [secordView addSubview:wxBtn];

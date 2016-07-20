@@ -235,8 +235,13 @@
                 QCHMainController *main = [[QCHMainController alloc] init];
                 [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
                 [SVProgressHUD showSuccessWithStatus:@"登录成功" maskType:SVProgressHUDMaskTypeBlack];
-                main.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-                [self presentViewController:main animated:YES completion:nil];
+               
+               main.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;                 [self presentViewController:main animated:YES completion:^{
+                   [UIApplication sharedApplication].keyWindow.rootViewController = main;
+                   [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+                   [[UIApplication sharedApplication].keyWindow setBackgroundColor:TSEColor(244, 244, 244)];
+                   [[UIApplication sharedApplication].keyWindow makeKeyAndVisible];
+               }];
 //                [self.navigationController pushViewController:main animated:YES];
             }else{
                 PerfectMeansVC *perfect=[[PerfectMeansVC alloc]init];

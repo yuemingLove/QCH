@@ -19,6 +19,8 @@
 #import "MyActivityVC.h"
 #import "ZLCGuidePageView.h"
 #import "ViewController.h"
+#import "MyChatViewController1.h"
+
 #define RONGCLOUD_IM_APPKEY @"e0x9wycfx5ybq"
 #define UMENG_APPKEY @"5611e73b67e58e9d9700624d"
 #define iPhone6                                                                \
@@ -49,6 +51,8 @@ static BOOL isProduction = TRUE;
 @interface AppDelegate ()<WXApiDelegate,UIAlertViewDelegate>{
     enum WXScene _scene;
 }
+@property BOOL RCIMCustomLocalNotification;
+@property NSString *sendName;
 
 @end
 
@@ -94,7 +98,7 @@ static BOOL isProduction = TRUE;
     [self JPushData:launchOptions];
     
     /**
-     * 推送处理1
+     * 融云推送处理4-1
      */
     if ([application
          respondsToSelector:@selector(registerUserNotificationSettings:)]) {
@@ -111,7 +115,7 @@ static BOOL isProduction = TRUE;
         [application registerForRemoteNotificationTypes:myTypes];
     }
     /**
-     * 统计推送打开率1
+     * 融云统计推送打开率1
      */
     [[RCIMClient sharedRCIMClient] recordLaunchOptionsEvent:launchOptions];
     /**
@@ -128,7 +132,6 @@ static BOOL isProduction = TRUE;
     }
     
 //    NSDictionary *remoteNotificationUserInfo = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
-//    
     
     return YES;
 }
@@ -300,6 +303,10 @@ static BOOL isProduction = TRUE;
     
 
 }
+//- (void)dealloc
+//{
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:RCKitDispatchMessageNotification object:nil];
+//}
 -(void)getUserInfoWithUserId:(NSString *)userId completion:(void (^)(RCUserInfo *))completion{
     
     [HttpLoginAction GetUserPic:userId Token:[MyAes aesSecretWith:@"userGuid"] complete:^(id result, NSError *error) {
@@ -434,9 +441,8 @@ static BOOL isProduction = TRUE;
     }
 }
 
-
 /**
- * 推送处理2
+ * 融云推送处理4-2
  */
 //注册用户通知设置
 - (void)application:(UIApplication *)application
@@ -447,6 +453,7 @@ didRegisterUserNotificationSettings:
 }
 
 /**
+ *  融云推送处理4-3
  *  将得到的devicetoken 传给融云用于离线状态接收push ，您的app后台要上传推送证书
  *
  *  @param application <#application description#>
@@ -468,8 +475,15 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
    NSLog(@"设备ID:%@",self.JPtoken);
     [JPUSHService registerDeviceToken:deviceToken];
 }
-
-
+-(void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+#if TARGET_IPHONE_SIMULATOR
+    // 模拟器不能使用远程推送
+#else
+    // 请检查App的APNs的权限设置，更多内容可以参考文档 http://www.rongcloud.cn/docs/ios_push.html。
+    NSLog(@"获取DeviceToken失败！！！");
+    NSLog(@"ERROR：%@", error);
+#endif
+}
 
 /**
  *  网络状态变化。
@@ -494,7 +508,6 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 //系统通知  消息类型
 
 - (void)didReceiveMessageNotification:(NSNotification *)notification {
-    
     [UIApplication sharedApplication].applicationIconBadgeNumber =
     [UIApplication sharedApplication].applicationIconBadgeNumber + 1;
     if (self.badgeBlock) {
@@ -502,53 +515,143 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     }
 }
 
-//- (void)dealloc {
-//    [[NSNotificationCenter defaultCenter]
-//     removeObserver:self
-//     name:RCKitDispatchMessageNotification
-//     object:nil];
-//}
-
+/**
+ * 融云推送处理4-4
+ * userInfo内容请参考官网文档
+ */
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-
+    if ([[userInfo allKeys] containsObject:@"Guid"]){
+        // 来自极光推送
     [JPUSHService handleRemoteNotification:userInfo];
     NSLog(@"收到通知:%@", [self logDic:userInfo]);
-    
     _qchUserInfo=[userInfo copy];
-    
     [self receiveRemoteNoti:userInfo];
-    
-    /**
-     * 统计推送打开率2
-     */
-    [[RCIMClient sharedRCIMClient] recordRemoteNotificationEvent:userInfo];
-    /**
-     * 获取融云推送服务扩展字段2
-     */
-    NSDictionary *pushServiceData = [[RCIMClient sharedRCIMClient] getPushExtraFromRemoteNotification:userInfo];
-    if (pushServiceData) {
-        NSLog(@"该远程推送包含来自融云的推送服务");
-        for (id key in [pushServiceData allKeys]) {
-            NSLog(@"key = %@, value = %@", key, pushServiceData[key]);
-        }
     } else {
-        NSLog(@"该远程推送不包含来自融云的推送服务");
-    }
+         //来自融云推送
+        /**
+         * 统计推送打开率2
+         */
+        [[RCIMClient sharedRCIMClient] recordRemoteNotificationEvent:userInfo];
+        /**
+         * 获取融云推送服务扩展字段2
+         */
+        NSDictionary *pushServiceData = [[RCIMClient sharedRCIMClient] getPushExtraFromRemoteNotification:userInfo];
+        if (pushServiceData) {
+            NSLog(@"该远程推送包含来自融云的推送服务");
+            for (id key in [pushServiceData allKeys]) {
+                NSLog(@"key = %@, value = %@", key, pushServiceData[key]);
+            }
+        } else {
+            NSLog(@"该远程推送不包含来自融云的推送服务");
+        }
+        NSString *message = [[[userInfo objectForKey:@"aps"] objectForKey:@"alert"] objectForKey:@"body"];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:message  preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"显示" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            // 跳转到对应聊天界面
+            MyChatViewController1 *myChat=[[MyChatViewController1 alloc]init];
+            myChat.conversationType=ConversationType_PRIVATE;
+            myChat.targetId=[[userInfo objectForKey:@"rc"] objectForKey:@"fId"];
+            myChat.title = [NSString stringWithFormat:@"对话"];
+            myChat.hidesBottomBarWhenPushed=YES;
+            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:myChat];
+            [self.window.rootViewController presentViewController:nav animated:YES completion:nil];
+            [alert dismissViewControllerAnimated:YES completion:nil];
+        }];
+        UIAlertAction *cancleAction = [UIAlertAction actionWithTitle:@"关闭" style:UIAlertActionStyleCancel handler:nil];
+        [alert addAction:okAction];
+        [alert addAction:cancleAction];
+        [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
+   }
 
+}
+/// 融云本地推送2-1
+-(BOOL)onRCIMCustomLocalNotification:(RCMessage*)message
+                      withSenderName:(NSString *)senderName {
+    self.RCIMCustomLocalNotification = YES;
+    self.sendName = senderName;
+    return NO;
+}
+/// 融云本地推送2-2
+- (void)application:(UIApplication *)application
+didReceiveLocalNotification:(UILocalNotification *)notification {
+     /** 统计推送打开率3
+     */
+    [[RCIMClient sharedRCIMClient] recordLocalNotificationEvent:notification];
+
+    if (self.RCIMCustomLocalNotification) {
+        self.RCIMCustomLocalNotification = NO;
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:notification.alertBody preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"显示" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            // 跳转到对应聊天界面
+            MyChatViewController1 *myChat=[[MyChatViewController1 alloc]init];
+            myChat.conversationType=ConversationType_PRIVATE;
+            myChat.targetId=[[notification.userInfo objectForKey:@"rc"] objectForKey:@"fId"];
+            myChat.title = [NSString stringWithFormat:@"与%@的对话",self.sendName];
+            myChat.hidesBottomBarWhenPushed=YES;
+            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:myChat];
+            [self.window.rootViewController presentViewController:nav animated:YES completion:nil];
+            [alert dismissViewControllerAnimated:YES completion:nil];
+        }];
+        UIAlertAction *cancleAction = [UIAlertAction actionWithTitle:@"关闭" style:UIAlertActionStyleCancel handler:nil];
+        [alert addAction:okAction];
+        [alert addAction:cancleAction];
+        [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
+    } else {
+    [JPUSHService showLocalNotificationAtFront:notification identifierKey:nil];
+    }
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler: (void (^)(UIBackgroundFetchResult))completionHandler {
-    
-    completionHandler(UIBackgroundFetchResultNewData);
-    
-    [JPUSHService handleRemoteNotification:userInfo];
-    NSLog(@"收到通知:%@", [self logDic:userInfo]);
-    
-    _qchUserInfo=[userInfo copy];
-    
-    if ([_qchUserInfo objectForKey:@"type"]) {//有消息参数  跳
-        [self receiveRemoteNoti:userInfo];
+    if ([[userInfo allKeys] containsObject:@"Guid"]){
+        // 来自极光推送
+        completionHandler(UIBackgroundFetchResultNewData);
+        
+        [JPUSHService handleRemoteNotification:userInfo];
+        NSLog(@"收到通知:%@", [self logDic:userInfo]);
+        
+        _qchUserInfo=[userInfo copy];
+        
+        if ([_qchUserInfo objectForKey:@"type"]) {//有消息参数  跳
+            [self receiveRemoteNoti:userInfo];
+        }
+
+    } else {
+        //来自融云推送
+        /**
+         * 统计推送打开率2
+         */
+        [[RCIMClient sharedRCIMClient] recordRemoteNotificationEvent:userInfo];
+        /**
+         * 获取融云推送服务扩展字段2
+         */
+        NSDictionary *pushServiceData = [[RCIMClient sharedRCIMClient] getPushExtraFromRemoteNotification:userInfo];
+        if (pushServiceData) {
+            NSLog(@"该远程推送包含来自融云的推送服务");
+            for (id key in [pushServiceData allKeys]) {
+                NSLog(@"key = %@, value = %@", key, pushServiceData[key]);
+            }
+        } else {
+            NSLog(@"该远程推送不包含来自融云的推送服务");
+        }
+        NSString *message = [[userInfo objectForKey:@"aps"] objectForKey:@"alert"];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:message preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"显示" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            // 跳转到对应聊天界面
+            MyChatViewController1 *myChat=[[MyChatViewController1 alloc]init];
+            myChat.conversationType=ConversationType_PRIVATE;
+            myChat.targetId=[[userInfo objectForKey:@"rc"] objectForKey:@"fId"];
+            myChat.title = @"对话";
+            myChat.hidesBottomBarWhenPushed=YES;
+            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:myChat];
+            [self.window.rootViewController presentViewController:nav animated:YES completion:nil];
+            [alert dismissViewControllerAnimated:YES completion:nil];
+        }];
+        UIAlertAction *cancleAction = [UIAlertAction actionWithTitle:@"关闭" style:UIAlertActionStyleCancel handler:nil];
+        [alert addAction:okAction];
+        [alert addAction:cancleAction];
+        [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
     }
+
 }
 
 - (void)receiveRemoteNoti:(NSDictionary *)userInfo {
@@ -666,10 +769,6 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     }];
 }
 
-- (void)application:(UIApplication *)application
-didReceiveLocalNotification:(UILocalNotification *)notification {
-    [JPUSHService showLocalNotificationAtFront:notification identifierKey:nil];
-}
 
 // log NSSet with UTF8
 // if not ,log will be \Uxxx

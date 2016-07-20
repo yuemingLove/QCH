@@ -102,7 +102,12 @@
     
     playerFrame = CGRectMake(0, 0, self.view.frame.size.width, (self.view.frame.size.width)*1/2);
     backgroundIV = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenWidth*9./16)];
-    backgroundIV.image = [UIImage imageNamed:@"nolive.jpg"];
+    backgroundIV.userInteractionEnabled = YES;
+    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    backBtn.frame = CGRectMake(3*SCREEN_WSCALE, 25*SCREEN_WSCALE, 20*SCREEN_WSCALE, 20*SCREEN_WSCALE);
+    [backBtn setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+    [backBtn addTarget:self action:@selector(pop) forControlEvents:UIControlEventTouchUpInside];
+    [backgroundIV addSubview:backBtn];
     [self.view addSubview:backgroundIV];
 
     [self creattableview];
@@ -156,10 +161,11 @@
 - (void)Playaction{
     
     if ([[FundCoursedic objectForKey:@"isApply"]isEqualToString:@"0"]) {
+        backgroundIV.image = [UIImage imageNamed:@"nolive.jpg"];
         [SVProgressHUD showErrorWithStatus:@"请先购买" maskType:SVProgressHUDMaskTypeBlack];
-    }else{
+    }else {
         Reachability *wifi=[Reachability reachabilityForLocalWiFi];
-        if ([wifi currentReachabilityStatus] != NotReachable) {
+        if ([wifi currentReachabilityStatus] == ReachableViaWiFi) {//wifi下自动创建
             if (_playerView == nil) {
                 // 设置播放前的占位图（需要在设置视频URL之前设置）
                 self.playerView.placeholderImageName = @"nolive.jpg";
@@ -174,13 +180,13 @@
                     // 注意此处，宽高比16：9优先级比1000低就行，在因为iPhone 4S宽高比不是16：9
                     make.height.equalTo(self.playerView.mas_width).multipliedBy(9.0f/16.0f).with.priority(750);
                 }];
-                [self.playerView autoPlayTheVideo];
+                //[self.playerView autoPlayTheVideo];
                 __weak typeof(self) weakSelf = self;
                 self.playerView.goBackBlock = ^{
                     [weakSelf.navigationController popViewControllerAnimated:YES];
                 };
             }
-        }else{
+        }else if ([wifi currentReachabilityStatus] == ReachableViaWWAN){// 流量下给提示
             UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"温馨提示" message:@"当前网络非Wi-Fi，是否继续播放" delegate:self cancelButtonTitle:@"暂停播放" otherButtonTitles:@"继续播放", nil];
             [alert show];
         }
@@ -199,12 +205,20 @@
              [self.view addSubview:_playerView];
              self.playerView.playerLayerGravity = ZFPlayerLayerGravityResizeAspect;
              
-             //[self.playerView autoPlayTheVideo];
+             [self.playerView autoPlayTheVideo];
+             __weak typeof(self) weakSelf = self;
+             self.playerView.goBackBlock = ^{
+                 [weakSelf.navigationController popViewControllerAnimated:YES];
+             };
          }
+
+     } else if (buttonIndex==0) {
 
      }
 }
-
+- (void)pop {
+    [self.navigationController popViewControllerAnimated:YES];
+}
 - (void)creattableview{
     
     UITableView *tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, ScreenWidth*9./16, SCREEN_WIDTH, SCREEN_HEIGHT-ScreenWidth*9./16-49) style:UITableViewStylePlain];
@@ -623,8 +637,12 @@
             [SVProgressHUD dismiss];
             
         }else if ([[dict objectForKey:@"state"]isEqualToString:@"false"]){
+            backgroundIV.image = [UIImage imageNamed:@"nolive.jpg"];
+
             [SVProgressHUD showErrorWithStatus:[dict objectForKey:@"result"] maskType:SVProgressHUDMaskTypeBlack];
         }else{
+            backgroundIV.image = [UIImage imageNamed:@"nolive.jpg"];
+
             [SVProgressHUD showErrorWithStatus:@"加载失败，请重新请求" maskType:SVProgressHUDMaskTypeBlack];
         }
         [_tableviewlist reloadData];

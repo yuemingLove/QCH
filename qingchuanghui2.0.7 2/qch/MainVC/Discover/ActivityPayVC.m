@@ -288,7 +288,6 @@
 
 -(void)WXPayAction{
     
-    
     [HttpLoginAction GetPayKey:@"wxPay" Token:[MyAes aesSecretWith:@"type"] complete:^(id result, NSError *error) {
         
         NSDictionary *dict=result[0];

@@ -9,6 +9,7 @@
 #import "WithdrawalsDetailVC.h"
 #import "WithdrawalsDetailCell.h"
 #import "WithdrawalsDetailCell2.h"
+#import "WithdrawalsDetailCell3.h"
 
 @interface WithdrawalsDetailVC ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -43,6 +44,7 @@
     _tableView.mj_footer=[MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(footerRefreshing)];
     [_tableView registerNib:[UINib nibWithNibName:@"WithdrawalsDetailCell" bundle:nil] forCellReuseIdentifier:@"cell"];
     [_tableView registerNib:[UINib nibWithNibName:@"WithdrawalsDetailCell2" bundle:nil] forCellReuseIdentifier:@"cell2"];
+    [_tableView registerNib:[UINib nibWithNibName:@"WithdrawalsDetailCell3" bundle:nil] forCellReuseIdentifier:@"cell3"];
     [self.view addSubview:_tableView];
     
     [self cleanTableView:_tableView];
@@ -145,17 +147,23 @@
     NSInteger state=[(NSNumber*)[dict objectForKey:@"t_Withdrawal_State"]integerValue];
     if (state == 2) {// 拒绝
         return 260;
+    } else if(state == 1) {// 成功
+        return 267;
     }
     return 205;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSDictionary *dict=[_funlist objectAtIndex:indexPath.section];
     NSInteger state=[(NSNumber*)[dict objectForKey:@"t_Withdrawal_State"]integerValue];
-    if (state == 2) {
+    if (state == 2) {// 失败
         WithdrawalsDetailCell2 *cell = [tableView dequeueReusableCellWithIdentifier:@"cell2" forIndexPath:indexPath];
         [cell updateInfoWith:dict];
         return cell;
-    } else {
+    } else if(state == 1) {// 成功
+        WithdrawalsDetailCell3 *cell = [tableView dequeueReusableCellWithIdentifier:@"cell3" forIndexPath:indexPath];
+        [cell updateInfoWith:dict];
+        return cell;
+    }else {// 处理中
     WithdrawalsDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     [cell updateInfoWith:dict];
     return cell;

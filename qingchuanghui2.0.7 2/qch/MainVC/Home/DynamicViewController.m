@@ -20,6 +20,7 @@
 #import "DynamicTWCell5.h"
 #import "DynamicTWCell7.h"
 #import "AddCertificationVC.h"
+#import "AppDelegate.h"
 
 //角度转换成弧度
 #define  ANGEL(x) x/180.0 * M_PI
@@ -71,6 +72,8 @@
 {
     [super viewDidAppear:animated];
     [self GetIsInvestor];
+    AppDelegate *dele = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    Liu_DBG(@"%@", dele.window.rootViewController);
     if (![UserDefaultEntity.NowNeed isEqualToString:@"0"]) {
         
         [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {

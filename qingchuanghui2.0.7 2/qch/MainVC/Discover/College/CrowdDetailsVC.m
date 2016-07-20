@@ -86,6 +86,13 @@
     touserguid = @"";
     playerFrame = CGRectMake(0, 0, self.view.frame.size.width, (self.view.frame.size.width)/2);
     backgroundIV = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenWidth*9./16)];
+    backgroundIV.userInteractionEnabled = YES;
+    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    backBtn.frame = CGRectMake(3*SCREEN_WSCALE, 25*SCREEN_WSCALE, 20*SCREEN_WSCALE, 20*SCREEN_WSCALE);
+    [backBtn setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+    [backBtn addTarget:self action:@selector(pop) forControlEvents:UIControlEventTouchUpInside];
+    [backgroundIV addSubview:backBtn];
+
     [self.view addSubview:backgroundIV];
     [self creattableview];
     [self creatheaderView];
@@ -101,8 +108,6 @@
     self.navigationItem.rightBarButtonItem=shareView;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cancle:) name:@"quxiao" object:nil];
-    [self Playaction];
-
 }
 
 - (void)Playaction
@@ -115,6 +120,8 @@
 //    wmPlayer = [[WMPlayer alloc]initWithFrame:backgroundIV.bounds videoURLStr:@"http://192.168.1.77:8004/Attach/Media/1.mp4"];
         //[self.view sendSubviewToBack:backgroundIV];
         if (![self isBlankString:_LiveURL]) {
+            Reachability *wifi=[Reachability reachabilityForLocalWiFi];
+            if ([wifi currentReachabilityStatus] == ReachableViaWiFi) {//wifi下自动创建
             // 设置播放前的占位图（需要在设置视频URL之前设置）
             self.playerView.placeholderImageName = @"nolive.jpg";
             self.playerView = [[ZFPlayerView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenWidth/2)];
@@ -128,11 +135,16 @@
                 // 注意此处，宽高比16：9优先级比1000低就行，在因为iPhone 4S宽高比不是16：9
                 make.height.equalTo(self.playerView.mas_width).multipliedBy(9.0f/16.0f).with.priority(750);
             }];
-            [self.playerView autoPlayTheVideo];
+            //[self.playerView autoPlayTheVideo];
             __weak typeof(self) weakSelf = self;
             self.playerView.goBackBlock = ^{
                 [weakSelf.navigationController popViewControllerAnimated:YES];
             };
+            }else if ([wifi currentReachabilityStatus] == ReachableViaWWAN){// 流量下给提示
+                UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"温馨提示" message:@"当前网络非Wi-Fi，是否继续播放" delegate:self cancelButtonTitle:@"暂停播放" otherButtonTitles:@"继续播放", nil];
+                alert.tag = 1000;
+                [alert show];
+            }
         } else {
             backgroundIV.userInteractionEnabled = YES;
             UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -144,11 +156,33 @@
 
     }
 }
+
 - (void)pop {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (alertView.tag == 1000) {
+        if (buttonIndex==1) {
+            if (_playerView == nil) {
+                // 设置播放前的占位图（需要在设置视频URL之前设置）
+                self.playerView.placeholderImageName = @"loading_bgView1";
+                self.playerView = [[ZFPlayerView alloc] initWithFrame:backgroundIV.bounds];
+                self.playerView.videoURL = [NSURL URLWithString:_LiveURL];
+                [self.view addSubview:_playerView];
+                self.playerView.playerLayerGravity = ZFPlayerLayerGravityResizeAspect;
+                
+                [self.playerView autoPlayTheVideo];
+                __weak typeof(self) weakSelf = self;
+                self.playerView.goBackBlock = ^{
+                    [weakSelf.navigationController popViewControllerAnimated:YES];
+                };
+            }
+            
+        } else if (buttonIndex==0) {
+        }
+
+    } else {
     if(buttonIndex==1){
         ApliaySelectVC *Apliay = [[ApliaySelectVC alloc]init];
         Apliay.hidesBottomBarWhenPushed = YES;
@@ -166,6 +200,7 @@
         Apliay.guid = [FundCoursedic objectForKey:@"Guid"];
         Apliay.titlestr = [FundCoursedic objectForKey:@"T_FundCourse_Title"];
         [self.navigationController pushViewController:Apliay animated:YES];
+    }
     }
 }
 - (void)creattableview
@@ -524,6 +559,8 @@
             [SVProgressHUD dismiss];
             NSString *path = [[NSString stringWithFormat:@"%@%@",SERIVE_IMAGE,[FundCoursedic objectForKey:@"T_FundCourse_Pic"]]stringByReplacingOccurrencesOfString:@"min" withString:@""];
             [backgroundIV sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:[UIImage imageNamed:@"logo1"]];
+            [self Playaction];
+            
             Informationlab.text = [FundCoursedic objectForKey:@"T_FundCourse_Title"];
             Moneylab.text = [NSString stringWithFormat:@"¥%@",[FundCoursedic objectForKey:@"hadMoney"]];
             
@@ -555,8 +592,10 @@
             }
 
         }else if ([[dict objectForKey:@"state"]isEqualToString:@"false"]){
+            backgroundIV.image = [UIImage imageNamed:@"nolive.jpg"];
             [SVProgressHUD showErrorWithStatus:[dict objectForKey:@"result"] maskType:SVProgressHUDMaskTypeBlack];
         }else{
+            backgroundIV.image = [UIImage imageNamed:@"nolive.jpg"];
             [SVProgressHUD showErrorWithStatus:@"加载失败，请重新请求" maskType:SVProgressHUDMaskTypeBlack];
         }
         [_tableviewlist reloadData];
